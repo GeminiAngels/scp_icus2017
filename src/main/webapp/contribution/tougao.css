@@ -1,0 +1,20 @@
+body {
+	/*font-family: "Open Sans", Arial, sans-serif;*/
+	/*font-family: "å¾®è½¯é›…é»‘", Arial, sans-serif;*/
+	font:14px/1.5 "\5FAE\8F6F\96C5\9ED1","Microsoft Yahei","Hiragino Sans GB",tahoma,arial,"\5B8B\4F53";
+	font-weight: 400;
+	color: #6c7279;
+}
+// .formStyle{
+// 	margin-bottom:15px;
+// 	border-bottom:1px solid #a7a6a6;
+// }
+.row{
+	margin-bottom: 10px;
+}
+.table{
+    border-top: 2px solid #3497DB;
+}
+.redColor{
+	color:red;
+}
