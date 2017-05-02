@@ -100,6 +100,9 @@ public class ContributionServlet extends BaseServlet {
                 contributionService.update(cont);
             }
 
+            // 保证只有一个附件
+            thesisService.deleteBy(cont.getId()+"");
+
             for(Thesis thesis : thesisList) {
             	thesis.setRegisterid(cont.getRegisterid());
 				if(cont.getId()!=0)
@@ -115,7 +118,7 @@ public class ContributionServlet extends BaseServlet {
 			
 			e.printStackTrace();
 		}
-		return "ctx:contribution/index.jsp";
+		return "ctx:Submission/index.jsp";
 	}
 	
 	public String download(HttpServletRequest req , HttpServletResponse resp){
@@ -161,6 +164,6 @@ public class ContributionServlet extends BaseServlet {
 			req.getSession().removeAttribute("thesisList");
 			req.getSession().invalidate();
 		}
-		return "ctx:contribution/index.jsp";
+		return "ctx:Submission/index.jsp";
 	}
 }

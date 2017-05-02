@@ -111,6 +111,8 @@ public class DBUtil {
 							stat.setTimestamp(i, java.sql.Timestamp.valueOf(time));
 						}else
 							stat.setString(i, p.toString());
+					} else {
+						stat.setObject(i,p);
 					}
 				}
 			}
@@ -155,14 +157,18 @@ public class DBUtil {
 			if(params!=null&&params.length>0){
 				for(int i=0,len=params.length;i<len;i++){
 					Object p = params[i];
-						if(p instanceof Integer)
-							stat.setInt(i+2, Integer.parseInt(p.toString()));
-						else if(p instanceof Date){
+					if(p!=null) {
+						if (p instanceof Integer)
+							stat.setInt(i + 2, Integer.parseInt(p.toString()));
+						else if (p instanceof Date) {
 							//将时间格式转换成符合Timestamp要求的格式  
-							String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(p);  
-							stat.setTimestamp(i+2, java.sql.Timestamp.valueOf(time));
+							String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(p);
+							stat.setTimestamp(i + 2, java.sql.Timestamp.valueOf(time));
 						} else
-							stat.setString(i+2, p!=null?p.toString():null);
+							stat.setString(i + 2, p != null ? p.toString() : null);
+					} else {
+						stat.setObject(i+2,p);
+					}
 				}
 			}
 			int zt = stat.executeUpdate();

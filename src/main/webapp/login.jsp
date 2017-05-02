@@ -79,15 +79,15 @@
 		</div>
 		<div class="collapse navbar-collapse appiNav">
 			<ul class="nav navbar-nav">
-				<li><a href="#Home">Home</a></li>
-				<li><a href="#callForPapers">Call For Papers </a></li>
-				<li><a href="#workshop">Workshop</a></li>
-				<li><a href="#Keynote Speakers">Keynote Speakers</a></li>
-				<li><a href="#Invited Sessions">Invited Sessions</a></li>
-				<li><a href="#Submission">Submission</a></li>
-				<li><a href="#committee">Committee</a></li>
-				<li><a href="#Download">Download</a></li>
-				<li><a href="#Venue">Venue</a></li>
+				<li><a href="index.jsp#Home">Home</a></li>
+				<li><a href="index.jsp#callForPapers">Call For Papers </a></li>
+				<li><a href="index.jsp#workshop">Workshop</a></li>
+				<li><a href="index.jsp#Keynote Speakers">Keynote Speakers</a></li>
+				<li><a href="index.jsp#Invited Sessions">Invited Sessions</a></li>
+				<li><a href="index.jsp#Submission">Submission</a></li>
+				<li><a href="index.jsp#committee">Committee</a></li>
+				<li><a href="index.jsp#Download">Download</a></li>
+				<li><a href="index.jsp#Venue">Venue</a></li>
 				<li id="registerInfo">
 					<div class="btn-group">
 						<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
@@ -110,8 +110,8 @@
 			<form id="loginForm" action="<%=path%>/auth.do?method=frontLogin" method="post">
 			<div class="col-sm-8 col-sm-offset-2">
 				<div class="inputContainer">
-				<label>User Name：</label>
-					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="Email Address/User Name"/>
+				<label>Email Address：</label>
+					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="Email Address"/>
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
@@ -250,5 +250,13 @@
 <script src="<%=path%>/static/js/modernizr.js"></script> 
 <script src="<%=path%>/static/js/main.js"></script> 
 <script type="text/javascript" src="<%=path%>/static/js/jquery.contact.js"></script>
+<script>
+	$(function(){
+		var alertmsg = $('#alert-loginmsg').text();
+		if(alertmsg.indexOf('对不起，用户不存在，或被管理员禁用！')> -1){
+			$('#alert-loginmsg').text('Sorry, the user does not exist or is disabled by the administrator!');
+		}
+	})
+</script>
 </body>
 </html>

@@ -257,7 +257,7 @@ public class AuthorityServlet extends BaseServlet {
 		req.getSession().removeAttribute("thesisList");
 		req.getSession().removeAttribute("position");
 //		req.getSession().invalidate();
-		return "redirect:index.jsp";
+		return "ctx:index.jsp";
 	}
 
 	/**

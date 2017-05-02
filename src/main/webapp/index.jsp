@@ -29,9 +29,9 @@
 <link href="<%=path%>/static/css/timeTo.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript">
 	var app = {
-		  ctx : '<%=path%>',
-      curl : window.location.href,
-    	maodian : '${position}'||'${param["position"]}'||'#header',
+		ctx : '<%=path%>',
+      	curl : window.location.href,
+    	maodian : '${position}'||'${param["position"]}'||(window.location.href.substr(window.location.href.lastIndexOf('#')))||'#header',
   		user : {
   			id : '${user.id}'/1,
   			name : '${user.cnname}'
@@ -88,8 +88,8 @@
 							<li><a href="#Home">Home</a></li>
 							<li><a href="#callForPapers">Call For Papers </a></li>
 							<li><a href="#workshop">Workshop</a></li>
-							<li><a href="#Keynote Speakers">Keynote Speakers</a></li>
-							<li><a href="#Invited Sessions">Invited Sessions</a></li>
+							<li><a href="#Keynote_Speakers">Keynote Speakers</a></li>
+							<li><a href="#Invited_Sessions">Invited Sessions</a></li>
 							<li><a href="#Submission">Submission</a></li>
 							<li><a href="#committee">Committee</a></li>
 							<li><a href="#Download">Download</a></li>
@@ -146,7 +146,7 @@
         </div> -->
         <div class="container" style="background-color:white;">
             <div class="row">
-				<div class="col-md-12 col-xs-12" style="padding-top:80px;">
+				<div class="col-md-12 col-xs-12">
 				  <h3 class="text-center">
                     <img src="static/images/logo1.png" width='180' height='160' style="margin-right:0px;">
 				    <img src="static/images/logo2.png" width='160' height='160' style="margin-left:0px;">
@@ -157,7 +157,7 @@
 				    <img src="static/images/logo2.png" width='160' height='160' style="margin-left:150px;">
                   -->
                 </div>
-                <div class="col-md-12 col-xs-12" style="padding-top:80px;">
+                <div class="col-md-12 col-xs-12">
 		
                   <h3 class="text-center">
                     <b>Welcome to ICUS 2017 !</b>
@@ -204,7 +204,7 @@
     <!-- package section -->
 
 	<section id="callForPapers" class="video-section">
-				<div class="col-md-12 col-xs-12" style="padding-top:80px;">
+				<div class="col-md-12 col-xs-12">
                   <h3 class="text-center">
                     <b>Call For Papers</b>
                   </h3>
@@ -282,7 +282,7 @@
     </section>
 	<hr>
 	<section id="workshop" class="video-section">
-				<div class="col-md-12 col-xs-12" style="padding-top:80px;">
+				<div class="col-md-12 col-xs-12">
                   <h3 class="text-center">
                     <b>Workshop</b>
                   </h3>
@@ -303,7 +303,7 @@
     </section>
 	<hr>
     <section id="Schedule" class="video-section">
-				<div class="col-md-12 col-xs-12" style="padding-top:80px;">
+				<div class="col-md-12 col-xs-12">
                   <h3 class="text-center">
                     <b>Schedule</b>
                   </h3>
@@ -433,7 +433,7 @@
     <!-- gallery section -->
 	<hr>
 
-	<section id="Keynote Speakers" class="video-section">
+	<section id="Keynote_Speakers" class="video-section">
 		<div class="container">
             <div class="section-header">
                 <h3 class="wow fadeInDown animated">
@@ -543,7 +543,7 @@
 		</div>
     </section>
 	<hr>
-	<section id="Invited Sessions" class="video-section">
+	<section id="Invited_Sessions" class="video-section">
 		<div class="container">
             <div class="section-header">
                 <h3 class="wow fadeInDown animated">
@@ -561,7 +561,7 @@
 				<b>Submission</b>
 				</h3>
             </div>
-			<p>Papers can be submitted via the website<a href="Submission.jsp"><span style="color:red;"> http://icuspaper.org</span></a>. When submitting a paper, please don’t forget to select the relevant topics or relevant Invited Session (if applicable).</p>
+			<p>Papers can be submitted via the website<a href="javascript:;" id="a-link-submission"><span style="color:red;">www.icus.org.cn/ICUS2017/Submission</span></a>. When submitting a paper, please don’t forget to select the relevant topics or relevant Invited Session (if applicable).</p>
 			<p>Selected high-quality papers presented at IEEE ICUS 2017 will be considered for publication in International Journal of Robotics and Automation (SCI-indexed), International Journal of Modeling Identification and Control (EI-indexed) and CAAI Transactions on Intelligence Technology (Elsevier).</p>
 			<p>Authors are advised to prepare the manuscripts according to the following instructions and use IEEE template:</p>
 			<p><span style="font-size:30px;">☛ </span>Page limit: six pages for initial and final submission.</p>
@@ -824,7 +824,7 @@
                 <div class="col-md-12 col-sm-12 services text-center">
                     <span class="icon icon-phone"><i class="fa fa-phone"></i> Contact Us</span>
                     <div class="services-content">
-                        <p class="wow fadeInLeft animated" style="padding-top:10px;text-align:left">
+                        <p class="wow fadeInLeft animated" style="padding-top:30px;text-align:left">
                             ICUS 2017 Conference Secretariat</p>
                          <p class="wow fadeInLeft animated" style="text-align:left">Beijing Institute of Technology, China</p> 
                          <p class="wow fadeInLeft animated" style="text-align:left">Tel: +8610-6891-2761 (Prof. Hongbin Deng)</p>
@@ -840,7 +840,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <p>Copyright &copy; 2016.<a target="_blank" href="http://www.esciences.com.cn/"> China e-Sciences tech Ltd. </a> technical support.
+					<p>Copyright &copy; 2017 CICC, All Rights Reserved</p>
+                    <p><a target="_blank" href="http://www.esciences.com.cn/"> China e-Sciences tech Ltd. </a> technical support.
                         <a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
                             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>

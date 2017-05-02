@@ -215,7 +215,6 @@ $(document).ready(function() {
 				}
 			});
 		} else {
-			debugger;
 			RegisterService.register(register,function(msg){
 				if(msg){
 					alert('update account info was successful!');
@@ -271,7 +270,7 @@ $(document).ready(function() {
 		}, 500);
 	});
 
-	loadResources();
+	//loadResources();
 
 	//根据锚点定位页面位置，放置在所有业务结束后，定位才能精确
 	if(app.maodian){
@@ -279,7 +278,7 @@ $(document).ready(function() {
 			loginFormFadeIn();
 		} else {
 			$('html, body').animate({
-			    scrollTop: $(app.maodian).offset().top - 75
+			    scrollTop: $(app.maodian).offset() - 75
 			}, 500);
 		}
 	}
@@ -302,6 +301,16 @@ $(document).ready(function() {
 		}
 	});
 	// end 给单选项添加选中事件
+
+	// a-link-submission on click
+	$('#a-link-submission').off('click').on('click',function(e){
+		if(!app.register.id){
+			alert('Sorry! Please login first!');
+			window.location.href = app.ctx + '/login.jsp';
+		} else {
+			window.location.href = app.ctx + '/Submission/index.jsp';
+		}
+	});
 });
 
 function loadResources(){
@@ -455,15 +464,8 @@ function baomingFormFadeOut(){
 
 function validateAuth(){
 	if(!app.register.id){
-		alert('对不起请先登录，并报名后方可提交论文');
-		window.location.href = app.ctx+'/8thMapConference/login.jsp';
-		return false;
-	}
-	if(!app.register.bmflag){
-		alert('对不起您还没有报名参会，不能提交论文！');
-		$('html, body').animate({
-			scrollTop: $("#contact").offset().top - 75
-		}, 500);
+		alert('Sorry! Please login first!');
+		window.location.href = app.ctx+'/login.jsp';
 		return false;
 	}
 	return true;

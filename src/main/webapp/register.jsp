@@ -101,15 +101,15 @@
 		</div>
 		<div class="collapse navbar-collapse appiNav">
 			<ul class="nav navbar-nav">
-				<li><a href="#Home">Home</a></li>
-				<li><a href="#callForPapers">Call For Papers </a></li>
-				<li><a href="#workshop">Workshop</a></li>
-				<li><a href="#Keynote Speakers">Keynote Speakers</a></li>
-				<li><a href="#Invited Sessions">Invited Sessions</a></li>
-				<li><a href="#Submission">Submission</a></li>
-				<li><a href="#committee">Committee</a></li>
-				<li><a href="#Download">Download</a></li>
-				<li><a href="#Venue">Venue</a></li>
+				<li><a href="index.jsp">Home</a></li>
+				<li><a href="index.jsp#callForPapers">Call For Papers </a></li>
+				<li><a href="index.jsp#workshop">Workshop</a></li>
+				<li><a href="index.jsp#Keynote Speakers">Keynote Speakers</a></li>
+				<li><a href="index.jsp#Invited Sessions">Invited Sessions</a></li>
+				<li><a href="index.jsp#Submission">Submission</a></li>
+				<li><a href="index.jsp#committee">Committee</a></li>
+				<li><a href="index.jsp#Download">Download</a></li>
+				<li><a href="index.jsp#Venue">Venue</a></li>
 				<li id="registerInfo">
 					<div class="btn-group">
 						<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>

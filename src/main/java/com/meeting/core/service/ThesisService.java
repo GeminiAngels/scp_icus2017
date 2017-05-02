@@ -85,4 +85,8 @@ public class ThesisService {
 		return db.queryBlob(sql,new Object[]{fileid});
 	}
 
+	public boolean deleteBy(String contid){
+		return db.execute("delete from t_thesis where contid = ?", new Object[]{contid});
+	}
+
 }
