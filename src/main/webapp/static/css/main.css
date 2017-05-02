@@ -54,6 +54,7 @@ h5 {
 .btn-default:hover, .btn-default:focus {
 	background-color: #3496d8;
 	color: #fff;
+	height: inherit;
 }
 .btn-large {
 	padding: 15px 40px;
@@ -334,6 +335,9 @@ ul li {
 .condate{
 	position: relative;margin:30px auto;text-align:center;color: white;font-size: 35px;z-index: 1;
 }
+.regSignBtn{
+	position:absolute;right:100px;top:10px;
+}
 /* ------------------------------------------------------------------------------
 	Banner
 -------------------------------------------------------------------------------*/
@@ -574,6 +578,12 @@ About
 		margin-top: 0px;
 		/* padding: 80px 80px 0px 80px;*/
 		background: #eaeaea;
+	}
+}
+@media screen and (min-width:768px) and (max-width:1420px){
+	.regSignBtn{
+		position:relative !important;
+		right:0 !important;
 	}
 }
 
@@ -821,6 +831,8 @@ ul.list-default li {
 footer {
 	background: #444;
 	padding: 40px 0;
+	z-index: 0;
+    position: relative;
 }
 footer p {
 	color: #ddd;
@@ -1325,5 +1337,25 @@ float: left;
   right: -5%;
   /* reset the standard declaration I defined before*/
   left: auto;
+}
+
+#registerInfo:hover {
+	background-color: #222;
+	border-color:#080808;
+}
+
+#registerInfo .btn {
+	height:50px;
+	border:none;
+	border-radius: 0px;
+}
+
+#registerInfo .a-account {
+	color:lightseagreen;
+}
+
+#registerInfo .a-account:hover {
+	background-color: #f7f7f7;
+	border-color: #f7f7f7;
 }
 /* timeline v2.0 end*/

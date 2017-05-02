@@ -198,8 +198,8 @@
                             <td>${t.type}</td>
                             <td>${t.uploadtime}</td>
                             <td>${t.filesize}</td>
-                            <td>删除${t.id}</td>
-                            <td>删除${t.id}</td>
+                            <td><a href="<%=path%>/contribution.do?method=download&fileid=${t.id}">查看</a></td>
+                            <td><a href="<%=path%>/contribution.do?method=delete&fileid=${t.id}">删除</a></td>
                         </tr>
                         </c:forEach>
                     </tbody>

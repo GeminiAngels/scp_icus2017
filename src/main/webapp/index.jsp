@@ -17,10 +17,10 @@
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
+<link rel="stylesheet" href="<%=path%>/static/css/main.css">
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/flexslider.css">
 <link rel="stylesheet" href="<%=path%>/static/css/jquery.fancybox.css">
-<link rel="stylesheet" href="<%=path%>/static/css/main.css">
 <link rel="stylesheet" href="<%=path%>/static/css/responsive.css">
 <link rel="stylesheet" href="<%=path%>/static/css/animate.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/countdown/jcountdown.css">
@@ -94,11 +94,12 @@
 							<li><a href="#committee">Committee</a></li>
 							<li><a href="#Download">Download</a></li>
 							<li><a href="#Venue">Venue</a></li>
-							<li style="position:absolute;right:100px;top:10px;">								
+							<li id="registerInfo">
+								<div class="btn-group">
 								<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
-								<button class="btn btn-primary" onclick="javacript:loginFormFadeIn();">Sign in</button						
+								<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">Sign in</button>
+								</div>
 							</li>
-							
 						</ul>
 					</div><!--/.nav-collapse -->
 				</div>
@@ -560,7 +561,7 @@
 				<b>Submission</b>
 				</h3>
             </div>
-			<p>Papers can be submitted via the website<span style="color:red;"> http://icuspaper.org</span>. When submitting a paper, please don’t forget to select the relevant topics or relevant Invited Session (if applicable).</p>
+			<p>Papers can be submitted via the website<a href="Submission.jsp"><span style="color:red;"> http://icuspaper.org</span></a>. When submitting a paper, please don’t forget to select the relevant topics or relevant Invited Session (if applicable).</p>
 			<p>Selected high-quality papers presented at IEEE ICUS 2017 will be considered for publication in International Journal of Robotics and Automation (SCI-indexed), International Journal of Modeling Identification and Control (EI-indexed) and CAAI Transactions on Intelligence Technology (Elsevier).</p>
 			<p>Authors are advised to prepare the manuscripts according to the following instructions and use IEEE template:</p>
 			<p><span style="font-size:30px;">☛ </span>Page limit: six pages for initial and final submission.</p>
@@ -674,9 +675,9 @@
 				 <p>Bo Su,NORINCO Unmanned Vehicle R&D Center, China</p>
 				 <p>Boyuan Sun, AUVSC, China</p>
 				 <p><b>Publication Chair</b></p>
-				 <p>Xin Xu, National University of Defense Tech., China</p>
-				 <p><b>Publication Co-Chair</b></p>
 				 <p>Mengqi Zhou, China</p>
+				 <p><b>Publication Co-Chair</b></p>
+				 <p>Xin Xu, National University of Defense Tech., China</p>
 				 <p><b>Registration Chairs</b></p>
 				 <p>Chenwei Yang, China </p>
 				 <p>Dongfang Li, China</p>

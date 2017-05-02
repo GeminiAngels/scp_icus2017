@@ -69,16 +69,16 @@ public class RegisterService {
 		if(reg.getId()==0) {
 			String sql = "insert into t_register"
 					+ "(username,nickname,password,telphone,email,sex,job"
-					+ ",company,registertime,sfbg,sfkc,sfzs) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ ",company,registertime,sfbg,sfkc,sfzs,firstname,lastname,countryarea) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			success = db.execute(sql, new Object[]{
 					reg.getUsername(),reg.getNickname(),StringUtil.MD5(reg.getPassword()),
 					reg.getTelphone(),reg.getEmail(),reg.getSex()
 					,reg.getJob(),reg.getCompany()
-					,new Date(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs()});
+					,new Date(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getFirstname(),reg.getLastname(),reg.getCountryarea()});
 		}else{//修改
 			StringBuffer sql = new StringBuffer("update t_register set nickname=?,telphone=?,sex=?,job=?,company=?," +
-					"sfbg=?,sfkc=?,sfzs=? ");
+					"sfbg=?,sfkc=?,sfzs=?,countryarea=? ");
 			if(reg.getPassword()!=null&&!"".equals(reg.getPassword())){
 				sql.append(",password='"+StringUtil.MD5(reg.getPassword())+"'");
 			}
@@ -86,7 +86,7 @@ public class RegisterService {
 			System.out.println(sql.toString());
 			success = db.execute(sql.toString(), new Object[]{
 					reg.getNickname(),reg.getTelphone(),reg.getSex()
-					,reg.getJob(),reg.getCompany(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs()});
+					,reg.getJob(),reg.getCompany(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getCountryarea()});
 		}
 
 		if(success) {

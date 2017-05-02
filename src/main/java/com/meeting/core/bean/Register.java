@@ -22,6 +22,9 @@ public class Register {
 	private String journalname;	//投稿期刊
 	private String message;		//备注
 
+	private String firstname;	//firstname;
+	private String lastname;	//lastname;
+	private String countryarea;	//国家地区
 	private String sfbg;		//是否报告
 	private String sfkc;		//sfkc
 	private String sfzs;		//是否住宿
@@ -185,5 +188,29 @@ public class Register {
 
 	public void setSfzs(String sfzs) {
 		this.sfzs = sfzs;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getCountryarea() {
+		return countryarea;
+	}
+
+	public void setCountryarea(String countryarea) {
+		this.countryarea = countryarea;
 	}
 }

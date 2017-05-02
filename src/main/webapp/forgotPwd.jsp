@@ -60,18 +60,20 @@
 <!-- header section -->
 <section class="banner nobanner">
   <header id="header" class="fixed">
-	<div class="container" style="width:100%;background-color:#000;color:#fff">
+	<div class="container" style="width:100%;background-color:#3879D9;color:#fff">
 		<div class="row" style="max-width:1170px;margin:0 auto;">
 			<div class="col-md-12 no-padding">
-				<span style="font-size:16px;line-height:30px;">欢迎您！
+				<span style="font-size:16px;line-height:30px;">WELCOME！
 				<span style="float:right;" id="registerInfo">
-					<button class="btn btn-default" onclick="javascript:registerFormFadeIn();">注 册</button>
-					<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">登 录</button>
+									
+					<button class="btn btn-warning" onclick="javascript:registerFormFadeIn();" style="margin-bottom: 5px;">Register</button>
+					<button class="btn btn-warning" onclick="javascript:loginFormFadeIn();" style="margin-bottom: 5px;">Sign in</button						
+						
 				</span>
 			</div>
 		</div>
 	</div>
-    <div class="header-content clearfix"> <a class="logo" href="#banner">e-Sciences+会议平台</a>
+    <!--<div class="header-content clearfix"> <a class="logo" href="#banner">e-Sciences+会议平台</a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
 		 <li><a href="index.jsp">首页</a></li>
@@ -81,10 +83,11 @@
           <li><a href="index.jsp?position=%23teams">会议地点</a></li>
           <li><a href="index.jsp?position=%23testimonials" onclick="javascript:return validateAuth()">论文提交</a></li>
 		  <li><a href="index.jsp?position=%23download">资料下载</a></li>
-          <!-- <li><a href="index.jsp?position=%23reback">往届回顾</a></li> -->
+          <!-- <li><a href="index.jsp?position=%23reback">往届回顾</a></li>
         </ul>
       </nav>
       <a href="#" class="nav-toggle">Menu<span></span></a> </div>
+	  -->
   </header>
 </section>
 <!-- header section --> 
@@ -92,20 +95,20 @@
 <section id="contact" class="section">
   	<div class="container login-form">
 		<div class="section-header">
-			<h2 class="wow fadeInDown animated">安全中心</h2>
+			<h2 class="wow fadeInDown animated">Security center</h2>
 	        <p class="wow fadeInDown animated"><!-- 即刻登录，管理您的会议资源。 --></p>
     	</div>
     	<div class="row wow fadeInUp animated">
 			<form id="loginForm" action="<%=path%>/auth.do?method=forgotPwd" method="post">
 			<div class="col-sm-8 col-sm-offset-2">
-				<div class="alert alert-warning">${errormsg} 请输入注册邮箱地址，我们将发送安全密码重置说明到此邮箱中，然后根据邮件提示完成操作！</div>
+				<div class="alert alert-warning" id="errormsg">${errormsg} Please input the email address first. Afterwards,we will send you a security password to the address. Then you should complete the operation according to the instructions in the email.</div>
 				<div class="inputContainer">
-				<label>验证邮箱：</label>
-					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="请输入邮箱地址"/>
+				<label>Your Primary E-mail For This Site:</label>
+					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="E-mail@example.com"/>
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
-        		<button name="submit" type="submit" class="btn btn-primary btn-lg">提交</button>
+        		<button name="submit" type="submit" class="btn btn-primary btn-lg">Next</button>
 			</div>
 			</form>
 		</div>
@@ -118,8 +121,8 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 text-center">
-        <p>Copyright &copy; 2016.<a target="_blank" href="http://www.esciences.com.cn/"> 北京国科智地科技有限公司 </a>
-技术支持。<a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
+        <p>Copyright &copy; 2016.<a target="_blank" href="http://www.esciences.com.cn/"> China e-Sciences tech Ltd.  </a>
+technical support.<a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-table fa-stack-1x fa-inverse"></i>
@@ -161,5 +164,11 @@
 <script src="<%=path%>/static/js/modernizr.js"></script> 
 <script src="<%=path%>/static/js/main.js"></script> 
 <script type="text/javascript" src="<%=path%>/static/js/jquery.contact.js"></script>
+<script>
+	var errormsg = $('#errormsg').text();
+	if(errormsg.toString().indexOf('对不起') > -1){
+		$('#errormsg').text('Sorry, the registered user does not exist!');
+	}
+</script>
 </body>
 </html>

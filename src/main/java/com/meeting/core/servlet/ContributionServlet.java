@@ -120,12 +120,12 @@ public class ContributionServlet extends BaseServlet {
 	
 	public String download(HttpServletRequest req , HttpServletResponse resp){
 		String fileid = req.getParameter("fileid");
-		ResourceService service = new ResourceService();
+		ThesisService service = new ThesisService();
 		InputStream in = null;
 		OutputStream out = null;
 		Map file = null;
 		try {
-			file = service.getResource(fileid);
+			file = service.get(fileid);
 			in = ((Blob)file.get("file")).getBinaryStream();
 			out = resp.getOutputStream();
 			resp.setContentType("application/x-msdownload");
@@ -147,5 +147,20 @@ public class ContributionServlet extends BaseServlet {
 		}
 		return null;
 	}
-	
+
+	public String delete(HttpServletRequest req , HttpServletResponse resp){
+		String fileid = req.getParameter("fileid");
+		ThesisService service = new ThesisService();
+		service.delete(fileid);
+		Map register = (Map)req.getSession().getAttribute("register");
+		if(register!=null)
+			req.getSession().setAttribute("thesisList",service.list(register.get("id").toString()));
+		else {
+			req.getSession().removeAttribute("register");
+			req.getSession().removeAttribute("contribution");
+			req.getSession().removeAttribute("thesisList");
+			req.getSession().invalidate();
+		}
+		return "ctx:contribution/index.jsp";
+	}
 }

@@ -76,7 +76,7 @@ $(document).ready(function() {
 	$(window).on('scroll', function () {
 	  	var cur_pos = $(this).scrollTop();
 	  	sections.each(function() {
-	    	var top = $(this).offset().top - 76
+	    	var top = $(this).offset().top - 76,
 	        	bottom = top + $(this).outerHeight();
 	    	if (cur_pos >= top && cur_pos <= bottom) {
 	      		nav.find('a').removeClass('active');
@@ -118,26 +118,23 @@ $(document).ready(function() {
 	});
 
 	if(app.register&&app.register.id){
-		$('#registerInfo').html('<button class="btn btn-default btn-register-logout"><i class="fa fa-user"></i> '+app.register.username+' 退出</button>');
-		if(app.register.bmflag){
-			$('#registerInfo').append(' <button class="btn btn-success disabled">已报名</button>');
-			$('#btn-ljbm').html('您已报名').addClass('disabled');
-			baomingFormFadeOut();
-		}
-		else{
-			$('#registerInfo').append(' <button class="btn btn-success btn-baoming">报名</button>');
-			baomingFormFadeIn();
-		}
+		var html =
+			'<a href="javascript:;" class="a-account" data-toggle="dropdown"><i class="fa fa-user"></i> '+app.register.username +
+			'　<span class="caret"></span>' +
+			'</a>' +
+			'<ul class="dropdown-menu" role="menu">' +
+			'<li>' +
+			'<a href="javascript:;" onclick="registerFormFadeIn()"><i class="fa fa-file-text"></i> My Account</a>' +
+			'</li>' +
+			'<li>' +
+			'<a href="javascript:;" class="btn-register-logout"><i class="fa fa-power-off"></i> Logout</a>' +
+			'</li>' +
+			'</ul>';
+		$('#registerInfo').html(html);
 		$('.btn-register-logout').off('click').on('click',function(e){
 			RegisterService.logout();
 			window.location.href = 'index.jsp';
 			// window.location.href = app.ctx + '/auth.do?method=frontLogout';
-		});
-
-		$('.btn-baoming').off('click').on('click',function(e){
-			$('html, body').animate({
-				scrollTop: $("#contact").offset().top - 75
-			}, 500);
 		});
 	}
 
@@ -155,8 +152,11 @@ $(document).ready(function() {
 	$('#registerBtn').off('click').on('click',function(e){
 		var that = this;
 		var register = {
-			username:$('#email').val(),
-			nickname:$('#firstName').val() + ' ' + $('#lastName').val(),
+			id:$('#regid').val(),
+			firstname:$('#firstname').val(),
+			lastname:$('#lastname').val(),
+			username:$('#firstname').val() + ' ' + $('#lastname').val(),
+			nickname:$('#firstname').val() + ' ' + $('#lastname').val(),
 			password:$('#password').val(),
 			telphone:$('#telphone').val(),
 			email:$('#email').val(),
@@ -166,52 +166,66 @@ $(document).ready(function() {
 			journalname:'',
 			message:'',//$('#message').val()
 			//新加字段
-			sfbg:$('#sfbg_input').val()||'否',
-			sfkc:$('#registerForm input[name="sfkc"]:checked').val(),
-			sfzs:$('#sfzs_select').val()||'否'
+			sfbg:$('input[name="sfbg"]:checked').val()||'',
+			sfkc:$('input[name="sfkc"]:checked').val()||'',
+			sfzs:$('input[name="sfzs"]:checked').val()||'',
+			countryarea:$('#basic').val()
 		};
 		if(!register.email){
-			$('#email').focus().attr('placeholder','该项不能为空！');
+			$('#email').focus().attr('placeholder','This item cannot be empty');
 			return;
 		}
 		if(!register.telphone){
-			$('#telphone').focus().attr('placeholder','该项不能为空！');
+			$('#telphone').focus().attr('placeholder','This item cannot be empty');
 			return;
 		}
-		if(!register.password){
-			$('#password').focus().attr('placeholder','密码不可为空！');
+		if(!app.register.id&&!register.password){
+			$('#password').focus().attr('placeholder','This item cannot be empty');
 			return;
 		}
 		// if(register.password.length<6){
 		// 	$('#password').focus().attr('placeholder','密码不少于6个字符！');
 		// 	return;
 		// }
-		if(register.password!=$('#repassword').val()){
-			$('#repassword').focus().attr('placeholder','两次输入密码不一致！');
+		if(!app.register.id&&register.password!=$('#repassword').val()){
+			$('#repassword').focus().attr('placeholder','Two passwords are inconsistent!');
 			return;
 		}
 		if(!register.nickname){
-			$('#nickname').focus().attr('placeholder','该项不能为空！');
+			$('#nickname').focus().attr('placeholder','This item cannot be empty');
 			return;
 		}
 		$(that).addClass('disabled');
-		RegisterService.hasRegisterByTel(register,function(has){
-			if(!has){
-				RegisterService.register(register,function(msg){
-					if(msg){
-						alert('注册成功!');
-						$(that).removeClass('disabled');
-						$('#registerForm')[0].reset();
-						// window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
-						window.location.href = app.ctx + "/index.jsp";
-					}
-				});
-			} else {
-				alert('该邮箱已被注册！');
-				$('#email').focus();
-				$(that).removeClass('disabled');
-			}
-		});
+		if(!app.register.id) {
+			RegisterService.hasRegisterByTel(register,function(has){
+				if(!has){
+					RegisterService.register(register,function(msg){
+						if(msg){
+							alert('login was successful!');
+							$(that).removeClass('disabled');
+							$('#registerForm')[0].reset();
+							// window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
+							window.location.href = app.ctx + "/index.jsp";
+						}
+					});
+				} else {
+					alert('This E-mail address is using！');
+					$('#email').focus();
+					$(that).removeClass('disabled');
+				}
+			});
+		} else {
+			debugger;
+			RegisterService.register(register,function(msg){
+				if(msg){
+					alert('update account info was successful!');
+					$(that).removeClass('disabled');
+					$('#registerForm')[0].reset();
+					// window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
+					window.location.href = app.ctx + "/index.jsp";
+				}
+			});
+		}
 	});
 	
 	$('#loginBtn').off('click').on('click',function(e){

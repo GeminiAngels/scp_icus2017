@@ -12,14 +12,14 @@
 
 <head>
 <meta charset="utf-8">
-<meta name="description" content="第八届全国地图学与地理信息系统学术大会">
-<meta name="keywords" content="第八届全国地图学与地理信息系统学术大会,第八届,全国,地图学,地理,信息系统,学术大会">
+<meta name="description" content="">
+<meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
+<link rel="stylesheet" href="<%=path%>/static/css/main.css">
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/flexslider.css">
 <link rel="stylesheet" href="<%=path%>/static/css/jquery.fancybox.css">
-<link rel="stylesheet" href="<%=path%>/static/css/main.css">
 <link rel="stylesheet" href="<%=path%>/static/css/responsive.css">
 <link rel="stylesheet" href="<%=path%>/static/css/animate.min.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
@@ -58,54 +58,46 @@
 
 <body>
 <!-- header section -->
-<section class="banner nobanner">
-  <header id="header" class="fixed">
-	<div class="container" style="width:100%;background-color:#3879D9;color:#fff;height:inherit;">
-		<div class="row" style="max-width:1170px;margin:0 auto;">
-			<div class="col-md-12 no-padding">
-				<span style="font-size:16px;line-height:30px;">WELCOME！
-				<span style="float:right;" id="registerInfo">
-					<button class="btn btn-warning" onclick="javascript:homePage();">Home</button>
-					<button class="btn btn-warning" onclick="javascript:registerFormFadeIn();">Register</button>
-				</span>
-			</div>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!--
+            <a class="navbar-brand" href="#topWrap">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
+                </span>
+                e-Sciences+<span class="title"> 会议平台</span>
+            </a>
+            -->
 		</div>
-	</div>
-    <div class="navbox-wap header-content" style="display:none;">
-				<div class="navbar navbar-fixed-top" style="top: 35px;" role="navigation">
-					<div class="container">
-						<div class="navbar-header" style="padding-top: 30px;">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only" style="background-color: gray;">Toggle navigation</span>
-								<span class="icon-bar" style="background-color: gray;"></span>
-								<span class="icon-bar" style="background-color: gray;"></span>
-								<span class="icon-bar" style="background-color: gray;"></span>
-							</button>
-							<a class="navbar-brand" href="#topWrap" style="font-size: 14px;">
-								
-							</a>
-						</div>
-						<div class="collapse navbar-collapse appiNav">
-							<ul class="nav navbar-nav primary-nav" >
-								<li><a href="#banner" style="color: black;background: #3AA9ED;">Homepage</a></li>
-								<li><a href="#content-3-10" style="color: black;background: #3AA9ED;">Call For Papers </a></li>
-								<li><a href="#schedule" style="color: black;background: #3AA9ED;">Schedule</a></li>
-								<li><a href="#gallery" style="color: black;background: #3AA9ED;">Keynote Speakers</a></li>
-								<li><a href="#teams" style="color: black;background: #3AA9ED;">Invited Sessions</a></li>
-								<!--<li><a href="index.jsp?position=%23testimonials" onclick="javascript:return validateAuth()">Paper Submission</a></li>-->
-								<li><a href="#paper Submission" style="color: black;background: #3AA9ED;">paper Submission</a></li>
-								<li><a href="#Venue" style="color: black;background: #3AA9ED;">Venue</a></li>
-								<li><a href="#download" style="color: black;background: #3AA9ED;">Download</a></li>
-								<!-- <li><a href="#Contact Us">Contact Us</a></li> -->
-								<!-- <li><a href="#reback">往届回顾</a></li> -->
-								<div class="clear"></div>
-							</ul>
-						</div>
+		<div class="collapse navbar-collapse appiNav">
+			<ul class="nav navbar-nav">
+				<li><a href="#Home">Home</a></li>
+				<li><a href="#callForPapers">Call For Papers </a></li>
+				<li><a href="#workshop">Workshop</a></li>
+				<li><a href="#Keynote Speakers">Keynote Speakers</a></li>
+				<li><a href="#Invited Sessions">Invited Sessions</a></li>
+				<li><a href="#Submission">Submission</a></li>
+				<li><a href="#committee">Committee</a></li>
+				<li><a href="#Download">Download</a></li>
+				<li><a href="#Venue">Venue</a></li>
+				<li id="registerInfo">
+					<div class="btn-group">
+						<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
+						<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">Sign in</button>
 					</div>
-				</div>
-			</div>
-  </header>
-</section>
+				</li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</div>
 <!-- header section --> 
 <!-- contact section -->
 <section id="contact" class="section">
@@ -119,7 +111,7 @@
 			<div class="col-sm-8 col-sm-offset-2">
 				<div class="inputContainer">
 				<label>User Name：</label>
-					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="Email Address"/>
+					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="Email Address/User Name"/>
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
@@ -216,7 +208,7 @@
     <div class="row">
       <div class="col-xs-12 text-center">
         <p>Copyright &copy; 2016.<a target="_blank" href="http://www.esciences.com.cn/">  China e-Sciences tech Ltd. </a> technical support.
-技术支持。<a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
+		<a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-table fa-stack-1x fa-inverse"></i>
