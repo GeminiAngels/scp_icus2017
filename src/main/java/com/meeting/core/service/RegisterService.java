@@ -77,16 +77,16 @@ public class RegisterService {
 					,reg.getJob(),reg.getCompany()
 					,new Date(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getFirstname(),reg.getLastname(),reg.getCountryarea()});
 		}else{//修改
-			StringBuffer sql = new StringBuffer("update t_register set nickname=?,telphone=?,sex=?,job=?,company=?," +
-					"sfbg=?,sfkc=?,sfzs=?,countryarea=? ");
+			StringBuffer sql = new StringBuffer("update t_register set username=?,nickname=?,telphone=?,sex=?,job=?,company=?," +
+					"sfbg=?,sfkc=?,sfzs=?,firstname=?,lastname=?,countryarea=? ");
 			if(reg.getPassword()!=null&&!"".equals(reg.getPassword())){
 				sql.append(",password='"+StringUtil.MD5(reg.getPassword())+"'");
 			}
 			sql.append(" where id = "+reg.getId());
 			System.out.println(sql.toString());
-			success = db.execute(sql.toString(), new Object[]{
+			success = db.execute(sql.toString(), new Object[]{reg.getUsername(),
 					reg.getNickname(),reg.getTelphone(),reg.getSex()
-					,reg.getJob(),reg.getCompany(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getCountryarea()});
+					,reg.getJob(),reg.getCompany(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getFirstname(),reg.getLastname(),reg.getCountryarea()});
 		}
 
 		if(success) {

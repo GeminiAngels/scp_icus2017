@@ -42,14 +42,14 @@
 							<th>编码</th>
 							<th>帐号</th>
 							<th>姓名</th>
-							<th>性别</th>
+							<th style="min-width:50px">性别</th>
 							<th>电话</th>
 							<th>注册时间</th>
 							<th>单位 | 职务</th>
-							<th>发票抬头</th>
-							<th>缴费凭据</th>
-							<th>缴费</th>
-							<th>启停</th>
+							<%--<th>发票抬头</th>--%>
+							<th style="min-width:80px">论文稿件</th>
+							<%--<th>缴费</th>--%>
+							<th>允许登录</th>
 							<th>操作 <a id="icon-refresh" class="cbtn o-cancel" title="重新加载表格数据"></a></th>
 						</tr>
 					</thead>
@@ -105,9 +105,9 @@
 					+'<td>'+item.telphone+'</td>'
 					+'<td>'+(item.registertime?item.registertime.substr(0,16):'')+'</td>'
 					+'<td>'+item.company+' | '+item.job+'</td>'
-					+'<td>'+item.fptt+'</td>'
+//					+'<td>'+item.fptt+'</td>'
 					+"<td >"+getfiles(item.tid,item.id,item.zfflag)+"</td>"
-					+"<td align='center' width='100' ><label  class='toggle"+(item.zfflag!=0?'':'  toggle-off') +"' title='已缴/未交'><input type='checkbox' onclick='confirmPayment(this,"+item.id*1+")' class='visi-hidden'></label></td>"
+//					+"<td align='center' width='100' ><label  class='toggle"+(item.zfflag!=0?'':'  toggle-off') +"' title='已缴/未交'><input type='checkbox' onclick='confirmPayment(this,"+item.id*1+")' class='visi-hidden'></label></td>"
 					+'<td align="center" width="100"><label class="toggle'
 					+(item.status!=1?'':'  toggle-off')
 					+'" title="启用/禁用"><input type="checkbox" onclick="updateRegisterStatus(this,'+item.id*1+')" class="visi-hidden"></label></td>'
@@ -118,7 +118,7 @@
 	}
 	function getfiles(tid,id,zfflag){
 		if(tid){
-			return "<a  style='color:#F00' href='<%=path%>/auth.do?method=download&fileid="+tid+"'>查看凭据</a>";
+			return "<a  style='color:#F00' href='<%=path%>/auth.do?method=download&fileid="+tid+"'>下载</a>";
 		}else{
 			return "没有上传";
 		}

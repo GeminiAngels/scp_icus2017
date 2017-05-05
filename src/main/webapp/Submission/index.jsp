@@ -355,16 +355,9 @@
             this.form_datetime = $('.form_datetime');
             this.fileList = $('#fileList');
             this.form = $('#contributionForm');
-            this.btn_save = $('.btn-save');
             this.btn_saveAndSubmit = $('.btn-saveandsubmit');
 
             // 操作方法定义
-
-            // 保存操作
-            this.save = function(){
-                that.form.prop('action',ctx + '/contribution.do?method=save')
-                that.form.submit();
-            }
 
             // 保存并提交操作
             this.saveAndSubmit = function(){
@@ -378,13 +371,8 @@
                 $('select[name="gjlx"]').val(app.submission.gjlx);
 
                 //按钮操作初始化
-                if(that.btn_save)
-                    if(app.submission.id)
-                        that.btn_save.off('click').on('click',that.save);
-                    else
-                        that.btn_save.addClass('disabled');
                 if(that.btn_saveAndSubmit) {
-                    if(app.submission.id)
+                    if(app.register.id)
                         that.btn_saveAndSubmit.off('click').on('click',that.saveAndSubmit);
                     else
                         that.btn_saveAndSubmit.addClass('disabled');
