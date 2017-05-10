@@ -53,7 +53,7 @@ public class RegisterService {
 	}
 
 	public boolean register(Register reg){
-		return this.register(reg,false,null,null);
+		return this.register(reg,true,null,null);
 	}
 
 	/**
@@ -87,6 +87,7 @@ public class RegisterService {
 			success = db.execute(sql.toString(), new Object[]{reg.getUsername(),
 					reg.getNickname(),reg.getTelphone(),reg.getSex()
 					,reg.getJob(),reg.getCompany(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getFirstname(),reg.getLastname(),reg.getCountryarea()});
+			isSendMail = false;
 		}
 
 		if(success) {
@@ -165,20 +166,20 @@ public class RegisterService {
         mailInfo.setBccAddress(bccList);//密送人
 
 		Map email = db.queryOne("select * from t_emails where status = 1 and type='"+flag+"' order by id desc limit 1", null);
-		if(email.size()!=0){
+		if(email != null && email.size()!=0){
 			mailInfo.setSubject(email.get("title").toString());//会议主题
 			String mailMessage = email.get("contentHtml").toString();//会议内容
 			if(StringUtil.isNotEmpty(templateFile))
 				mailMessage = StringUtil.readFile2String(templateFile, this.getClass());
-			mailMessage = mailMessage.replaceAll(":nickname", reg.getNickname()).replaceAll(":currentDate", new SimpleDateFormat("yyyy年MM月dd日").format(new Date()));
+			mailMessage = mailMessage.replaceAll(":nickname", reg.getNickname()).replaceAll(":currentDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 			mailMessage = mailMessage.replaceAll(":securityCode", reg.getId()+"");
 			mailInfo.setContent(mailMessage);
 		}else{
-			mailInfo.setSubject(flag);//会议主题
+			mailInfo.setSubject("Organizing committee of The 2017 International Conference on Unmanned Systems (ICUS 2017)");//会议主题
 			String mailMessage = flag;//会议内容
 			if(StringUtil.isNotEmpty(templateFile))
 				mailMessage = StringUtil.readFile2String(templateFile, this.getClass());
-			mailMessage = mailMessage.replaceAll(":nickname", reg.getNickname()).replaceAll(":currentDate", new SimpleDateFormat("yyyy年MM月dd日").format(new Date()));
+			mailMessage = mailMessage.replaceAll(":nickname", reg.getNickname()).replaceAll(":currentDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 			mailMessage = mailMessage.replaceAll(":securityCode", reg.getId()+"");
 			mailInfo.setContent(mailMessage);
 		}
