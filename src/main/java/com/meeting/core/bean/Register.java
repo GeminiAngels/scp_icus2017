@@ -26,6 +26,7 @@ public class Register {
 	private String lastname;	//lastname;
 	private String countryarea;	//国家地区
 	private String sfbg;		//是否报告
+	private String bgtm;		//报告题目
 	private String sfkc;		//sfkc
 	private String sfzs;		//是否住宿
 
@@ -172,6 +173,14 @@ public class Register {
 
 	public void setSfbg(String sfbg) {
 		this.sfbg = sfbg;
+	}
+
+	public String getBgtm() {
+		return bgtm;
+	}
+
+	public void setBgtm(String bgtm) {
+		this.bgtm = bgtm;
 	}
 
 	public String getSfkc() {

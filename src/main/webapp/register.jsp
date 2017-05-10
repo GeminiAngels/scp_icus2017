@@ -63,6 +63,7 @@
 			lastname: '${register.lastname}',
 			countryarea: '${register.countryarea}',
 			sfbg:'${register.sfbg}',
+			bgtm:'${register.bgtm}',
 			sfkc:'${register.sfkc}',
 			sfzs:'${register.sfzs}',
 			message : '${register.message}'
@@ -166,6 +167,8 @@
 				<label class="screen-reader-text">Confirm Password：</label>
 					<input type="password" name="repassword" id="repassword" value="" class="form-control" autocomplete="off"  placeholder="Password"/>
 				</div>
+			</div>
+			<div class="col-sm-8 col-sm-offset-2" id="password-errorinfo" style="color:red">
 			</div>
 			<!--
 			<div class="col-sm-4 col-sm-offset-2">
@@ -456,13 +459,21 @@
 				<div class="inputContainer">
 				<label class="screen-reader-text">Need Report：</label>
 				<div style="line-height:20px;">
-					<label class="radio-inline">
-					  <input class="sfbg_radio" type="radio" name="sfbg" id="sfbg1" value="否" checked> No
-					</label>
-					<label class="radio-inline">
-					  <input class="sfbg_radio" type="radio" name="sfbg" id="sfbg2" value="是"> Yes
-					</label>
-					<input type="text" id="sfbg_input" name="bgtm" style="margin-left:10px;width:263px;height:38px;line-height: 38px;" placeholder="Report Topics" />
+					<table width="100%">
+						<tr>
+							<td>
+								<label class="radio-inline">
+									<input class="sfbg_radio" type="radio" name="sfbg" id="sfbg1" value="否" checked> No
+								</label>
+								<label class="radio-inline">
+									<input class="sfbg_radio" type="radio" name="sfbg" id="sfbg2" value="是"> Yes
+								</label>
+							</td>
+							<td align="right">
+								<input type="text" id="sfbg_input" name="bgtm" style="width:200px;height:38px;line-height: 38px;" placeholder="Report Topics" ${empty register.sfbg or register.sfbg eq '否'?'disabled':''}/>
+							</td>
+						</tr>
+					</table>
 				</div>
 				</div>
 			</div>
@@ -499,96 +510,6 @@
 		</div>
   	</div>
 
-  	<div class="container login-form" style="display:none;">
-		<div class="section-header">
-			<h2 class="wow fadeInDown animated">LOGIN</h2>
-	        <p class="wow fadeInDown animated">即可登录，管理您的会议资源。</p>
-    	</div>
-    	<div class="row wow fadeInUp animated">
-			<form id="loginForm" action="<%=path%>/auth.do?method=frontLogin" method="post">
-			<div class="col-sm-8 col-sm-offset-2">
-				<div class="inputContainer">
-				<label>用户名：</label>
-					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="请输入邮箱地址"/>
-				</div>
-			</div>
-			<div class="col-sm-8 col-sm-offset-2">
-				<div class="inputContainer">
-				<label>密码：</label>
-					<input type="password" name="password" id="login_password" value="" class="form-control" autocomplete="off" placeholder="请输入密码"/>
-				</div>
-			</div>
-			<div class="col-sm-8 col-sm-offset-2">
-        <div class="alert alert-warning" id="alert-loginmsg">${errormsg}</div>
-				<button id="loginBtn" name="submit" type="submit" class="btn btn-primary btn-lg">马上登录</button>
-			</div>
-			</form>
-		</div>
-  	</div>
-
-  	<div class="container baoming-form" style="display:none">
-		<div class="section-header">
-			<h2 class="wow fadeInDown animated">参会报名</h2>
-	        <p class="wow fadeInDown animated">完善您的个人信息，现在就报名，我们将以邮件形式及时向您提供会议通知。</p>
-    	</div>
-    	<div class="row wow fadeInUp animated">
-			<form id="baomingForm">
-			<input name="id" type="hidden" />
-			<div class="col-sm-4 col-sm-offset-2">
-				<div class="inputContainer">
-				<label>用户名（邮箱）：</label>
-					<input type="text" name="email" id="b_email" value="" class="form-control" autocomplete="off" readonly="readonly" />
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="inputContainer">
-				<label class="screen-reader-text">电话：</label>
-					<input type="text" name="telphone" id="b_telphone" value="" class="form-control" autocomplete="off"  placeholder="手机 / 固话"/>
-				</div>
-			</div>
-			<div class="col-sm-4 col-sm-offset-2">
-				<div class="inputContainer">
-				<label class="screen-reader-text">姓名：</label>
-					<input type="text" name="nickname" id="b_nickname" value="" class="form-control" autocomplete="off"  placeholder="真实姓名 / 昵称"/>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="inputContainer">
-				<label class="screen-reader-text">性别：</label>
-				<div class="form-control" style="line-height:20px;">
-					<label class="radio-inline">
-					  <input type="radio" name="sex" id="b_sex1" value="男" checked> 男
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="sex" id="b_sex2" value="女"> 女
-					</label>
-				</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-sm-offset-2">
-				<div class="inputContainer">
-				<label class="screen-reader-text">职务：</label>
-					<input type="text" name="job" id="b_job" value="" class="form-control" autocomplete="off" placeholder="必填"/>
-				</div>
-			</div>
-			<div class="col-sm-4">
-				<div class="inputContainer">
-				<label class="screen-reader-text">单位：</label>
-					<input type="text" name="company" id="b_company" value="" class="form-control" autocomplete="off" placeholder="必填"/>
-				</div>
-			</div>
-			<!-- <div class="col-sm-8 col-sm-offset-2">
-				<div class="inputContainer">
-				<label class="screen-reader-text"><i>留言：</i></label>
-					<textarea name="message" id="b_message" class="form-control" autocomplete="off"></textarea>
-				</div>
-			</div> -->
-			<div class="col-sm-8 col-sm-offset-2">
-				<button id="baomingBtn" name="submit" type="button" class="btn btn-primary btn-lg">确定报名</button>
-			</div>
-			</form>
-		</div>
-  	</div>
 </section>
 <!-- contact section --> 
 
@@ -648,7 +569,16 @@
 			var that = this;
 			this.form.setValues = function(register){
 				$.each(register,function(k,v){
-					$('input[name="'+k+'"]').val(v);
+					var input = $('input[name="'+k+'"]');
+					if(input.prop('type') == 'radio') {
+						$.each(input,function(i,item){
+							if($(item).val() === v)
+								$(item).prop('checked',true);
+						});
+					} else {
+						input.val(v);
+					}
+
 					$('select[name="'+k+'"]').val(v);
 					$('textarea[name="'+k+'"]').val(v);
 				});

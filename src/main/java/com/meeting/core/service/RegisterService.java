@@ -52,6 +52,10 @@ public class RegisterService {
 		return db.queryBlob(sql,new Object[]{fileid});
 	}
 
+	public boolean register(Register reg , boolean isSendMail){
+		return this.register(reg,isSendMail,null,null);
+	}
+
 	public boolean register(Register reg){
 		return this.register(reg,true,null,null);
 	}
@@ -69,16 +73,16 @@ public class RegisterService {
 		if(reg.getId()==0) {
 			String sql = "insert into t_register"
 					+ "(username,nickname,password,telphone,email,sex,job"
-					+ ",company,registertime,sfbg,sfkc,sfzs,firstname,lastname,countryarea) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ ",company,registertime,sfbg,sfkc,sfzs,firstname,lastname,countryarea,bgtm) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			success = db.execute(sql, new Object[]{
 					reg.getUsername(),reg.getNickname(),StringUtil.MD5(reg.getPassword()),
 					reg.getTelphone(),reg.getEmail(),reg.getSex()
 					,reg.getJob(),reg.getCompany()
-					,new Date(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getFirstname(),reg.getLastname(),reg.getCountryarea()});
+					,new Date(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getFirstname(),reg.getLastname(),reg.getCountryarea(),reg.getBgtm()});
 		}else{//修改
 			StringBuffer sql = new StringBuffer("update t_register set username=?,nickname=?,telphone=?,sex=?,job=?,company=?," +
-					"sfbg=?,sfkc=?,sfzs=?,firstname=?,lastname=?,countryarea=? ");
+					"sfbg=?,sfkc=?,sfzs=?,firstname=?,lastname=?,countryarea=?,bgtm=? ");
 			if(reg.getPassword()!=null&&!"".equals(reg.getPassword())){
 				sql.append(",password='"+StringUtil.MD5(reg.getPassword())+"'");
 			}
@@ -86,7 +90,7 @@ public class RegisterService {
 			System.out.println(sql.toString());
 			success = db.execute(sql.toString(), new Object[]{reg.getUsername(),
 					reg.getNickname(),reg.getTelphone(),reg.getSex()
-					,reg.getJob(),reg.getCompany(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getFirstname(),reg.getLastname(),reg.getCountryarea()});
+					,reg.getJob(),reg.getCompany(),reg.getSfbg(),reg.getSfkc(),reg.getSfzs(),reg.getFirstname(),reg.getLastname(),reg.getCountryarea(),reg.getBgtm()});
 			isSendMail = false;
 		}
 

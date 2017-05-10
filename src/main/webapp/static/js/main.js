@@ -132,8 +132,9 @@ $(document).ready(function() {
 			'</ul>';
 		$('#registerInfo').html(html);
 		$('.btn-register-logout').off('click').on('click',function(e){
-			RegisterService.logout();
-			window.location.href = 'index.jsp';
+			RegisterService.logout(function(){
+				window.location.href = 'index.jsp';
+			});
 			// window.location.href = app.ctx + '/auth.do?method=frontLogout';
 		});
 	}
@@ -167,10 +168,19 @@ $(document).ready(function() {
 			message:'',//$('#message').val()
 			//新加字段
 			sfbg:$('input[name="sfbg"]:checked').val()||'',
+			bgtm:$('input[name="bgtm"]').val()||'',
 			sfkc:$('input[name="sfkc"]:checked').val()||'',
 			sfzs:$('input[name="sfzs"]:checked').val()||'',
 			countryarea:$('#basic').val()
 		};
+		if(!register.firstname){
+			$('#firstname').focus().attr('placeholder','This item cannot be empty');
+			return;
+		}
+		if(!register.lastname){
+			$('#lastname').focus().attr('placeholder','This item cannot be empty');
+			return;
+		}
 		if(!register.email){
 			$('#email').focus().attr('placeholder','This item cannot be empty');
 			return;
@@ -179,16 +189,16 @@ $(document).ready(function() {
 			$('#telphone').focus().attr('placeholder','This item cannot be empty');
 			return;
 		}
-		if(!app.register.id&&!register.password){
-			$('#password').focus().attr('placeholder','This item cannot be empty');
+		var reg = /^[a-zA-Z0-9!,_]{6,20}$/;  //正则数字字母特殊字符
+
+		if(!app.register.id&&!register.password.match(reg)){
+			$('#password').focus();
+			$('#password-errorinfo').text('Password length of not less than 6, must be numbers or letters or underscores');
 			return;
 		}
-		// if(register.password.length<6){
-		// 	$('#password').focus().attr('placeholder','密码不少于6个字符！');
-		// 	return;
-		// }
 		if(!app.register.id&&register.password!=$('#repassword').val()){
-			$('#repassword').focus().attr('placeholder','Two passwords are inconsistent!');
+			$('#repassword').focus();
+			$('#password-errorinfo').text('Two passwords are inconsistent!');
 			return;
 		}
 		if(!register.nickname){
@@ -197,6 +207,7 @@ $(document).ready(function() {
 		}
 		$(that).addClass('disabled');
 		if(!app.register.id) {
+			$('#password-errorinfo').text('');
 			RegisterService.hasRegisterByTel(register,function(has){
 				if(!has){
 					RegisterService.register(register,function(msg){
@@ -209,7 +220,7 @@ $(document).ready(function() {
 						}
 					});
 				} else {
-					alert('This E-mail address is using！');
+					alert('This telphone or E-mail address is using！');
 					$('#email').focus();
 					$(that).removeClass('disabled');
 				}
