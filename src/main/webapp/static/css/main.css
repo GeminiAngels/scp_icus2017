@@ -27,6 +27,9 @@ h5 {
 	text-transform: uppercase;
 	font-weight: 700;
 }
+.t-indent{
+	text-indent:2em;
+}
 .btn {
 	font-size: 16px;
 	font-weight: 600;
@@ -325,6 +328,8 @@ ul li {
 }
 .nav>li>a{
 	font-weight:600;
+	padding:10px 12px !important;
+	line-height:30px !important;
 }
 .titleInfo{
 	position: relative;margin:150px auto 0px;text-align:center;color: white;font-size: 35px;z-index: 1;
@@ -398,16 +403,19 @@ padding-bottom: 30px;
 .section-header p{
 	
 }
-
+#Fee table th{
+	text-align:center;
+	vertical-align:middle;
+}
 
 /* ------------------------------------------------------------------------------
 	 Serives
 -------------------------------------------------------------------------------*/
 .service-section {
-	padding-top: 100px;
+	/*padding-top: 100px;*/
 }
 .services {
-	margin-bottom: 50px;
+	/*margin-bottom: 50px;*/
 }
 .services-content {
 	padding: 30px 30px 20px;
@@ -418,7 +426,7 @@ padding-bottom: 30px;
 .services .icon {
 	border-radius: 5px;
 	color: #ffffff;
-	font-size: 24px;
+	font-size: 21px;
 	padding-left: 15px;
 	float: left;
 	background: #00bfa5;
@@ -1066,6 +1074,15 @@ float: left;
 @media screen and (max-width:767px) {
 	.calculator .slider .value {
 		max-width: 100px
+	}
+	.img3{
+		width:200px;
+	}
+	.jiaotong{
+		width:320px;
+	}
+	.jiudian{
+		width:320px;
 	}
 }
 .calculator .slider .input-group {

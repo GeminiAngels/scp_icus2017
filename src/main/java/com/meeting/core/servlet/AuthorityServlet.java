@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.meeting.core.bean.Contribution;
-import com.meeting.core.service.AuthorityService;
-import com.meeting.core.service.ContributionService;
-import com.meeting.core.service.RegisterService;
-import com.meeting.core.service.ThesisService;
+import com.meeting.core.bean.Order;
+import com.meeting.core.bean.Register;
+import com.meeting.core.db.DBUtil;
+import com.meeting.core.service.*;
 
 /**
  * 2016/9/13 00:39:21
@@ -214,6 +214,7 @@ public class AuthorityServlet extends BaseServlet {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String frontLogin(HttpServletRequest req , HttpServletResponse resp){
 		RegisterService service = new RegisterService();
+		DBUtil db = new DBUtil();
 		Map register = null;
 		String id = req.getParameter("id");
 		if(id!=null){
@@ -235,10 +236,12 @@ public class AuthorityServlet extends BaseServlet {
 			req.getSession().setAttribute("register", register);
 			req.getSession().setAttribute("contribution",cont);
 			req.getSession().setAttribute("thesisList",_list);
+			req.getSession().setAttribute("orderList", db.queryForList("select * from t_order where orderregisterid = ? ",new Object[]{register.get("id")}));
 		} else {
 			req.getSession().removeAttribute("register");
 			req.getSession().removeAttribute("contribution");
 			req.getSession().removeAttribute("thesisList");
+			req.getSession().removeAttribute("orderList");
 			req.setAttribute("errormsg", "对不起，用户不存在，或被管理员禁用！");
 			return "ctx:login.jsp";
 		}
@@ -327,5 +330,47 @@ public class AuthorityServlet extends BaseServlet {
 			req.setAttribute("errormsg", "修改密码失败！");
 			return "ctx:resetPwd.jsp";
 		}
+	}
+
+	public String payment(HttpServletRequest req , HttpServletResponse resp){
+		String zffs = req.getParameter("zffs");//支付方式
+		try {
+			String lwsl = req.getParameter("lwsl");//论文数量
+			String rylx = req.getParameter("rylx");//人员类型
+			String ccys = req.getParameter("ccys");//超出页数
+			String ordermoney = req.getParameter("price");//支付金额
+			String remarks = req.getParameter("remarks");
+
+			Map reg = (Map)req.getSession().getAttribute("register");
+			int registerid = Integer.parseInt(reg.get("id").toString());
+
+			OrderService orderService = new OrderService();
+			Order order = new Order();
+			order.setLwsl(lwsl);
+			order.setRyly(rylx);
+			order.setCcys(ccys);
+			order.setOrdertype(zffs);
+			order.setOrderregisterid(registerid);
+			order.setOrderuname(reg.get("nickname").toString());
+			order.setOrdermoney(ordermoney);
+			order.setOrderremark(remarks);
+
+			req.setAttribute("data",orderService.addOrderAndPay(order,req));
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("errormsg","System buzy!!!");
+			return "ctx:payment.jsp";
+		}
+
+		if("PayPal".equals(zffs)) {
+			req.setAttribute("payurl","http://localhost:8000/paypalPay");
+		} else if("UnionPay".equals(zffs)) {
+			req.setAttribute("payurl","http://localhost:8000/unionPay");
+		} else if("Alipay".equals(zffs)) {
+			req.setAttribute("payurl","http://localhost:8000/alipay");
+		} else if("WeChat Pay".equals(zffs)) {
+			req.setAttribute("payurl","http://localhost:8000/wxPay");
+		}
+		return "ctx:payment.jsp";
 	}
 }

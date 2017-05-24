@@ -63,14 +63,16 @@
 	<div class="container" style="width:100%;background-color:#000;color:#fff">
 		<div class="row" style="max-width:1170px;margin:0 auto;">
 			<div class="col-md-12 no-padding">
-				<span style="font-size:16px;line-height:30px;">欢迎您！
+				<span style="font-size:16px;line-height:30px;">Welcome!
 				<span style="float:right;" id="registerInfo">
-					<button class="btn btn-default" onclick="javascript:registerFormFadeIn();">注 册</button>
-					<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">登 录</button>
+					<button class="btn btn-success" onclick="javascript:index();">Home</button>
+					<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
+					<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">Sign in</button>
 				</span>
 			</div>
 		</div>
 	</div>
+	<!--
     <div class="header-content clearfix"> <a class="logo" href="#banner">e-Sciences+会议平台</a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
@@ -81,10 +83,10 @@
           <li><a href="index.jsp?position=%23teams">会议地点</a></li>
           <li><a href="index.jsp?position=%23testimonials" onclick="javascript:return validateAuth()">论文提交</a></li>
 		  <li><a href="index.jsp?position=%23download">资料下载</a></li>
-          <!-- <li><a href="index.jsp?position=%23reback">往届回顾</a></li> -->
+          <!-- <li><a href="index.jsp?position=%23reback">往届回顾</a></li>
         </ul>
       </nav>
-      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
+      <a href="#" class="nav-toggle">Menu<span></span></a> </div> -->
   </header>
 </section>
 <!-- header section --> 
@@ -92,13 +94,13 @@
 <section id="contact" class="section">
   	<div class="container login-form">
 		<div class="section-header">
-			<h2 class="wow fadeInDown animated">安全中心</h2>
+			<h2 class="wow fadeInDown animated">Security Center</h2>
 	        <p class="wow fadeInDown animated"></p>
     	</div>
     	<div class="row wow fadeInUp animated">
 			<form id="loginForm" action="<%=path%>/auth.do?method=forgotPwd" method="post">
 			<div class="col-sm-8 col-sm-offset-2">
-				<div class="alert alert-success"><i class="fa fa-check" style="border:1px solid;border-radius: 100%"></i> 重置密码服务邮件已发送到 ${resetPwdEmail} 请注意查收！</div>
+				<div class="alert alert-success"><i class="fa fa-check" style="border:1px solid;border-radius: 100%"></i>  Reset password service messages sent to ${resetPwdEmail} Please remember to check！</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
 			</div>
@@ -113,14 +115,16 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 text-center">
-        <p>Copyright &copy; 2016.<a target="_blank" href="http://www.esciences.com.cn/"> 北京国科智地科技有限公司 </a>
-技术支持。<a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
-            <span class="fa-stack fa-lg">
+        <p>Copyright &copy; 2017 CICC, All Rights Reserved</p>
+                    <p><a target="_blank" href="http://www.esciences.com.cn/"> China e-Sciences tech Ltd. </a> technical support.
+                        <a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
+                            <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-table fa-stack-1x fa-inverse"></i>
             </span>
-          </a></p>
-        <p class="social">
+                        </a>
+                    </p>
+                    <p class="social">
           <!-- <a href="#">
             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
@@ -156,5 +160,10 @@
 <script src="<%=path%>/static/js/modernizr.js"></script> 
 <script src="<%=path%>/static/js/main.js"></script> 
 <script type="text/javascript" src="<%=path%>/static/js/jquery.contact.js"></script>
+<script>
+	function index(){
+		window.location.href = 'index.jsp';
+	}
+</script>
 </body>
 </html>

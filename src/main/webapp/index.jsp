@@ -61,10 +61,10 @@
 	}
 </script>
 </head>
-
 <body>
     <!-- header section -->
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="navbox-wap">
+		<div class="navbar navbar-inverse" role="navigation">
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -73,15 +73,6 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<!--
-						<a class="navbar-brand" href="#topWrap">
-							<span class="fa-stack fa-lg">
-								<i class="fa fa-circle fa-stack-2x"></i>
-								<i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
-							</span>
-							e-Sciences+<span class="title"> 会议平台</span>
-						</a>
-						-->
 					</div>
 					<div class="collapse navbar-collapse appiNav">
 						<ul class="nav navbar-nav">
@@ -92,21 +83,24 @@
 							<li><a href="#Invited_Sessions">Invited Sessions</a></li>
 							<li><a href="#Submission">Submission</a></li>
 							<li><a href="#committee">Committee</a></li>
+							<li><a href="#Fee">Fee</a></li>
 							<li><a href="#Download">Download</a></li>
 							<li><a href="#Venue">Venue</a></li>
 							<li id="registerInfo">
 								<div class="btn-group">
-								<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
-								<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">Sign in</button>
+								<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();" style="padding:1px 8px;">Register</button>
+								<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();" style="padding:1px 8px;">Sign in</button>
+								<button class="btn btn-danger" onclick="javascript:indexCn();" style="padding:1px 14px;"> CN </button>
 								</div>
 							</li>
+							<div class="clear"></div>
 						</ul>
 					</div><!--/.nav-collapse -->
 				</div>
 			</div>
 			 <div class="banner" id="Home">
-				<p class="titleInfo">The 2017 International Conference on Unmanned Systems </p>
-				<p class="titleInfo_1">(ICUS 2017)</p>
+				<p class="titleInfo">The 2017 IEEE International Conference on Unmanned Systems </p>
+				<p class="titleInfo_1">(IEEE ICUS2017)</p>
 				<p class="condate">Oct.27-29,2017 &nbsp;&nbsp;&nbsp;<span class="bjchina">Beijing,China</span> </p>
 				<p style="position: relative;margin:30px auto;text-align:center;color: white;font-size: 35px;z-index: 1;"></p>
             <ul class="cb-slideshow">
@@ -125,6 +119,8 @@
                 </li>
             </ul>
         </div>
+	</div>
+</div>
     <!-- header section -->
     <!-- intro section -->
     <!-- <section id="intro" class="section intro" style="padding:50px 0px 50px 0px;">
@@ -150,7 +146,7 @@
 				  <h3 class="text-center">
                     <img src="static/images/logo1.png" width='180' height='160' style="margin-right:0px;">
 				    <img src="static/images/logo2.png" width='160' height='160' style="margin-left:0px;">
-                 
+					<img src="static/images/IEEE.png" class="img3" width="400" height="160" style="margin-right:0px;">
                   </h3>
 				  
 				 <!-- <img src="static/images/logo1.png" width='180' height='160' style="margin-right:130px;">
@@ -160,13 +156,13 @@
                 <div class="col-md-12 col-xs-12">
 		
                   <h3 class="text-center">
-                    <b>Welcome to ICUS 2017 !</b>
+                    <b>Welcome to IEEE ICUS2017 !</b>
                   </h3>
                 </div>
                 <div class="col-sm-12 col-xs-12 content fadeInLeft animated" style="padding-top:0px;background-color:white;">
                     <div class="editContent">
-						<!--<h4 class="text-center">Welcome to ICUS 2017.<h4> -->
-                        <p>The 2017 International Conference on Unmanned Systems (ICUS 2017) is approved by China Association for Science and Technology (CAST) and will be held by Chinese Institute of Command and Control (CICC), Beijing Institute of Technology (BIT) from October 27th to 29th in Beijing, China. </p>
+						<!--<h4 class="text-center">Welcome to IEEE ICUS2017.<h4> -->
+                        <p>The 2017 IEEE International Conference on Unmanned Systems (IEEE ICUS2017) is approved by China Association for Science and Technology (CAST) and will be held by Chinese Institute of Command and Control (CICC), Beijing Institute of Technology (BIT) and American Institute of Electrical and Electronics Engineers (IEEE) from October 27th to 29th in Beijing, China. </p>
                         <p>ICUS provides an international forum for professionals, academics, and researchers over the world to present latest developments about academic and technical issues related to unmanned systems. The theme for the conference in 2017 is “Development and Application of Unmanned Systems in Era of Artificial Intelligence". It particularly welcomes those internationally renowned scholars as well as enterprises at home and aboard to do relevant reports and product display respectively. Forms as group discussion，oral presentation and post presentation, etc. are also included in this conference. </p>
 						<p>Please refer to Call for Paper for more details on conference topics.</p>
                         <p>Accepted high-quality papers will be recommended to special issue papers in International Journal of Robotics and Automation (SCI-indexed), International Journal of Modeling Identification and Control (EI-indexed) and CAAI Transactions on Intelligence Technology (Elsevier). If you have any query on the submission issue, please email to the Conference Secretariat (icus2017@163.com) directly. </p>
@@ -211,7 +207,7 @@
                 </div>
          <div class="container">
 			<h4>★ Scope for Papers</h4>
-			<p>The 2017 International Conference on Unmanned Systems (IEEE ICUS 2017) will be held from October 27th to 29th in Beijing, China. The conference offers a unique and interesting platform for scientists, engineers and practitioners throughout the world to present and share their most recent research and innovative ideas in the areas of unmanned systems, robotics, automation, and intelligent systems. The aim of the IEEE ICUS 2017 is to stimulate researchers active in the areas pertinent to intelligent unmanned systems.
+			<p>The 2017 IEEE International Conference on Unmanned Systems (IEEE IEEE ICUS2017) will be held from October 27th to 29th in Beijing, China. The conference offers a unique and interesting platform for scientists, engineers and practitioners throughout the world to present and share their most recent research and innovative ideas in the areas of unmanned systems, robotics, automation, and intelligent systems. The aim of the IEEE ICUS2017 is to stimulate researchers active in the areas pertinent to intelligent unmanned systems.
 			</p>
 			<p>The topics of interests include, but are not limited to:</p>
 			<p>1. Unmanned Aerial Vehicles</p>
@@ -562,7 +558,7 @@
 				</h3>
             </div>
 			<p>Papers can be submitted via the website<a href="javascript:;" id="a-link-submission"><span style="color:red;">www.icus.org.cn/ICUS2017/Submission</span></a>. When submitting a paper, please don’t forget to select the relevant topics or relevant Invited Session (if applicable).</p>
-			<p>Selected high-quality papers presented at IEEE ICUS 2017 will be considered for publication in International Journal of Robotics and Automation (SCI-indexed), International Journal of Modeling Identification and Control (EI-indexed) and CAAI Transactions on Intelligence Technology (Elsevier).</p>
+			<p>Selected high-quality papers presented at IEEE ICUS2017 will be considered for publication in International Journal of Robotics and Automation (SCI-indexed), International Journal of Modeling Identification and Control (EI-indexed) and CAAI Transactions on Intelligence Technology (Elsevier).</p>
 			<p>Authors are advised to prepare the manuscripts according to the following instructions and use IEEE template:</p>
 			<p><span style="font-size:30px;">☛ </span>Page limit: six pages for initial and final submission.</p>
 			<p><span style="font-size:30px;">☛ </span>Papers for Invited Sessions: please indicate the invited session topics in submission.</p>
@@ -571,7 +567,7 @@
 			<br>
 			<h5>Attention: Revise Requests for Final Submission</h5>
 			<p><b>ALL ACCEPTED</b> papers should match a maximum of<b> 6 PAGES</b>. The paper<b> NOT</b> matched such requests will be required to be revised repeatedly, even rejected.</p>
-			<p>According to the convention of international academic conferences, IEEE ICUS 2017 will remove<b> NO SHOW</b> papers, which means that<b> at least one of major authors needs to be present and preach at the conference.</b> Either oral presentation or poster session is permitted. Alternatively, it is can be accepted that someone else attends the conference and makes presentation if it is a real difficult for all the authors of one paper to be present. Otherwise, papers will not be sent to the IEEE Xplore and accepted by EI.</p>
+			<p>According to the convention of international academic conferences, IEEE ICUS2017 will remove<b> NO SHOW</b> papers, which means that<b> at least one of major authors needs to be present and preach at the conference.</b> Either oral presentation or poster session is permitted. Alternatively, it is can be accepted that someone else attends the conference and makes presentation if it is a real difficult for all the authors of one paper to be present. Otherwise, papers will not be sent to the IEEE Xplore and accepted by EI.</p>
 
 			<p>Coming Soon<p>
 		</div>
@@ -764,6 +760,71 @@
         </div>
     </section>
 	<hr>
+	<section id="Fee" class="video-section">
+		<div class="container">
+            <div class="section-header">
+                <h3 class="wow fadeInDown animated">
+				<b>Registration Fee</b>
+				</h3>
+            </div>
+			<p class="editContent text-center">
+				<table class="table table-bordered table-hover table-striped">
+					<thead>
+						<tr>
+						<th colspan="2" rowspan="2">Registration Fee</th>
+						<th>Early Bird</th>
+						<th>On Site</th>
+						</tr>
+						<tr>
+							<td>Before or on Sept. 15</td>
+							<td>After Sept. 15</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="2">Regular registration for 1 paper uploading</td>
+							<td>420 USD</td>
+							<td>520 USD</td>
+						</tr>
+						<tr>
+							<td colspan="2">Student or IEEE/CICC*/TCUS** member registration for 1 paper uploading</td>
+							<td>400 USD</td>
+							<td>500 USD</td>
+						</tr>
+						<tr>
+							<td colspan="2">Regular registration for 2 paper uploading</td>
+							<td>500 USD</td>
+							<td>600 USD</td>
+						</tr>
+						<tr>
+							<td colspan="2">Student or IEEE/CICC/TCUS member registration for 2 paper uploading</td>
+							<td>450 USD</td>
+							<td>550 USD</td>
+						</tr>
+						<tr>
+							<td colspan="2">Regular registration with no paper uploading</td>
+							<td>260 USD</td>
+							<td>280 USD</td>
+						</tr>
+						<tr>
+							<td colspan="2">Student or IEEE/CICC/TCUS member registrationwith no paper uploading</td>
+							<td>200 USD</td>
+							<td>230 USD</td>
+						</tr>
+						<tr>
+							<td colspan="2">Except papers recommended to the international journal, the Extra Page Levy</td>
+							<td colspan="2">150 USD per page</td>
+						</tr>
+					</tbody>
+				</table>
+				<p style="color:red;"><b>explain:</b></p>
+				<p>(1) *:Chinese Institute of Command and Control.**:Technical Committee on Unmanned Systems.</p>
+				<p>(2) Over Length Fee: All papers are allotted 6 pages per paper free of charge. A maximum of two extra pages per paper (i.e., 8 pages in total) is permitted at an extra charge of 150 USD per page. Papers longer than 8 pages are NOT acceptable and CANNOT be uploaded.</p>
+				<p>(3) All registrations are not refundable.</p>
+			</p>
+		</div>
+	</section>
+	<hr>
 	<section id="Download" class="video-section">
 		<div class="container">
             <div class="section-header">
@@ -771,7 +832,8 @@
 				<b>Download</b>
 				</h3>
             </div>
-			<p>Coming Soon<p>
+			<p><a href="download/IEEE ICUS2017 Call for paper English.pdf" download="IEEE ICUS2017 Call for paper （English）.pdf">IEEE ICUS2017 Call for paper（English）.pdf</a></p>
+			<p><a href="download/IEEE ICUS2017 Call for paper Chinese.pdf" download="IEEE ICUS2017 Call for paper （中文）.pdf">IEEE ICUS2017 Call for paper（中文）.pdf</a></p>
 		</div>
     </section>
 	<hr>
@@ -812,9 +874,9 @@
 			<p>For directions from the airport to the conference hotel, please check here. (超链接)</p>
 			<br>
 			<h5>Glance of the Venue</h5>
-			<img src='static/images/ddd.png' style='display:block;margin:0 auto;'>
+			<img src='static/images/ddd.png' width="345" style='display:block;margin:0 auto;'>
 			<br>
-			<img src='static/images/aaa.png' style='display:block;margin:0 auto;'>
+			<img src='static/images/aaa.png' width="345" style='display:block;margin:0 auto;'>
 		</div>
     </section>
 	<hr>
@@ -825,11 +887,11 @@
                     <span class="icon icon-phone"><i class="fa fa-phone"></i> Contact Us</span>
                     <div class="services-content">
                         <p class="wow fadeInLeft animated" style="padding-top:30px;text-align:left">
-                            ICUS 2017 Conference Secretariat</p>
+                            IEEE ICUS2017 Conference Secretariat</p>
                          <p class="wow fadeInLeft animated" style="text-align:left">Beijing Institute of Technology, China</p> 
                          <p class="wow fadeInLeft animated" style="text-align:left">Tel: +8610-6891-2761 (Prof. Hongbin Deng)</p>
                          <p class="wow fadeInLeft animated" style="text-align:left">E-mail: denghongbin@bit.edu.cn</p>
-                         <p class="wow fadeInLeft animated" style="text-align:left">Website:<a href="Website: http://www.c2.org.cn" title="ICUS"> http://www.c2.org.cn</a>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="Website: http://www.c2.org.cn" title="ICUS">http://www.icus.org.cn</a></P>
+                         <p class="wow fadeInLeft animated" style="text-align:left">Website:<a href="http://www.c2.org.cn" title="ICUS"> http://www.c2.org.cn</a>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="http://www.c2.org.cn" title="ICUS">http://www.icus.org.cn</a></P>
                     </div>
                 </div>
             </div>

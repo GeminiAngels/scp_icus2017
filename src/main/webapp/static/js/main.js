@@ -368,7 +368,12 @@ function loadResources(){
 function registerFormFadeIn(){
 	window.location.href = app.ctx+'/register.jsp';
 }
-
+function indexCn(){
+	window.location.href=app.ctx+'/index_cn.jsp';
+}
+function indexEn(){
+	window.location.href=app.ctx+'/index.jsp';
+}
 function homePage(){
 	window.location.href = app.ctx;
 }

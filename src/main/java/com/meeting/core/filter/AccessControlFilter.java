@@ -50,6 +50,10 @@ public class AccessControlFilter implements Filter {
 					url.indexOf("/auth.do?method=download")>=0 ||
 					url.indexOf("/resource.do")>=0||
 					url.indexOf("/contribution.do")>=0||
+
+					url.indexOf("/auth.do?method=payment")>=0 ||
+					url.indexOf("/auth.do?method=orderdelete")>=0 ||
+
 					url.indexOf("/auth.do?method=frontLogin")>=0 ||
 					url.indexOf("/auth.do?method=frontLogout")>=0 ||
 					url.indexOf("/auth.do?method=forgotPwd")>=0 || 

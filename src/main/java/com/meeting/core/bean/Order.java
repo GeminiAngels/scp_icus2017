@@ -16,11 +16,15 @@ public class Order {
 	private String orderno;			//订单号
 	private String orderaccount;	//订单付款帐号
 	private String ordertitle;		//订单标题
-	private BigDecimal ordermoney;	//订单金额
+	private String ordermoney;	//订单金额
 	private int orderstatus;		//订单状态(0支付中,1支付成功,-1支付失败)
 	private String orderbackmsg;	//订单支付回执消息
 	private String orderremark;		//订单附加说明
 	private String orderdate;		//订单时间
+
+	private String lwsl;			//论文数量
+	private String ryly;			//人员类型
+	private String ccys;			//论文超出页数
 	public int getId() {
 		return id;
 	}
@@ -63,10 +67,10 @@ public class Order {
 	public void setOrdertitle(String ordertitle) {
 		this.ordertitle = ordertitle;
 	}
-	public BigDecimal getOrdermoney() {
+	public String getOrdermoney() {
 		return ordermoney;
 	}
-	public void setOrdermoney(BigDecimal ordermoney) {
+	public void setOrdermoney(String ordermoney) {
 		this.ordermoney = ordermoney;
 	}
 	public int getOrderstatus() {
@@ -93,14 +97,32 @@ public class Order {
 	public void setOrderdate(String orderdate) {
 		this.orderdate = orderdate;
 	}
+
+	public String getLwsl() {
+		return lwsl;
+	}
+
+	public void setLwsl(String lwsl) {
+		this.lwsl = lwsl;
+	}
+
+	public String getRyly() {
+		return ryly;
+	}
+
+	public void setRyly(String ryly) {
+		this.ryly = ryly;
+	}
+
+	public String getCcys() {
+		return ccys;
+	}
+
+	public void setCcys(String ccys) {
+		this.ccys = ccys;
+	}
+
 	public Order() {
 		super();
-	}
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", orderregisterid=" + orderregisterid + ", orderuname=" + orderuname
-				+ ", ordertype=" + ordertype + ", orderno=" + orderno + ", orderaccount=" + orderaccount
-				+ ", ordertitle=" + ordertitle + ", ordermoney=" + ordermoney + ", orderstatus=" + orderstatus
-				+ ", orderbackmsg=" + orderbackmsg + ", orderremark=" + orderremark + ", orderdate=" + orderdate + "]";
 	}
 }

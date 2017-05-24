@@ -115,6 +115,7 @@
 					<div class="btn-group">
 						<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
 						<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">Sign in</button>
+						<button class="btn btn-danger" onclick="javascript:indexCn();" style="padding:1px 16px;"> CN </button>
 					</div>
 				</li>
 			</ul>

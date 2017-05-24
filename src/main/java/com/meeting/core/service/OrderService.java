@@ -18,6 +18,8 @@ import cn.beecloud.BeeCloud;
 import cn.beecloud.bean.BCOrder;
 import cn.beecloud.bean.BCQueryParameter;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 2016/9/14 22:14:29
  * @author 白云飞
@@ -61,6 +63,40 @@ public class OrderService extends Thread{
 		WebContext ctx = WebContextFactory.get();
 		ctx.getSession().setAttribute("register",db.queryOne("select * from t_register where id = ? ", new Object[]{order.getOrderregisterid()}));
 		ctx.getSession().setAttribute("orderList", db.queryForList("select * from t_order where orderregisterid = ? ", new Object[]{order.getOrderregisterid()}));
+		ret.put("success", success);
+		ret.put("order", order);
+		return ret;
+	}
+
+	public Map addOrderAndPay(Order order , HttpServletRequest req) throws Exception{
+
+		Map ret = new HashMap();
+		String sql = "insert into t_order "
+				+ "(orderregisterid,orderuname,ordertype,orderno,orderaccount"
+				+ ",ordertitle,ordermoney,orderstatus) values(?,?,?,?,?,?,?,?)";
+		String prefix = "";
+		if("1".equals(order.getOrdertype()))
+			prefix = "ZFB";
+		else if("2".equals(order.getOrdertype()))
+			prefix = "WX";
+		else if("3".equals(order.getOrdertype()))
+			prefix = "YL";
+		else
+			prefix = "QT";
+		String orderNo = NoUtil.getOrderNo(prefix,"");
+		Thread.sleep(1000);
+		boolean success = db.execute(sql, new Object[]{
+				order.getOrderregisterid(),order.getOrderuname(),order.getOrdertype(),
+				orderNo,order.getOrderaccount(),order.getOrdertitle(),
+				order.getOrdermoney(),order.getOrderstatus()
+		});
+		Map id = db.queryOne("select max(id) as id from t_order ", null);
+		db.execute("update t_order set orderno = concat(orderno,'C',id) where id = ? ", new Object[]{id.get("id")});
+		order.setOrderno(orderNo+"C"+id.get("id").toString());
+
+		db.execute("update t_register set zfflag = 1 where id = ? ", new Object[]{order.getOrderregisterid()});
+		req.getSession().setAttribute("register",db.queryOne("select * from t_register where id = ? ", new Object[]{order.getOrderregisterid()}));
+		req.getSession().setAttribute("orderList", db.queryForList("select * from t_order where orderregisterid = ? ", new Object[]{order.getOrderregisterid()}));
 		ret.put("success", success);
 		ret.put("order", order);
 		return ret;
