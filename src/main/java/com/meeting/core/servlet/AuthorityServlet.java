@@ -216,6 +216,7 @@ public class AuthorityServlet extends BaseServlet {
 		RegisterService service = new RegisterService();
 		DBUtil db = new DBUtil();
 		Map register = null;
+		String language = req.getParameter("language");
 		String id = req.getParameter("id");
 		if(id!=null){
 			register = service.getRegisterById(id);
@@ -243,9 +244,17 @@ public class AuthorityServlet extends BaseServlet {
 			req.getSession().removeAttribute("thesisList");
 			req.getSession().removeAttribute("orderList");
 			req.setAttribute("errormsg", "对不起，用户不存在，或被管理员禁用！");
-			return "ctx:login.jsp";
+			if(language.equals("1")||"1"==language){
+				return "ctx:login_cn.jsp";
+			}else{
+				return "ctx:login.jsp";
+			}
 		}
-		return "ctx:index.jsp";
+		if(language.equals("1")||"1"==language){
+			return "ctx:index_cn.jsp";
+		}else{
+			return "ctx:index.jsp";
+		}
 	}
 
 	/**
@@ -300,13 +309,22 @@ public class AuthorityServlet extends BaseServlet {
 	
 	public String forgotPwd(HttpServletRequest req , HttpServletResponse resp){
 		RegisterService service = new RegisterService();
+		String language = req.getParameter("language");
 		String email = req.getParameter("email");
 		if(service.sendEmailToRegister(email)){
 			req.setAttribute("resetPwdEmail", email);
-			return "ctx:forgotPwdSuccess.jsp";
+			if(language.equals("1")||"1"==language){
+				return "ctx:forgotPwdSuccess_cn.jsp";
+			}else{
+				return "ctx:forgotPwdSuccess.jsp";
+			}
 		} else {
 			req.setAttribute("errormsg", "<b style='color:red;'>对不起，该邮箱注册用户不存在！</b><br/>");
-			return "ctx:forgotPwd.jsp";
+			if(language.equals("1")||"1"==language){
+				return "ctx:forgotPwd_cn.jsp";
+			}else{
+				return "ctx:forgotPwd.jsp";
+			}
 		}
 	}
 	

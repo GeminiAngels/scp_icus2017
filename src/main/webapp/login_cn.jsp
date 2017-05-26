@@ -16,7 +16,6 @@
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
-<link rel="stylesheet" href="<%=path%>/static/css/main.css">
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/flexslider.css">
 <link rel="stylesheet" href="<%=path%>/static/css/jquery.fancybox.css">
@@ -24,6 +23,7 @@
 <link rel="stylesheet" href="<%=path%>/static/css/animate.min.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
 <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
 <script type="text/javascript">
 	var app = {
 		ctx : '<%=path%>',
@@ -51,14 +51,17 @@
 	      type:'${lunwen.type}'
 	    },
 	    nofile : '${param.nofile}',
-	    errormsg : '${errormsg}'
+	    errormsg : '${errormsg}',
+        language:1
 	}
 </script>
 </head>
 
 <body>
 <!-- header section -->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<!-- 头部模块 -->
+<%@include file="/inc/headbar_cn.jsp" %>
+<%--<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -99,7 +102,7 @@
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
-</div>
+</div>--%>
 <!-- header section --> 
 <!-- contact section -->
 <section id="contact" class="section">
@@ -120,6 +123,7 @@
 				<div class="inputContainer">
 				<label>密码：</label>
 					<input type="password" name="password" id="login_password" value="" class="form-control" autocomplete="off" placeholder="Password"/>
+					<input type="hidden" name="language" id="language" value="1" />
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
@@ -127,7 +131,7 @@
 					<a href="forgotPwd_cn.jsp">忘记密码？</a>
 				</div>
 				<div class="col-sm-6">
-					<a class="pull-right" href="javascript:;" onclick="javascript:registerFormFadeIn();">会议注册</a>
+					<a class="pull-right" href="javascript:;" onclick="javascript:registerFormFadeIn_cn();">会议注册</a>
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
@@ -252,13 +256,6 @@
 <script src="<%=path%>/static/js/modernizr.js"></script> 
 <script src="<%=path%>/static/js/main.js"></script> 
 <script type="text/javascript" src="<%=path%>/static/js/jquery.contact.js"></script>
-<script>
-	$(function(){
-		var alertmsg = $('#alert-loginmsg').text();
-		if(alertmsg.indexOf('对不起，用户不存在，或被管理员禁用！')> -1){
-			$('#alert-loginmsg').text('Sorry, the user does not exist or is disabled by the administrator!');
-		}
-	})
-</script>
+
 </body>
 </html>

@@ -119,7 +119,7 @@ $(document).ready(function() {
 
 	if(app.register&&app.register.id){
 		var html =
-			'<a href="javascript:;" class="a-account" data-toggle="dropdown"><i class="fa fa-user"></i> '+app.register.username +
+			'<a href="javascript:;" class="a-account" style="height: 40px;margin-top: -8px" data-toggle="dropdown"><i class="fa fa-user"></i> '+app.register.username +
 			'　<span class="caret"></span>' +
 			'</a>' +
 			'<ul class="dropdown-menu" role="menu">' +
@@ -133,10 +133,31 @@ $(document).ready(function() {
 			'<a href="javascript:;" class="btn-register-logout"><i class="fa fa-power-off"></i> Logout</a>' +
 			'</li>' +
 			'</ul>';
+		if(app.language==1){
+			html =
+				'<a href="javascript:;" class="a-account" style="height: 40px;margin-top: -8px" data-toggle="dropdown"><i class="fa fa-user"></i> '+app.register.username +
+				'　<span class="caret"></span>' +
+				'</a>' +
+				'<ul class="dropdown-menu" role="menu">' +
+				'<li>' +
+				'<a href="javascript:;" onclick="registerFormFadeIn_cn()"><i class="fa fa-file-text"></i> 个人中心</a>' +
+				'</li>' +
+				'<li>' +
+				'<a href="'+app.ctx+'/payment.jsp"><i class="fa fa-file-text"></i> 会费支付</a>' +
+				'</li>' +
+				'<li>' +
+				'<a href="javascript:;" class="btn-register-logout"><i class="fa fa-power-off"></i> 退出</a>' +
+				'</li>' +
+				'</ul>';
+		}
 		$('#registerInfo').html(html);
 		$('.btn-register-logout').off('click').on('click',function(e){
 			RegisterService.logout(function(){
-				window.location.href = 'index.jsp';
+                if(app.language==1){
+                    window.location.href = 'index_cn.jsp';
+				}else{
+                    window.location.href = 'index.jsp';
+				}
 			});
 			// window.location.href = app.ctx + '/auth.do?method=frontLogout';
 		});
@@ -177,35 +198,64 @@ $(document).ready(function() {
 			countryarea:$('#basic').val()
 		};
 		if(!register.firstname){
-			$('#firstname').focus().attr('placeholder','This item cannot be empty');
+			if(app.language==1){
+                $('#firstname').focus().attr('placeholder','这个项目不能为空!');
+            }else{
+                $('#firstname').focus().attr('placeholder','This item cannot be empty');
+            }
 			return;
 		}
 		if(!register.lastname){
-			$('#lastname').focus().attr('placeholder','This item cannot be empty');
+            if(app.language==1){
+                $('#lastname').focus().attr('placeholder','这个项目不能为空!');
+            }else{
+                $('#lastname').focus().attr('placeholder','This item cannot be empty');
+            }
 			return;
 		}
 		if(!register.email){
-			$('#email').focus().attr('placeholder','This item cannot be empty');
+            if(app.language==1){
+                $('#email').focus().attr('placeholder','Email不能为空!');
+            }else{
+                $('#email').focus().attr('placeholder','This item cannot be empty');
+            }
 			return;
 		}
 		if(!register.telphone){
-			$('#telphone').focus().attr('placeholder','This item cannot be empty');
+            if(app.language==1){
+                $('#telphone').focus().attr('placeholder','电话号码不能为空!');
+            }else{
+                $('#telphone').focus().attr('placeholder','This item cannot be empty');
+            }
+
 			return;
 		}
 		var reg = /^[a-zA-Z0-9!,_]{6,20}$/;  //正则数字字母特殊字符
 
 		if(!app.register.id&&!register.password.match(reg)){
 			$('#password').focus();
-			$('#password-errorinfo').text('Password length of not less than 6, must be numbers or letters or underscores');
+            if(app.language==1){
+                $('#password-errorinfo').text('密码长度不少于6,必须是数字或字母或下划线!');
+            }else{
+                $('#password-errorinfo').text('Password length of not less than 6, must be numbers or letters or underscores');
+            }
 			return;
 		}
 		if(!app.register.id&&register.password!=$('#repassword').val()){
 			$('#repassword').focus();
-			$('#password-errorinfo').text('Two passwords are inconsistent!');
+            if(app.language==1){
+                $('#password-errorinfo').text('两次输入的密码必须相同!');
+            }else{
+                $('#password-errorinfo').text('Two passwords are inconsistent!');
+            }
 			return;
 		}
 		if(!register.nickname){
-			$('#nickname').focus().attr('placeholder','This item cannot be empty');
+            if(app.language==1){
+                $('#nickname').focus().attr('placeholder','这个项目不能为空');
+            }else{
+                $('#nickname').focus().attr('placeholder','This item cannot be empty');
+            }
 			return;
 		}
 		$(that).addClass('disabled');
@@ -215,15 +265,28 @@ $(document).ready(function() {
 				if(!has){
 					RegisterService.register(register,function(msg){
 						if(msg){
-							alert('login was successful!');
-							$(that).removeClass('disabled');
-							$('#registerForm')[0].reset();
-							// window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
-							window.location.href = app.ctx + "/index.jsp";
+							if(app.language==1){
+                                alert('注册成功!');
+                                $(that).removeClass('disabled');
+                                $('#registerForm')[0].reset();
+                                // window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
+                                window.location.href = app.ctx + "/index_cn.jsp";
+							}else {
+                                alert('login was successful!');
+                                $(that).removeClass('disabled');
+                                $('#registerForm')[0].reset();
+                                // window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
+                                window.location.href = app.ctx + "/index.jsp";
+							}
+
 						}
 					});
 				} else {
-					alert('This telphone or E-mail address is using！');
+                    if(app.language==1){
+                        alert('电话号码或邮箱已经注册！');
+                    }else{
+                        alert('This telphone or E-mail address is using！');
+					}
 					$('#email').focus();
 					$(that).removeClass('disabled');
 				}
@@ -231,11 +294,20 @@ $(document).ready(function() {
 		} else {
 			RegisterService.register(register,function(msg){
 				if(msg){
-					alert('update account info was successful!');
-					$(that).removeClass('disabled');
-					$('#registerForm')[0].reset();
-					// window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
-					window.location.href = app.ctx + "/index.jsp";
+					if(app.language==1){
+                        alert('更新账户信息成功!');
+                        $(that).removeClass('disabled');
+                        $('#registerForm')[0].reset();
+                        // window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
+                        window.location.href = app.ctx + "/index_cn.jsp";
+					}else {
+                        alert('update account info was successful!');
+                        $(that).removeClass('disabled');
+                        $('#registerForm')[0].reset();
+                        // window.location.href = app.ctx + "/auth.do?method=frontLogin&email="+register.email+"&password="+register.password;
+                        window.location.href = app.ctx + "/index.jsp";
+					}
+
 				}
 			});
 		}
@@ -371,6 +443,9 @@ function loadResources(){
 function registerFormFadeIn(){
 	window.location.href = app.ctx+'/register.jsp';
 }
+function registerFormFadeIn_cn(){
+	window.location.href = app.ctx+'/register_cn.jsp';
+}
 function indexCn(){
 	window.location.href=app.ctx+'/index_cn.jsp';
 }
@@ -379,6 +454,9 @@ function indexEn(){
 }
 function homePage(){
 	window.location.href = app.ctx;
+}
+function registerFormFadeIn_cn(){
+    window.location.href = app.ctx+'/register_cn.jsp';
 }
 
 function lunwenFadeIn(){
@@ -405,6 +483,15 @@ function loginFormFadeIn(){
 			scrollTop: $("#contact").offset().top - 75
 		}, 500);
 	}
+}
+function loginFormFadeIn_cn(){
+    if(!app.register.id){
+        window.location.href = app.ctx+'/login_cn.jsp';
+    } else {
+        $('html, body').animate({
+            scrollTop: $("#contact").offset().top - 75
+        }, 500);
+    }
 }
 
 function baomingFormFadeIn(){
@@ -482,6 +569,7 @@ function baomingFormFadeOut(){
 }
 
 function validateAuth(){
+	alert(2);
 	if(!app.register.id){
 		alert('Sorry! Please login first!');
 		window.location.href = app.ctx+'/login.jsp';

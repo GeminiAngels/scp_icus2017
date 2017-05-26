@@ -16,7 +16,7 @@
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
-<link rel="stylesheet" href="<%=path%>/static/css/main.css">
+
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/flexslider.css">
 <link rel="stylesheet" href="<%=path%>/static/css/jquery.fancybox.css">
@@ -25,6 +25,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
 <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="<%=path%>/static/css/main.css">
 <style>
 	.bootstrap-select .form-control{
 		padding:0;
@@ -74,54 +75,17 @@
 	      comments:'${lunwen.comments}',
 	      type:'${lunwen.type}'
 	    },
-	    nofile : '${param.nofile}'
+	    nofile : '${param.nofile}',
+        language:2
 	}
 </script>
 </head>
 
 <body>
 <!-- header section -->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<!--
-            <a class="navbar-brand" href="#topWrap">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
-                </span>
-                e-Sciences+<span class="title"> 会议平台</span>
-            </a>
-            -->
-		</div>
-		<div class="collapse navbar-collapse appiNav">
-			<ul class="nav navbar-nav">
-				<li><a href="index.jsp">Home</a></li>
-				<li><a href="index.jsp#callForPapers">Call For Papers </a></li>
-				<li><a href="index.jsp#workshop">Workshop</a></li>
-				<li><a href="index.jsp#Keynote Speakers">Keynote Speakers</a></li>
-				<li><a href="index.jsp#Invited Sessions">Invited Sessions</a></li>
-				<li><a href="index.jsp#Submission">Submission</a></li>
-				<li><a href="index.jsp#committee">Committee</a></li>
-				<li><a href="index.jsp#Download">Download</a></li>
-				<li><a href="index.jsp#Venue">Venue</a></li>
-				<li id="registerInfo">
-					<div class="btn-group">
-						<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
-						<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">Sign in</button>
-						<button class="btn btn-danger" onclick="javascript:indexCn();" style="padding:1px 16px;"> CN </button>
-					</div>
-				</li>
-			</ul>
-		</div><!--/.nav-collapse -->
-	</div>
-</div>
+<!-- 头部模块 -->
+<%@include file="/inc/headbar_en.jsp" %>
+
 <!-- header section --> 
 <!-- contact section -->
 <section id="contact" class="section">

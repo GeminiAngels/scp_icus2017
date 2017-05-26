@@ -24,46 +24,7 @@
     </style>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!--
-            <a class="navbar-brand" href="#topWrap">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
-                </span>
-                e-Sciences+<span class="title"> 会议平台</span>
-            </a>
-            -->
-        </div>
-        <div class="collapse navbar-collapse appiNav">
-            <ul class="nav navbar-nav">
-                <li><a href="<%=path%>/index.jsp#Home">Home</a></li>
-                <li><a href="<%=path%>/index.jsp#callForPapers">Call For Papers </a></li>
-                <li><a href="<%=path%>/index.jsp#workshop">Workshop</a></li>
-                <li><a href="<%=path%>/index.jsp#Keynote Speakers">Keynote Speakers</a></li>
-                <li><a href="<%=path%>/index.jsp#Invited Sessions">Invited Sessions</a></li>
-                <li><a href="<%=path%>/index.jsp#Submission">Submission</a></li>
-                <li><a href="<%=path%>/index.jsp#committee">Committee</a></li>
-                <li><a href="<%=path%>/index.jsp#Download">Download</a></li>
-                <li><a href="<%=path%>/index.jsp#Venue">Venue</a></li>
-                <li id="registerInfo">
-                    <div class="btn-group">
-                        <button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
-                        <button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">Sign in</button>
-                    </div>
-                </li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
+<%@include file="/inc/headbar_en.jsp" %>
 
 <div class="container-fluid submission">
     <form id="orderForm" action="<%=path%>/auth.do?method=payment" class="formStyle" method="post">

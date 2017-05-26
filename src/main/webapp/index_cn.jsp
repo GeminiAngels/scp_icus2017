@@ -17,7 +17,7 @@
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
-<link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
+
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/flexslider.css">
 <link rel="stylesheet" href="<%=path%>/static/css/jquery.fancybox.css">
@@ -26,7 +26,9 @@
 <link rel="stylesheet" href="<%=path%>/static/css/countdown/jcountdown.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
 <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
 <link href="<%=path%>/static/css/timeTo.css" type="text/css" rel="stylesheet"/>
+
 <script type="text/javascript">
 	var app = {
 		ctx : '<%=path%>',
@@ -57,69 +59,36 @@
 	      comments:'${lunwen.comments}',
 	      type:'${lunwen.type}'
 	    },
-	    nofile : '${param.nofile}'
+	    nofile : '${param.nofile}',
+        language:1
 	}
 </script>
 </head>
 <body>
     <!-- header section -->
 
-	<div class="navbox-wap">
-		<div class="navbar navbar-inverse" role="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-					<div class="collapse navbar-collapse appiNav">
-						<ul class="nav navbar-nav">
-							<li><a href="#Home">首页</a></li>
-							<li><a href="#callForPapers">征文通知 </a></li>
-							<li><a href="#workshop">研讨会</a></li>
-							<li><a href="#Keynote_Speakers">主题报告</a></li>
-							<li><a href="#Invited_Sessions">特邀报告</a></li>
-							<li><a href="#Submission">投稿</a></li>
-							<li><a href="#committee">组织架构</a></li>
-							<li><a href="#Fee">注册费</a></li>
-							<li><a href="#Download">资料下载</a></li>
-							<li><a href="#Venue">会场</a></li>
-							<li id="registerInfo">
-								<div class="btn-group">
-								<button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">注册</button>
-								<button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">登录</button>
-								<button class="btn btn-danger" onclick="javascript:indexEn();">EN</button>
-								</div>
-							</li>
-							<div class="clear"></div>
-						</ul>
-					</div><!--/.nav-collapse -->
-				</div>
-			</div>
-			 <div class="banner" id="Home">
-				<p class="titleInfo">欢迎来到2017 IEEE国际无人系统大会 </p>
-				<p class="titleInfo_1">(IEEE ICUS2017)</p>
-				<p class="condate">2017年10月27日－29日  &nbsp;&nbsp;&nbsp;<span class="bjchina">中国北京</span> </p>
-				<p style="position: relative;margin:30px auto;text-align:center;color: white;font-size: 35px;z-index: 1;"></p>
-            <ul class="cb-slideshow">
-               <!-- <li><span>Image 01</span>
-                 </li>
-                
-                <li><span>Image 03</span>
-                </li> -->
-				<li><span>Image 02</span>
-                </li>
-                <li><span>Image 04</span>
-                </li>
-                <li><span>Image 05</span>
-                </li>
-                <li><span>Image 06</span>
-                </li>
-            </ul>
-        </div>
+	<!-- 头部模块 -->
+	<%@include file="/inc/headbar_cn.jsp" %>
+	<div class="banner" id="Home">
+		<p class="titleInfo">欢迎来到2017 IEEE国际无人系统大会 </p>
+		<p class="titleInfo_1">(IEEE ICUS2017)</p>
+		<p class="condate">2017年10月27日－29日  &nbsp;&nbsp;&nbsp;<span class="bjchina">中国北京</span> </p>
+		<p style="position: relative;margin:30px auto;text-align:center;color: white;font-size: 35px;z-index: 1;"></p>
+		<ul class="cb-slideshow">
+			<!-- <li><span>Image 01</span>
+              </li>
+
+             <li><span>Image 03</span>
+             </li> -->
+			<li><span>Image 02</span>
+			</li>
+			<li><span>Image 04</span>
+			</li>
+			<li><span>Image 05</span>
+			</li>
+			<li><span>Image 06</span>
+			</li>
+		</ul>
 	</div>
 </div>
     <!-- header section -->
@@ -406,7 +375,7 @@
 		<div class="container">
             <div class="section-header">
                 <h3 class="wow fadeInDown animated">
-				<b>Keynote Speakers</b>
+				<b>主题报告</b>
 				</h3>
             </div>
 

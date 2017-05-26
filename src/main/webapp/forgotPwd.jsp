@@ -12,18 +12,19 @@
 
 <head>
 <meta charset="utf-8">
-<meta name="description" content="第八届全国地图学与地理信息系统学术大会">
-<meta name="keywords" content="第八届全国地图学与地理信息系统学术大会,第八届,全国,地图学,地理,信息系统,学术大会">
+<meta name="description" content="ICUS2017">
+<meta name="keywords" content="ICUS2017">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/flexslider.css">
 <link rel="stylesheet" href="<%=path%>/static/css/jquery.fancybox.css">
-<link rel="stylesheet" href="<%=path%>/static/css/main.css">
+
 <link rel="stylesheet" href="<%=path%>/static/css/responsive.css">
 <link rel="stylesheet" href="<%=path%>/static/css/animate.min.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
 <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%=path%>/static/css/main.css">
 <script type="text/javascript">
 	var app = {
 		ctx : '<%=path%>',
@@ -51,45 +52,16 @@
 	      type:'${lunwen.type}'
 	    },
 	    nofile : '${param.nofile}',
-	    errormsg : '${errormsg}'
+	    <%--errormsg : '${errormsg}',--%>
+        language:2
 	}
 </script>
 </head>
 
 <body>
 <!-- header section -->
-<section class="banner nobanner">
-  <header id="header" class="fixed">
-	<div class="container" style="width:100%;background-color:#3879D9;color:#fff">
-		<div class="row" style="max-width:1170px;margin:0 auto;">
-			<div class="col-md-12 no-padding">
-				<span style="font-size:16px;line-height:30px;">WELCOME！
-				<span style="float:right;" id="registerInfo">
-									
-					<button class="btn btn-warning" onclick="javascript:registerFormFadeIn();" style="margin-bottom: 5px;">Register</button>
-					<button class="btn btn-warning" onclick="javascript:loginFormFadeIn();" style="margin-bottom: 5px;">Sign in</button						
-						
-				</span>
-			</div>
-		</div>
-	</div>
-    <!--<div class="header-content clearfix"> <a class="logo" href="#banner">e-Sciences+会议平台</a>
-      <nav class="navigation" role="navigation">
-        <ul class="primary-nav">
-		 <li><a href="index.jsp">首页</a></li>
-          <li><a href="index.jsp?position=%23content-3-10">会议简介</a></li>
-          <li><a href="index.jsp?position=%23schedule">会议日程</a></li> 
-          <li><a href="index.jsp?position=%23gallery">联系方式</a></li>
-          <li><a href="index.jsp?position=%23teams">会议地点</a></li>
-          <li><a href="index.jsp?position=%23testimonials" onclick="javascript:return validateAuth()">论文提交</a></li>
-		  <li><a href="index.jsp?position=%23download">资料下载</a></li>
-          <!-- <li><a href="index.jsp?position=%23reback">往届回顾</a></li>
-        </ul>
-      </nav>
-      <a href="#" class="nav-toggle">Menu<span></span></a> </div>
-	  -->
-  </header>
-</section>
+<!-- 头部模块 -->
+<%@include file="/inc/headbar_en.jsp" %>
 <!-- header section --> 
 <!-- contact section -->
 <section id="contact" class="section">
@@ -105,6 +77,7 @@
 				<div class="inputContainer">
 				<label>Your Primary E-mail For This Site:</label>
 					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="E-mail@example.com"/>
+					<input type="hidden" name="language" value="2" />
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">

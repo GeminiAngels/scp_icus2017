@@ -16,7 +16,7 @@
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
-<link rel="stylesheet" href="<%=path%>/static/css/main.css">
+
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/flexslider.css">
 <link rel="stylesheet" href="<%=path%>/static/css/jquery.fancybox.css">
@@ -25,6 +25,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
 <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
 <style>
 	.bootstrap-select .form-control{
 		padding:0;
@@ -74,14 +75,17 @@
 	      comments:'${lunwen.comments}',
 	      type:'${lunwen.type}'
 	    },
-	    nofile : '${param.nofile}'
+	    nofile : '${param.nofile}',
+        language:1
 	}
 </script>
 </head>
 
 <body>
 <!-- header section -->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<!-- 头部模块 -->
+<%@include file="/inc/headbar_cn.jsp" %>
+<%--<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -121,52 +125,52 @@
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
-</div>
+</div>--%>
 <!-- header section --> 
 <!-- contact section -->
 <section id="contact" class="section">
 	<div class="container register-form">
 		<div class="section-header">
-			<h2 class="wow fadeInDown animated">会议注册</h2>
-	        <p class="wow fadeInDown animated">Registered members enjoy sign up, upload papers, such as the Conference services for meetings.</p>
+			<h2 class="wow fadeInDown animated">${not empty register?'个人中心':'会议注册'}</h2>
+	        <p class="wow fadeInDown animated">注册会员享受上传文件,参加会议等服务</p>
     	</div>
     	<div class="row wow fadeInUp animated">
 			<form id="registerForm">
 				<input type="hidden" name="id" id="regid"/>
 			<div class="col-sm-4 col-sm-offset-2">
 				<div class="inputContainer">
-				<label>First Name：</label>
-					<input type="text" name="firstname" id="firstname" value="" class="form-control" autocomplete="off" placeholder="First Name"/>
+				<label>姓：</label>
+					<input type="text" name="firstname" id="firstname" value="" class="form-control" autocomplete="off" placeholder="姓"/>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="inputContainer">
-				<label>Last Name：</label>
-					<input type="text" name="lastname" id="lastname" value="" class="form-control" autocomplete="off" placeholder="Last Name"/>
+				<label>名：</label>
+					<input type="text" name="lastname" id="lastname" value="" class="form-control" autocomplete="off" placeholder="名"/>
 				</div>
 			</div>
 			<div class="col-sm-4 col-sm-offset-2">
 				<div class="inputContainer">
 				<label class="screen-reader-text">电子邮箱：</label>
-					<input type="email" name="email" id="email" value="" class="form-control" autocomplete="off"  placeholder="Email"/>
+					<input type="email" name="email" id="email" value="" class="form-control" autocomplete="off"  placeholder="电子邮箱"/>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="inputContainer">
 				<label class="screen-reader-text">电话号码：</label>
-					<input type="text" name="telphone" id="telphone" value="" class="form-control" autocomplete="off"  placeholder="Telephone"/>
+					<input type="text" name="telphone" id="telphone" value="" class="form-control" autocomplete="off"  placeholder="电话号码"/>
 				</div>
 			</div>
 			<div class="col-sm-4 col-sm-offset-2">
 				<div class="inputContainer">
 				<label>密码：</label>
-					<input type="password" name="password" id="password" value="" class="form-control" autocomplete="off" placeholder="Password"/>
+					<input type="password" name="password" id="password" value="" class="form-control" autocomplete="off" placeholder="密码"/>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="inputContainer">
 				<label class="screen-reader-text">确认密码：</label>
-					<input type="password" name="repassword" id="repassword" value="" class="form-control" autocomplete="off"  placeholder="Password"/>
+					<input type="password" name="repassword" id="repassword" value="" class="form-control" autocomplete="off"  placeholder="确认密码"/>
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2" id="password-errorinfo" style="color:red">
@@ -195,13 +199,13 @@
 			<div class="col-sm-4">
 				<div class="inputContainer">
 				<label class="screen-reader-text">头衔：</label>
-					<input type="text" name="job" id="job" value="" class="form-control" autocomplete="off" placeholder="Title"/>
+					<input type="text" name="job" id="job" value="" class="form-control" autocomplete="off" placeholder="头衔"/>
 				</div>
 			</div>
 			<div class="col-sm-4 col-sm-offset-2">
 				<div class="inputContainer">
 				<label class="screen-reader-text">工作单位：</label>
-				<input type="text" name="company" id="company" value="" class="form-control" autocomplete="off" placeholder="Work Unit"/>
+				<input type="text" name="company" id="company" value="" class="form-control" autocomplete="off" placeholder="工作单位"/>
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -464,14 +468,14 @@
 						<tr>
 							<td>
 								<label class="radio-inline">
-									<input class="sfbg_radio" type="radio" name="sfbg" id="sfbg1" value="否" checked> No
+									<input class="sfbg_radio" type="radio" name="sfbg" id="sfbg1" value="否" checked> 否
 								</label>
 								<label class="radio-inline">
-									<input class="sfbg_radio" type="radio" name="sfbg" id="sfbg2" value="是"> Yes
+									<input class="sfbg_radio" type="radio" name="sfbg" id="sfbg2" value="是"> 是
 								</label>
 							</td>
 							<td align="right">
-								<input type="text" id="sfbg_input" name="bgtm" style="width:200px;height:38px;line-height: 38px;" placeholder="Report Topics" ${empty register.sfbg or register.sfbg eq '否'?'disabled':''}/>
+								<input type="text" id="sfbg_input" name="bgtm" style="width:200px;height:38px;line-height: 38px;" placeholder="报告主题" ${empty register.sfbg or register.sfbg eq '否'?'disabled':''}/>
 							</td>
 						</tr>
 					</table>
@@ -483,10 +487,10 @@
 				<label class="screen-reader-text">住宿：</label>
 				<div style="line-height:20px;">
 					<label class="radio-inline">
-					  <input type="radio" class="sfzs_radio" name="sfzs" id="sfzs1" value="否" checked> No
+					  <input type="radio" class="sfzs_radio" name="sfzs" id="sfzs1" value="否" checked> 否
 					</label>
 					<label class="radio-inline">
-					  <input type="radio" class="sfzs_radio" name="sfzs" id="sfzs2" value="是"> Yes
+					  <input type="radio" class="sfzs_radio" name="sfzs" id="sfzs2" value="是"> 是
 					</label>
 					<!--
 					<select id="sfzs_select" name="sfzs" style="margin-left:10px;width:653px;height:38px;line-height: 38px;" disabled>
@@ -505,7 +509,7 @@
 				</div>
 			</div> -->
 			<div class="col-sm-8 col-sm-offset-2">
-				<button id="registerBtn" name="submit" type="button" class="btn btn-primary btn-lg" style="margin-top:15px;">${not empty register?'Update Account':'Register Now'}</button>
+				<button id="registerBtn" name="submit" type="button" class="btn btn-primary btn-lg" style="margin-top:15px;">${not empty register?'更新信息':'注册'}</button>
 			</div>
 			</form>
 		</div>
