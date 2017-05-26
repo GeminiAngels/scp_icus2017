@@ -7,7 +7,7 @@
             <div class="pull-right btn-group" id="registerInfo">
                 <a class="btn btn-default" onclick="javascript:registerFormFadeIn_cn();" style="padding:0px 8px;">注 册</a>
                 <a class="btn btn-default" onclick="javacript:loginFormFadeIn_cn();" style="padding:0px 8px;">登 录</a>
-                <a class="btn btn-danger" onclick="javascript:indexEn();" style="padding:0px 8px;"> EN </a>
+                <a class="btn btn-default btn-language" onclick="javascript:indexEn();" style="padding:0px 8px;"> EN </a>
             </div>
         </div>
     </div>

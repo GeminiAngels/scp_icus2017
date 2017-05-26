@@ -1361,36 +1361,10 @@ float: left;
 
 /* timeline v2.0 end*/
 
-#registerInfo:hover {
-	background-color: #222;
-	border-color:#080808;
-	cursor:pointer
-}
-
-#registerInfo .btn {
-	font-weight: normal;
-	font-size:13px;
-	color:#e0e0e0;
-	border-color:#666;
-	border-radius: 2px;
-	height: 22px;
-}
-
-#registerInfo .a-account {
-	color:lightseagreen;
-	height: 28px;
-}
-
-#registerInfo .a-account:hover {
-	/*background-color: #f7f7f7;*/
-	border-color: #f7f7f7;
-}
-/* timeline v2.0 end*/
-
 .headerbar{
 	background-color:black;
 	padding:5px 5px;
-	font-size:12px;
+	font-size:14px;
 	height:35px;
 	color: #ffffff;
 	border-bottom:1px dashed darkgreen;
@@ -1403,4 +1377,36 @@ float: left;
 
 .navbar-inverse {
 	border-radius: 0px;
+}
+
+#registerInfo:hover {
+	background-color: #222;
+	border-color:#080808;
+	cursor:pointer
+}
+
+#registerInfo .btn {
+	font-weight: normal;
+	color:#e0e0e0;
+	border-color:#666;
+	border-radius: 2px;
+	font-size: 14px;
+}
+
+#registerInfo .a-account {
+	color:lightseagreen;
+	height: 28px;
+}
+
+#registerInfo .a-account:hover {
+	/*background-color: #f7f7f7;*/
+	border-color: #f7f7f7;
+}
+
+.btn-language {
+	background-color:#d9534f;
+}
+
+.btn-language:hover {
+	background-color:#d43f3a;
 }

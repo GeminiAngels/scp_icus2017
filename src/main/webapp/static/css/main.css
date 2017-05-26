@@ -1359,6 +1359,25 @@ float: left;
   /* reset the standard declaration I defined before*/
   left: auto;
 }
+/* timeline v2.0 end*/
+
+.headerbar{
+	background-color:black;
+	padding:5px 5px;
+	font-size:14px;
+	height:35px;
+	color: #ffffff;
+	border-bottom:1px dashed darkgreen;
+}
+
+.headerbar .wellcome {
+	color:forestgreen;
+	font-weight: bold;
+}
+
+.navbar-inverse {
+	border-radius: 0px;
+}
 
 #registerInfo:hover {
 	background-color: #222;
@@ -1383,22 +1402,12 @@ float: left;
 	/*background-color: #f7f7f7;*/
 	border-color: #f7f7f7;
 }
-/* timeline v2.0 end*/
 
-.headerbar{
-	background-color:black;
-	padding:5px 5px;
-	font-size:14px;
-	height:35px;
-	color: #ffffff;
-	border-bottom:1px dashed darkgreen;
+.btn-language {
+	background-color:#d9534f;
 }
 
-.headerbar .wellcome {
-	color:forestgreen;
-	font-weight: bold;
-}
 
-.navbar-inverse {
-	border-radius: 0px;
+.btn-language:hover {
+	background-color:#d43f3a;
 }

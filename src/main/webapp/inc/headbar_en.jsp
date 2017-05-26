@@ -7,7 +7,7 @@
             <div class="pull-right btn-group" id="registerInfo">
                 <a class="btn btn-default" onclick="javascript:registerFormFadeIn();" style="padding:0px 8px;">Register</a>
                 <a class="btn btn-default" onclick="javacript:loginFormFadeIn();" style="padding:0px 8px;">Sign in</a>
-                <a class="btn btn-danger" onclick="javascript:indexCn();" style="padding:0px 8px;"> CN </a>
+                <a class="btn btn-default btn-language" onclick="javascript:indexCn();" style="padding:0px 8px;"> CN </a>
             </div>
         </div>
     </div>
