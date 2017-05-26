@@ -8,8 +8,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Payment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<%=path%>/static/css/main.css">
     <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=path%>/Submission/css/bootstrap-table.css">
@@ -127,17 +128,21 @@
             <div class="col-sm-offset-1 col-sm-10 ">
                 <label>PAYMENT TYPE:<span class="redColor">(*)　</span></label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs1" data-key="1" value="PayPal" checked/>PayPal
+                    <input type="radio" name="zffs" id="zffs1" data-path="/paypalPay" data-key="1" value="PayPal" checked/>PayPal
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs2" data-key="2" value="UnionPay"/>UnionPay
+                    <input type="radio" name="zffs" id="zffs2" data-path="/unionPay" data-key="2" value="UnionPay"/>UnionPay
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs3" data-key="3" value="Alipay">Alipay
+                    <input type="radio" name="zffs" id="zffs3" data-path="/alipay" data-key="3" value="Alipay">Alipay
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs4" data-key="4" value="WeChat Pay"/>WeChat Pay
+                    <input type="radio" name="zffs" id="zffs4" data-path="/wxPay" data-key="4" value="WeChat Pay"/>WeChat Pay
                 </label>
+                <label class="radio-inline">
+                    <input type="radio" name="zffs" id="zffs5" data-path="/openPay" data-key="5" value="WeChat Pay(PUB)"/>WeChat Pay
+                </label>
+                <input type="hidden" name="payurl" value="http://www.egeoscience.com.cn/unipay/paypalPay"/>
             </div>
         </div>
         <div class="row">
@@ -185,40 +190,36 @@
             <table id="fileList" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>NO.</th>
-                    <th>PERSON</th>
-                    <th>FEE</th>
-                    <th>DATE</th>
-                    <th>PAYMENT TYPE</th>
+                    <th>ORDER INFO</th>
                     <th>OPTION</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${orderList}" var="o">
                     <tr>
-                        <td>${o.orderno}</td>
-                        <td>${o.orderuname}</td>
-                        <td>$${o.ordermoney}</td>
-                        <td>${fn:substring(o.orderdate,5,16)}</td>
-                        <td>${o.ordertype}</td>
+                        <td>NO.: ${o.orderno}
+                            <br/>PERSON: ${o.orderuname}
+                            <br/>FEE: $${o.ordermoney}
+                            <br/>DATE: ${fn:substring(o.orderdate,5,16)}
+                            <br/>PAYMENT TYPE: ${o.ordertype}</td>
                         <td>
                             <c:if test="${order.orderstatus ne '1'}">
-                                <a class="btn btn-sm btn-default btn-deleteorder" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Remove</a>
-                                <a class="btn btn-sm btn-default btn-pay" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Pay</a>
+                                <a href="javascript:;" class="btn btn-sm btn-default btn-deleteorder" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Remove</a>
+                                <a href="javascript:;" class="btn btn-sm btn-default btn-pay" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Pay</a>
                             </c:if>
                         </td>
                         <td style="display:none">
-                            <form class="form-pay" action="${payurl}">
+                            <form class="form-pay" action="${payurl}" target="_blank">
                                 <input type="hidden" name="orderId" value="${o.orderno}"/>
                                 <input type="hidden" name="title" value="Conferences Fees"/>
                                 <input type="hidden" name="description" value="${o.orderremark}"/>
                                 <%--<c:set var="ordermoney" value="${o.ordermoney}"/>--%>
                                 <c:set var="ordermoney" value="1"/>
                                 <c:if test="${o.ordertype eq 'Alipay' or o.ordertype eq 'PayPal'}">
-                                    <c:set var="ordermoney" value="${o.ordermoney/100}"/>
+                                    <c:set var="ordermoney" value="${ordermoney/100}"/>
                                 </c:if>
                                 <input type="hidden" name="total" value="${ordermoney}"/>
-                                <input type="hidden" name="processUrl" value="http://localhost:8000/appProcess">
+                                <input type="hidden" name="processUrl" value="<%=path%>">
                                 <input type="hidden" name="openid" id="openid" >
                             </form>
                         </td>
@@ -297,6 +298,7 @@
             this.key_lwsl = 0;
             this.key_rylx = 1;
             this.key_ccys = 0;
+            this.payurl_prefix = "http://www.egeoscience.com.cn/unipay";
 
             this.txt_price = $('.order-price');
             this.input_price = $('input[name="price"]');
@@ -304,6 +306,7 @@
             this.radio_rylx = $('input[name="rylx"]');
             this.radio_ccys = $('input[name="ccys"]');
             this.radio_zffs = $('input[name="zffs"]');
+            this.hidden_payurl = $('input[name="payurl"]');
             this.btn_submit = $('.btn-saveandsubmit');
             this.btn_pay = $('.btn-pay');
 
@@ -347,13 +350,16 @@
                 this.input_price.val(_price);
             };
 
+            this.changePayurl = function(path) {
+                this.hidden_payurl.val(this.payurl_prefix + path);
+            }
+
             //提交订单
             this.ordersubmit = function(e){
                 $('#orderForm').submit();
             };
 
             this.paysubmit = function(e){
-                alert('asdfasdf');
                 $('.form-pay').submit();
             }
 
@@ -378,6 +384,7 @@
 
                 this.radio_zffs.on('change',function(e){
                     console.log($(this).attr('name')+':'+$(this).data('key'));
+                    that.changePayurl($(this).data('path'));
                 });
 
                 this.btn_submit.off('click').on('click',function(e){
@@ -387,20 +394,20 @@
                 this.btn_pay.off('click').on('click',function(e){
                     that.paysubmit(e);
                 });
+
+                $('.btn-deleteorder').off('click').on('click',function(e){
+                    var order = {id:$(this).data('id'),orderregisterid:$(this).data('orderregisterid')};
+                    OrderService.deleteOrder(order,function(ret){
+                        if(ret){
+                            window.location.href = '<%=path%>/payment.jsp';
+                        }
+                    });
+                });
             }
         }
 
         var payment = new Payment();
         payment.init();
-
-        $('.btn-deleteorder').off('click').on('click',function(e){
-            var order = {id:$(this).data('id'),orderregisterid:$(this).data('orderregisterid')};
-            OrderService.deleteOrder(order,function(ret){
-                if(ret){
-                    window.location.reload();
-                }
-            });
-        });
     });
 </script>
 </html>

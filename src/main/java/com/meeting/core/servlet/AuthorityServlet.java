@@ -340,6 +340,7 @@ public class AuthorityServlet extends BaseServlet {
 			String ccys = req.getParameter("ccys");//超出页数
 			String ordermoney = req.getParameter("price");//支付金额
 			String remarks = req.getParameter("remarks");
+            String payurl = req.getParameter("payurl");
 
 			Map reg = (Map)req.getSession().getAttribute("register");
 			int registerid = Integer.parseInt(reg.get("id").toString());
@@ -356,21 +357,14 @@ public class AuthorityServlet extends BaseServlet {
 			order.setOrderremark(remarks);
 
 			req.setAttribute("data",orderService.addOrderAndPay(order,req));
+
+            req.setAttribute("payurl",payurl);
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("errormsg","System buzy!!!");
 			return "ctx:payment.jsp";
 		}
 
-		if("PayPal".equals(zffs)) {
-			req.setAttribute("payurl","http://localhost:8000/paypalPay");
-		} else if("UnionPay".equals(zffs)) {
-			req.setAttribute("payurl","http://localhost:8000/unionPay");
-		} else if("Alipay".equals(zffs)) {
-			req.setAttribute("payurl","http://localhost:8000/alipay");
-		} else if("WeChat Pay".equals(zffs)) {
-			req.setAttribute("payurl","http://localhost:8000/wxPay");
-		}
 		return "ctx:payment.jsp";
 	}
 }

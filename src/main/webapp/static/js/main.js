@@ -127,6 +127,9 @@ $(document).ready(function() {
 			'<a href="javascript:;" onclick="registerFormFadeIn()"><i class="fa fa-file-text"></i> My Account</a>' +
 			'</li>' +
 			'<li>' +
+			'<a href="'+app.ctx+'/payment.jsp"><i class="fa fa-file-text"></i> Payment</a>' +
+			'</li>' +
+			'<li>' +
 			'<a href="javascript:;" class="btn-register-logout"><i class="fa fa-power-off"></i> Logout</a>' +
 			'</li>' +
 			'</ul>';
