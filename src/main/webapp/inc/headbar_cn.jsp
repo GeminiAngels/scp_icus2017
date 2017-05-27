@@ -13,9 +13,10 @@
     </div>
 </div>
 <div class="navbox-wap">
-    <div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="top:35px;">
         <div class="container">
             <div class="navbar-header">
+                <span class="navbar-brand">ICUS2017</span>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>

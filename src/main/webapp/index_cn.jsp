@@ -75,18 +75,21 @@
 		<p class="condate">2017年10月27日－29日  &nbsp;&nbsp;&nbsp;<span class="bjchina">中国北京</span> </p>
 		<p style="position: relative;margin:30px auto;text-align:center;color: white;font-size: 35px;z-index: 1;"></p>
 		<ul class="cb-slideshow">
-			<!-- <li><span>Image 01</span>
-              </li>
-
-             <li><span>Image 03</span>
-             </li> -->
+			<li><span>Image 01</span>
+			</li>
 			<li><span>Image 02</span>
+			</li>
+			<li><span>Image 03</span>
 			</li>
 			<li><span>Image 04</span>
 			</li>
 			<li><span>Image 05</span>
 			</li>
 			<li><span>Image 06</span>
+			</li>
+			<li><span>Image 07</span>
+			</li>
+			<li><span>Image 08</span>
 			</li>
 		</ul>
 	</div>
@@ -1011,60 +1014,59 @@
     <script type="text/javascript" src="<%=path%>/static/js/jquery.contact.js"></script>
 	<script>
 		var timer;
-    $(window).bind('scroll',function () {
-        clearTimeout(timer);
-        timer = setTimeout( refresh , 50 );
-    });
-    var refresh = function () {
-		if ($(window).scrollTop()>100) {
-			$(".tagline").fadeTo( "slow", 0 );
-		}
-		else {
-			$(".tagline").fadeTo( "slow", 1 );
-		}
-    };
-	$('a[href*=#]:not([href=#])').click(function() {
-		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') || location.hostname == this.hostname) {
-			var target = $(this.hash);
-			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+		$(window).bind('scroll',function () {
+			clearTimeout(timer);
+			timer = setTimeout( refresh , 50 );
+		});
+		var refresh = function () {
+			if ($(window).scrollTop()>100) {
+				$(".tagline").fadeTo( "slow", 0 );
+			}
+			else {
+				$(".tagline").fadeTo( "slow", 1 );
+			}
+		};
+		$('a[href*=#]:not([href=#])').click(function() {
+			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') || location.hostname == this.hostname) {
+				var target = $(this.hash);
+				target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+				if ($(window).width() < 768) {
+					if (target.length) {
+						$('html,body').animate({
+							scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) - $('.headerbar').outerHeight(true) - 16
+						}, 1000);
+						return false;
+					}
+				}
+				else {
+					if (target.length) {
+						$('html,body').animate({
+							scrollTop: target.offset().top - $('.navbar').outerHeight(true) - $('.headerbar').outerHeight(true) + 1
+						}, 1000);
+						return false;
+					}
+				}
+			}
+		});
+
+		var hash = '${param["position"]}';
+		if(hash){
+			var target = $('#'+hash);
 			if ($(window).width() < 768) {
 				if (target.length) {
 					$('html,body').animate({
-						scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) + 1
+						scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) - $('.headerbar').outerHeight(true) + 20
 					}, 1000);
-					return false;
 				}
 			}
 			else {
 				if (target.length) {
 					$('html,body').animate({
-						scrollTop: target.offset().top - $('.navbar').outerHeight(true) + 1
+						scrollTop: target.offset().top - $('.navbar').outerHeight(true) - $('.headerbar').outerHeight(true) + 1
 					}, 1000);
-					return false;
 				}
 			}
-
 		}
-	});
-
-	var hash = '${param["position"]}';
-	if(hash){
-		var target = $('#'+hash);
-		if ($(window).width() < 768) {
-			if (target.length) {
-				$('html,body').animate({
-					scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) + 1
-				}, 1000);
-			}
-		}
-		else {
-			if (target.length) {
-				$('html,body').animate({
-					scrollTop: target.offset().top - $('.navbar').outerHeight(true) + 1
-				}, 1000);
-			}
-		}
-	}
 	</script>
 </body>
 

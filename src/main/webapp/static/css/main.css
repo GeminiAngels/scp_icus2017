@@ -1059,7 +1059,6 @@ float: left;
 	.calculator .slider .range {
 		margin-bottom: 20px
 	}
-	.titleInfo,.titleInfo_1{display:none;}
 	.condate{margin-top:150px;}
 	.bjchina{margin-top:50px;display:block;}
 }
@@ -1361,7 +1360,14 @@ float: left;
 }
 /* timeline v2.0 end*/
 
+.navbox-wap {
+	margin-bottom: 55px;
+}
+
 .headerbar{
+	position:fixed;
+	top:0;left:0;right:0;
+	z-index:1030;
 	background-color:black;
 	padding:5px 5px;
 	font-size:14px;
@@ -1410,4 +1416,26 @@ float: left;
 
 .btn-language:hover {
 	background-color:#d43f3a;
+}
+
+@media screen and (min-width:768px) {
+	.navbar-brand {
+		visibility:hidden;
+	}
+}
+
+@media screen and (max-width:767px) {
+	.titleInfo{
+		position: relative;margin:100px auto 0px;text-align:center;color: white;font-size: 24px;z-index: 1;
+		line-height:36px;
+		font-weight:bold;
+	}
+	.titleInfo_1{
+		position: relative;margin:10px auto;text-align:center;color: white;font-size: 24px;z-index: 1;
+		font-weight:bold;
+	}
+	.condate{
+		position: relative;margin:10px auto;text-align:center;color: white;font-size: 20px;z-index: 1;
+		font-weight:bold;
+	}
 }

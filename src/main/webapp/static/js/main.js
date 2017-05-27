@@ -98,7 +98,15 @@ $(document).ready(function() {
 		$(this).toggleClass('close-nav');
 		nav.toggleClass('open');
 		return false;
-	});	
+	});
+
+	// Mobile Navigation
+	$('.nav').find('a').on('click', function() {
+		var menuBtn = $('.navbar-toggle');
+		if(menuBtn.css('display')=='block')
+			$('.navbar-toggle').click();
+	});
+
 	nav.find('a').on('click', function() {
 		$('.nav-toggle').toggleClass('close-nav');
 		nav.toggleClass('open');

@@ -30,15 +30,13 @@
 	.bootstrap-select .form-control{
 		padding:0;
 	}
-	.btn-default{
+	#contact .btn-default{
 		border:0;
 		border-radius:0;
+		color:#555;
 	}
 	#contact button.btn{
 		margin-top:0;
-	}
-	.btn-default{
-		color:#555;
 	}
 </style>
 <script type="text/javascript">

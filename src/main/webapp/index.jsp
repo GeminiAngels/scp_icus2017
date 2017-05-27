@@ -112,19 +112,22 @@
 	<p class="condate">Oct.27-29,2017 &nbsp;&nbsp;&nbsp;<span class="bjchina">Beijing,China</span> </p>
 	<p style="position: relative;margin:30px auto;text-align:center;color: white;font-size: 35px;z-index: 1;"></p>
 	<ul class="cb-slideshow">
-		<!-- <li><span>Image 01</span>
-          </li>
-
-         <li><span>Image 03</span>
-         </li> -->
-		<li><span>Image 02</span>
-		</li>
-		<li><span>Image 04</span>
-		</li>
-		<li><span>Image 05</span>
-		</li>
-		<li><span>Image 06</span>
-		</li>
+        <li><span>Image 01</span>
+        </li>
+        <li><span>Image 02</span>
+        </li>
+        <li><span>Image 03</span>
+        </li>
+        <li><span>Image 04</span>
+        </li>
+        <li><span>Image 05</span>
+        </li>
+        <li><span>Image 06</span>
+        </li>
+        <li><span>Image 07</span>
+        </li>
+        <li><span>Image 08</span>
+        </li>
 	</ul>
 </div>
 <!-- intro section -->
@@ -958,7 +961,7 @@
             if ($(window).width() < 768) {
                 if (target.length) {
                     $('html,body').animate({
-                        scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) + 1
+                        scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) - $('.headerbar').outerHeight(true) - 16
                     }, 1000);
                     return false;
                 }
@@ -966,12 +969,11 @@
             else {
                 if (target.length) {
                     $('html,body').animate({
-                        scrollTop: target.offset().top - $('.navbar').outerHeight(true) + 1
+                        scrollTop: target.offset().top - $('.navbar').outerHeight(true) - $('.headerbar').outerHeight(true) + 1
                     }, 1000);
                     return false;
                 }
             }
-
         }
     });
 
@@ -981,14 +983,14 @@
         if ($(window).width() < 768) {
             if (target.length) {
                 $('html,body').animate({
-                    scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) + 1
+                    scrollTop: target.offset().top - $('.navbar-header').outerHeight(true) - $('.headerbar').outerHeight(true) + 20
                 }, 1000);
             }
         }
         else {
             if (target.length) {
                 $('html,body').animate({
-                    scrollTop: target.offset().top - $('.navbar').outerHeight(true) + 1
+                    scrollTop: target.offset().top - $('.navbar').outerHeight(true) - $('.headerbar').outerHeight(true) + 1
                 }, 1000);
             }
         }
