@@ -1364,6 +1364,10 @@ float: left;
 	margin-bottom: 55px;
 }
 
+.navbar-fixed-top {
+	z-index: 999;
+}
+
 .headerbar{
 	position:fixed;
 	top:0;left:0;right:0;

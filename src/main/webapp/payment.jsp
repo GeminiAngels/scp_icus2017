@@ -11,9 +11,10 @@
     <title>Payment</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<%=path%>/static/css/main.css">
     <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=path%>/Submission/css/bootstrap-table.css">
+    <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<%=path%>/static/css/main.css">
     <link rel="stylesheet" href="<%=path%>/Submission/tougao.css">
     <style type="text/css">
         .order-price {
@@ -180,7 +181,7 @@
                                     <c:set var="ordermoney" value="${ordermoney/100}"/>
                                 </c:if>
                                 <input type="hidden" name="total" value="${ordermoney}"/>
-                                <input type="hidden" name="processUrl" value="<%=path%>">
+                                <input type="hidden" name="processUrl" value="http://www.icus.org.cn">
                                 <input type="hidden" name="openid" id="openid" >
                             </form>
                         </td>

@@ -645,7 +645,7 @@
                 <div class="col-md-3 col-sm-6 services text-center"> <span class="icon fa fa-clock-o"> 登记处</span>
                     <div class="services-content">
                         <p style="padding-top:10px;">会议日期：2017年10月27——29 中国，北京</p>
-                        <a href="javascript:;" onclick="javacript:loginFormFadeIn();" class="btn btn-lg btn-default" id="btn-ljbm">登录</a>
+                        <a href="javascript:;" onclick="javacript:loginFormFadeIn_cn();" class="btn btn-lg btn-default" id="btn-ljbm">登录</a>
                     </div>
                 </div>
 
