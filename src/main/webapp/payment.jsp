@@ -99,10 +99,10 @@
                 <label class="radio-inline">
                     <input type="radio" name="zffs" id="zffs3" data-path="/alipay" data-key="3" value="Alipay">Alipay
                 </label>
-                <label class="radio-inline">
+                <label class="radio-inline"  id="wx1">
                     <input type="radio" name="zffs" id="zffs4" data-path="/wxPay" data-key="4" value="WeChat Pay"/>WeChat Pay
                 </label>
-                <label class="radio-inline">
+                <label class="radio-inline"  id="wx2">
                     <input type="radio" name="zffs" id="zffs5" data-path="/openPay" data-key="5" value="WeChat Pay(PUB)"/>WeChat Pay
                 </label>
                 <input type="hidden" name="payurl" value="http://www.egeoscience.com.cn/unipay/paypalPay"/>
@@ -372,6 +372,28 @@
 
         var payment = new Payment();
         payment.init();
+
+        var payment = new Payment();
+        payment.init();
+        //平台、设备和操作系统
+        var system = {
+            win: false,
+            mac: false,
+            xll: false,
+            ipad:false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll||system.ipad) {  //电脑
+            $("#wx2").hide();
+        } else {//手机
+            $("#wx1").hide();
+        }
     });
 </script>
 </html>
