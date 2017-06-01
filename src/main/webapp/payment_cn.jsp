@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Payment</title>
+    <title>费用支付</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=path%>/Submission/css/bootstrap-table.css">
     <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<%=path%>/static/css/main.css">
+    <link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
     <link rel="stylesheet" href="<%=path%>/Submission/tougao.css">
     <style type="text/css">
         .order-price {
@@ -25,25 +25,25 @@
     </style>
 </head>
 <body>
-<%@include file="/inc/headbar_en.jsp" %>
+<%@include file="/inc/headbar_cn.jsp" %>
 
 <div class="container-fluid submission">
     <form id="orderForm" action="<%=path%>/auth.do?method=payment" class="formStyle" method="post">
         <input type="hidden" name="id" value="${cc.id}"/>
+        <input type="hidden" name="language" id="language" value="1" />
         <input type="hidden" name="registerid" value="${cc.registerid}"/>
-        <input type="hidden" name="language" id="language" value="2" />
         <c:if test="${empty orderList}">
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10 ">
-                <label>PAPER QUANTITY:<span class="redColor">(*)　</span></label>
+                <label>论文数量:<span class="redColor">(*)　</span></label>
                 <label class="radio-inline">
-                    <input type="radio" name="lwsl" id="lwsl1" data-key="0" value="无" checked>None
+                    <input type="radio" name="lwsl" id="lwsl1" data-key="0" value="无" checked>无
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="lwsl" id="lwsl2" data-key="1" value="一篇">One paper
+                    <input type="radio" name="lwsl" id="lwsl2" data-key="1" value="一篇">一篇
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="lwsl" id="lwsl3" data-key="2" value="两篇及以上"/>Two and above
+                    <input type="radio" name="lwsl" id="lwsl3" data-key="2" value="两篇及以上"/>两篇及以上
                 </label>
             </div>
         </div>
@@ -52,18 +52,18 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10 ">
-                <label>IDENTITY:<span class="redColor">(*)　</span></label>
+                <label>身份:<span class="redColor">(*)　</span></label>
                 <label class="radio-inline">
-                    <input type="radio" name="rylx" id="rylx1" data-key="1" value="普通人员" checked>Normal
+                    <input type="radio" name="rylx" id="rylx1" data-key="1" value="普通人员" checked>普通人员
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="rylx" id="rylx2" data-key="2" value="学生"/>Student
+                    <input type="radio" name="rylx" id="rylx2" data-key="2" value="学生"/>学生
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="rylx" id="rylx3" data-key="3" value="会员"/>Associator
+                    <input type="radio" name="rylx" id="rylx3" data-key="3" value="会员"/>会员
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="rylx" id="rylx4" data-key="4" value="委员"/>Commissioner
+                    <input type="radio" name="rylx" id="rylx4" data-key="4" value="委员"/>委员
                 </label>
             </div>
 		</div>
@@ -72,15 +72,15 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10 ">
-                <label>EXTRA PAGES:<span class="redColor">(*)　</span></label>
+                <label>超出页数:<span class="redColor">(*)　</span></label>
                 <label class="radio-inline">
-                    <input type="radio" name="ccys" id="ccys1" data-key="0" value="None" checked>None
+                    <input type="radio" name="ccys" id="ccys1" data-key="0" value="None" checked>无
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="ccys" id="ccys2" data-key="1" value="1"/>One page
+                    <input type="radio" name="ccys" id="ccys2" data-key="1" value="1"/>一页
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="ccys" id="ccys3" data-key="2" value="2"/>Two pages
+                    <input type="radio" name="ccys" id="ccys3" data-key="2" value="2"/>两页及以上
                 </label>
             </div>
         </div>
@@ -89,21 +89,21 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10 ">
-                <label>PAYMENT TYPE:<span class="redColor">(*)　</span></label>
+                <label>付款类型:<span class="redColor">(*)　</span></label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs1" data-path="/paypalPay" data-key="1" value="PayPal" checked/>PayPal
+                    <input type="radio" name="zffs" id="zffs1" data-path="/paypalPay" data-key="1" value="PayPal" checked/>贝宝
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs2" data-path="/unionPay" data-key="2" value="UnionPay"/>UnionPay
+                    <input type="radio" name="zffs" id="zffs2" data-path="/unionPay" data-key="2" value="UnionPay"/>银联
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs3" data-path="/alipay" data-key="3" value="Alipay">Alipay
+                    <input type="radio" name="zffs" id="zffs3" data-path="/alipay" data-key="3" value="Alipay">支付宝
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs4" data-path="/wxPay" data-key="4" value="WeChat Pay"/>WeChat Pay
+                    <input type="radio" name="zffs" id="zffs4" data-path="/wxPay" data-key="4" value="WeChat Pay"/>微信
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs5" data-path="/openPay" data-key="5" value="WeChat Pay(PUB)"/>WeChat Pay
+                    <input type="radio" name="zffs" id="zffs5" data-path="/openPay" data-key="5" value="WeChat Pay(PUB)"/>微信
                 </label>
                 <input type="hidden" name="payurl" value="http://www.egeoscience.com.cn/unipay/paypalPay"/>
             </div>
@@ -113,13 +113,13 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10 ">
-                <label>PRICE: 　　<span class="order-price">$200-600</span></label>
-                <input type="hidden" name="price" value="260">
+                <label>价格: 　　<span class="order-price">￥1500-3500</span></label>
+                <input type="hidden" name="price" value="1500">
             </div>
         </div>
         <div class="row">
 			<div class="col-sm-10 col-xs-12 col-sm-offset-1">
-                <label>Remarks:</label>
+                <label>备注:</label>
                 <textarea class="form-control" name="remarks" id="remarks" rows="5"></textarea>
             </div>
         </div>
@@ -129,17 +129,17 @@
         </div>
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <label>PAYMENT EXPLAIN:</label>
+                <label>付款说明:</label>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="alert alert-success">
                 <p>
-                    (1)	Chinese Institute of Command and Control. Technical Committee on Unmanned Systems.
+                    (1) 中国指挥与控制学会（Chinese Institute of Command and Control）。无人系统专业委员会（Technical Committee on Unmanned Systems）。
                 </p>
                 <p>
-                    (2) Over Length Fee: All papers are allotted 6 pages per paper free of charge. A maximum of two extra pages per paper (i.e., 8 pages in total) is permitted at an extra charge of 150 USD per page. Papers longer than 8 pages are NOT acceptable and CANNOT be uploaded.</p>
+                    (2) 超页费用：所有不超过（含）6页的论文不需缴纳此费用。每篇论文最多可超出2页（即总共8页），并以1000元/页缴纳超页费用。会议不接收超过8页的论文。</p>
                 <p>
-                    (3) All registrations are not refundable.
+                    (3) 注册费用一旦缴纳，不予退款。
                 </p>
                 </div>
             </div>
@@ -149,26 +149,34 @@
 <div class="container-fluid submission">
     <div class="row">
         <div class="col-sm-offset-1 col-sm-10 col-xs-12">
-            <label>TICKET ORDERS LIST:</label>
+            <label>订单列表:</label>
             <table id="fileList" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>ORDER INFO</th>
-                    <th>OPTION</th>
+                    <th>订单信息</th>
+                    <th>选项</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${orderList}" var="o">
                     <tr>
-                        <td>NO.: ${o.orderno}
-                            <br/>PERSON: ${o.orderuname}
-                            <br/>FEE: $${o.ordermoney}
-                            <br/>DATE: ${fn:substring(o.orderdate,5,16)}
-                            <br/>PAYMENT TYPE: ${o.ordertype}</td>
+                        <td>编号: ${o.orderno}
+                            <br/>人员: ${o.orderuname}
+                            <br/>费用: ￥${o.ordermoney}
+                            <br/>日期: ${fn:substring(o.orderdate,5,16)}
+                            <br/>支付方式:
+                            <c:choose>
+                                <c:when test="${o.ordertype eq 'PayPal'}">贝宝</c:when>
+                                <c:when test="${o.ordertype eq 'UnionPay'}">银联</c:when>
+                                <c:when test="${o.ordertype eq 'Alipay'}">支付宝</c:when>
+                                <c:when test="${o.ordertype eq 'WeChat Pay'}">微信</c:when>
+                                <c:when test="${o.ordertype eq 'WeChat Pay(PUB)'}">微信</c:when>
+                            </c:choose>
+                        </td>
                         <td>
                             <c:if test="${order.orderstatus ne '1'}">
-                                <a href="javascript:;" class="btn btn-sm btn-default btn-deleteorder" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Remove</a>
-                                <a href="javascript:;" class="btn btn-sm btn-default btn-pay" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Pay</a>
+                                <a href="javascript:;" class="btn btn-sm btn-default btn-deleteorder" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">删除</a>
+                                <a href="javascript:;" class="btn btn-sm btn-default btn-pay" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">支付</a>
                             </c:if>
                         </td>
                         <td style="display:none">
@@ -195,7 +203,7 @@
     <c:if test="${empty orderList}">
         <div class="row">
             <div class="col-sm-offset-5 col-sm-7 col-xs-offset-3 col-xs-8">
-                <button class="btn btn-primary btn-saveandsubmit" type="button">Create Order</button>
+                <button class="btn btn-primary btn-saveandsubmit" type="button">创建订单</button>
             </div>
         </div>
     </c:if>
@@ -249,7 +257,7 @@
             ly:'${cc.ly}'
         },
         nofile : '${param.nofile}',
-        language:2
+        language:1
     }
 </script>
 <script src="<%=path%>/static/js/main.js"></script>
@@ -275,42 +283,42 @@
             this.btn_pay = $('.btn-pay');
 
             this.computePrice = function(lwsl,rylx,ccys){
-                var _price = 260;//￥3000
+                var _price = 3000;//￥3000
 
                 //无论文，普通人员
                 if(!lwsl && rylx == 1) {
-                    _price = 260;//￥1800
+                    _price = 1800;//￥1800
                 }
 
                 //无论文，非普通人员
                 else if(!lwsl && rylx != 1) {
-                    _price = 200;//￥1500
+                    _price = 1500;//￥1500
                 }
 
                 //1篇论文，普通人员
                 else if(lwsl == 1 && rylx == 1) {
-                    _price = 420;//￥3000
+                    _price = 3000;//￥3000
                 }
 
                 //1篇论文，非普通人员
                 else if(lwsl == 1 && rylx != 1) {
-                    _price = 400;//￥2800
+                    _price = 2800;//￥2800
                 }
 
                 //2篇论文，普通人员
                 else if(lwsl == 2 && rylx == 1) {
-                    _price = 500;//￥3500
+                    _price = 3500;//￥3500
                 }
 
                 //2篇论文，非普通人员
                 else if(lwsl == 2 && rylx != 1) {
-                    _price = 450;//￥3200
+                    _price = 3200;//￥3200
                 }
 
                 if(ccys)
-                    _price = _price + 150*ccys;
+                    _price = _price + 1000*ccys;
 
-                this.txt_price.text('$'+_price);
+                this.txt_price.text('￥'+_price);
                 this.input_price.val(_price);
             };
 
@@ -363,7 +371,7 @@
                     var order = {id:$(this).data('id'),orderregisterid:$(this).data('orderregisterid')};
                     OrderService.deleteOrder(order,function(ret){
                         if(ret){
-                            window.location.href = '<%=path%>/payment.jsp';
+                            window.location.href = '<%=path%>/payment_cn.jsp';
                         }
                     });
                 });

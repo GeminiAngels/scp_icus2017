@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
 <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
 
-	<link rel="stylesheet" href="<%=path%>/static/css/main.css">
+	<link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
 <script type="text/javascript">
 	var app = {
 		ctx : '<%=path%>',
@@ -61,7 +61,7 @@
 <body>
 <!-- header section -->
 <!-- 头部模块 -->
-<%@include file="/inc/headbar_en.jsp" %>
+<%@include file="/inc/headbar_cn.jsp" %>
 <%--<section class="banner nobanner">
   <header id="header" class="fixed">
 	<div class="container" style="width:100%;background-color:#000;color:#fff">
@@ -96,13 +96,13 @@
 <section id="contact" class="section">
   	<div class="container login-form">
 		<div class="section-header">
-			<h2 class="wow fadeInDown animated">Security Center</h2>
+			<h2 class="wow fadeInDown animated">安全中心</h2>
 	        <p class="wow fadeInDown animated"></p>
     	</div>
     	<div class="row wow fadeInUp animated">
 			<form id="loginForm" action="<%=path%>/auth.do?method=forgotPwd" method="post">
 			<div class="col-sm-8 col-sm-offset-2">
-				<div class="alert alert-success"><i class="fa fa-check" style="border:1px solid;border-radius: 100%"></i> Reset password successfully！<a href="javascript:;" onclick="loginFormFadeIn();">Log in right now</a></div>
+				<div class="alert alert-success"><i class="fa fa-check" style="border:1px solid;border-radius: 100%"></i> 重置密码成功！<a href="javascript:;" onclick="loginFormFadeIn_cn();">马上登录</a></div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
 			</div>

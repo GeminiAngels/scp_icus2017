@@ -13,8 +13,8 @@
 
 <head>
 <meta charset="utf-8">
-<meta name="description" content="第八届全国地图学与地理信息系统学术大会">
-<meta name="keywords" content="第八届全国地图学与地理信息系统学术大会,第八届,全国,地图学,地理,信息系统,学术大会">
+<meta name="description" content="2017 IEEE国际无人系统大会">
+<meta name="keywords" content="2017 IEEE国际无人系统大会">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">

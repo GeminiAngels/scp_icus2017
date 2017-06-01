@@ -444,8 +444,8 @@
 				<b>Keynote Speakers</b>
 			</h3>
 		</div>
-
-		<p><b>October 28, 2017 (Saturday)</b></p>
+		<p>Coming Soon<p>
+		<%--<p><b>October 28, 2017 (Saturday)</b></p>
 		<p class="editContent text-center">
 		<table class="table table-bordered table-hover table-striped">
 
@@ -542,7 +542,7 @@
 				<td>Closing and Awarding Ceremony	</td>
 			</tr>
 		</table>
-		</p>
+		</p>--%>
 
 	</div>
 </section>

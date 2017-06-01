@@ -151,7 +151,7 @@ $(document).ready(function() {
 				'<a href="javascript:;" onclick="registerFormFadeIn_cn()"><i class="fa fa-file-text"></i> 个人中心</a>' +
 				'</li>' +
 				'<li>' +
-				'<a href="'+app.ctx+'/payment.jsp"><i class="fa fa-file-text"></i> 会费支付</a>' +
+				'<a href="'+app.ctx+'/payment_cn.jsp"><i class="fa fa-file-text"></i> 会费支付</a>' +
 				'</li>' +
 				'<li>' +
 				'<a href="javascript:;" class="btn-register-logout"><i class="fa fa-power-off"></i> 退出</a>' +
@@ -271,7 +271,7 @@ $(document).ready(function() {
 			$('#password-errorinfo').text('');
 			RegisterService.hasRegisterByTel(register,function(has){
 				if(!has){
-					RegisterService.register(register,function(msg){
+					RegisterService.register(register,true,app.language,function(msg){
 						if(msg){
 							if(app.language==1){
                                 alert('注册成功!');
@@ -300,7 +300,7 @@ $(document).ready(function() {
 				}
 			});
 		} else {
-			RegisterService.register(register,function(msg){
+			RegisterService.register(register,true,app.language,function(msg){
 				if(msg){
 					if(app.language==1){
                         alert('更新账户信息成功!');

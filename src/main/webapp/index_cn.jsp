@@ -378,11 +378,11 @@
 		<div class="container">
             <div class="section-header">
                 <h3 class="wow fadeInDown animated">
-				<b>主题报告</b>
+				<b>会议议程</b>
 				</h3>
             </div>
-
-			<p><b>10月28日</b></p>
+			<p>稍后更新<p>
+			<%--<p><b>10月28日</b></p>
 								<p class="editContent text-center">
 									<table class="table table-bordered table-hover table-striped">
 										
@@ -479,7 +479,7 @@
 											<td>闭幕式，优秀论文颁奖	</td>
 										</tr>
 									</table>
-								</p>	
+								</p>	--%>
 			
 		</div>
     </section>

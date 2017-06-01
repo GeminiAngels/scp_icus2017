@@ -1,5 +1,11 @@
 package com.meeting.core.servlet;
 
+import com.meeting.core.bean.Order;
+import com.meeting.core.db.DBUtil;
+import com.meeting.core.service.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Blob;
@@ -7,15 +13,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.meeting.core.bean.Contribution;
-import com.meeting.core.bean.Order;
-import com.meeting.core.bean.Register;
-import com.meeting.core.db.DBUtil;
-import com.meeting.core.service.*;
 
 /**
  * 2016/9/13 00:39:21
@@ -311,18 +308,20 @@ public class AuthorityServlet extends BaseServlet {
 		RegisterService service = new RegisterService();
 		String language = req.getParameter("language");
 		String email = req.getParameter("email");
-		if(service.sendEmailToRegister(email)){
-			req.setAttribute("resetPwdEmail", email);
-			if(language.equals("1")||"1"==language){
+		if(language.equals("1")||"1"==language) {
+			if (service.sendEmailToRegister_cn(email)) {
+				req.setAttribute("resetPwdEmail", email);
 				return "ctx:forgotPwdSuccess_cn.jsp";
-			}else{
-				return "ctx:forgotPwdSuccess.jsp";
-			}
-		} else {
-			req.setAttribute("errormsg", "<b style='color:red;'>对不起，该邮箱注册用户不存在！</b><br/>");
-			if(language.equals("1")||"1"==language){
+			} else {
+				req.setAttribute("errormsg", "<b style='color:red;'>对不起，该邮箱注册用户不存在！</b><br/>");
 				return "ctx:forgotPwd_cn.jsp";
-			}else{
+			}
+		}else{
+			if (service.sendEmailToRegister(email)) {
+				req.setAttribute("resetPwdEmail", email);
+				return "ctx:forgotPwdSuccess.jsp";
+			} else {
+				req.setAttribute("errormsg", "<b style='color:red;'>Sorry, this mailbox registered user does not exist！</b><br/>");
 				return "ctx:forgotPwd.jsp";
 			}
 		}
@@ -330,28 +329,45 @@ public class AuthorityServlet extends BaseServlet {
 	
 	public String resetPwd(HttpServletRequest req , HttpServletResponse resp){
 		String registerid = req.getParameter("regid");
+		String language = req.getParameter("language");
 		RegisterService service = new RegisterService();
 		Map register = service.getRegisterById(registerid);
 		req.setAttribute("regid", registerid);
 		req.setAttribute("regemail", register.get("email").toString());
-		return "ctx:resetPwd.jsp";
+		if(language.equals("1")||"1"==language) {
+			return "ctx:resetPwd_cn.jsp";
+		}else{
+			return "ctx:resetPwd.jsp";
+		}
 	}
 	
 	public String resetPwdOK(HttpServletRequest req , HttpServletResponse resp){
 		String regid = req.getParameter("regid");
 		String regpwd = req.getParameter("regpwd");
-		
+		String language = req.getParameter("language");
 		RegisterService service = new RegisterService();
-		if(service.updateRegisterPwd(regid,regpwd))
-			return "ctx:resetPwdSuccess.jsp";
-		else {
-			req.setAttribute("errormsg", "修改密码失败！");
-			return "ctx:resetPwd.jsp";
+
+		if(language.equals("1")||"1"==language) {
+			if(service.updateRegisterPwd(regid,regpwd))
+				return "ctx:resetPwdSuccess_cn.jsp";
+			else {
+				req.setAttribute("errormsg", "修改密码失败！");
+				return "ctx:resetPwd_cn.jsp";
+			}
+		}else{
+			if(service.updateRegisterPwd(regid,regpwd))
+				return "ctx:resetPwdSuccess.jsp";
+			else {
+				req.setAttribute("errormsg", "Failed to modify password！");
+				return "ctx:resetPwd.jsp";
+			}
 		}
+
 	}
 
 	public String payment(HttpServletRequest req , HttpServletResponse resp){
 		String zffs = req.getParameter("zffs");//支付方式
+		String language = req.getParameter("language");
 		try {
 			String lwsl = req.getParameter("lwsl");//论文数量
 			String rylx = req.getParameter("rylx");//人员类型
@@ -379,10 +395,19 @@ public class AuthorityServlet extends BaseServlet {
             req.setAttribute("payurl",payurl);
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("errormsg","System buzy!!!");
+			if(language.equals("1")||"1"==language){
+				req.setAttribute("errormsg","系统忙!!!");
+				return "ctx:payment_cn.jsp";
+			}else{
+				req.setAttribute("errormsg","System buzy!!!");
+				return "ctx:payment.jsp";
+			}
+
+		}
+		if(language.equals("1")||"1"==language){
+			return "ctx:payment_cn.jsp";
+		}else{
 			return "ctx:payment.jsp";
 		}
-
-		return "ctx:payment.jsp";
 	}
 }
