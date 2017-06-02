@@ -53,6 +53,7 @@ public class AccessControlFilter implements Filter {
 
 					url.indexOf("/auth.do?method=payment")>=0 ||
 					url.indexOf("/auth.do?method=orderdelete")>=0 ||
+					url.indexOf("/auth.do?method=asyncPayStatus")>=0 ||
 
 					url.indexOf("/auth.do?method=frontLogin")>=0 ||
 					url.indexOf("/auth.do?method=frontLogout")>=0 ||

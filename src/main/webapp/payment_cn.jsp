@@ -89,10 +89,10 @@
         </div>
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10 ">
-                <label>付款类型:<span class="redColor">(*)　</span></label>
-                <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs1" data-path="/paypalPay" data-key="1" value="PayPal" checked/>贝宝
-                </label>
+                <label>支付方式:<span class="redColor">(*)　</span></label>
+                <%--<label class="radio-inline">--%>
+                    <%--<input type="radio" name="zffs" id="zffs1" data-path="/paypalPay" data-key="1" value="PayPal" checked/>贝宝--%>
+                <%--</label>--%>
                 <label class="radio-inline">
                     <input type="radio" name="zffs" id="zffs2" data-path="/unionPay" data-key="2" value="UnionPay"/>银联
                 </label>
@@ -172,15 +172,18 @@
                                 <c:when test="${o.ordertype eq 'WeChat Pay'}">微信</c:when>
                                 <c:when test="${o.ordertype eq 'WeChat Pay(PUB)'}">微信</c:when>
                             </c:choose>
+                            ${register.zfflag eq '1'?'<span class="label label-success">已支付</span>':'<span class="label label-warning">未支付</span>'}
                         </td>
-                        <td>
+                        <td width="50%">
                             <c:if test="${order.orderstatus ne '1'}">
-                                <a href="javascript:;" class="btn btn-sm btn-default btn-deleteorder" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">删除</a>
-                                <a href="javascript:;" class="btn btn-sm btn-default btn-pay" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">支付</a>
+                                <c:if test="${register.zfflag eq '0'}">
+                                    <a href="javascript:;" class="btn btn-sm btn-success btn-pay" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">支付</a>
+                                </c:if>
+                                <a href="javascript:;" class="btn btn-sm btn-inverse btn-deleteorder" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">重新生成订单</a>
                             </c:if>
                         </td>
                         <td style="display:none">
-                            <form class="form-pay" action="${payurl}" target="_blank">
+                            <form class="form-pay" action="${payurl}" target="${o.ordertype eq 'Alipay' or o.ordertype eq 'UnionPay'?'_self':'_blank'}">
                                 <input type="hidden" name="orderId" value="${o.orderno}"/>
                                 <input type="hidden" name="title" value="Conferences Fees"/>
                                 <input type="hidden" name="description" value="${o.orderremark}"/>
@@ -190,9 +193,14 @@
                                     <c:set var="ordermoney" value="${ordermoney/100}"/>
                                 </c:if>
                                 <input type="hidden" name="total" value="${ordermoney}"/>
-                                <input type="hidden" name="processUrl" value="http://www.icus.org.cn">
+                                <input type="hidden" name="processUrl" value="http://www.icus.org.cn/ICUS2017/auth.do?method=asyncPayStatus&regid=${register.id}">
                                 <input type="hidden" name="openid" id="openid" >
                             </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <div class="alert alert-info">提示：如果点击支付没有跳转到相应支付渠道页面，可能是由于该订单之前异常支付造成。请点击“重新生成订单”按钮，选择好支付金额即可正常支付！</div>
                         </td>
                     </tr>
                 </c:forEach>
@@ -238,7 +246,8 @@
             message : '${register.message}',
             sfbg : '${register.sfbg}',
             sfkc : '${register.sfkc}',
-            sfzs : '${register.sfzs}'
+            sfzs : '${register.sfzs}',
+            zfflag : '${register.zfflag}'
         },
         lunwen : {
             id : '${lunwen.id}'/1,
@@ -332,7 +341,9 @@
             };
 
             this.paysubmit = function(e){
-                $('.form-pay').submit();
+                RegisterService.confirmPayment(${register.id},1,function(){
+                    $('.form-pay').submit();
+                })
             }
 
             this.init = function(){

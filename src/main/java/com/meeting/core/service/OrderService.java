@@ -94,7 +94,7 @@ public class OrderService extends Thread{
 		db.execute("update t_order set orderno = concat(orderno,'C',id) where id = ? ", new Object[]{id.get("id")});
 		order.setOrderno(orderNo+"C"+id.get("id").toString());
 
-		db.execute("update t_register set zfflag = 1 where id = ? ", new Object[]{order.getOrderregisterid()});
+//		db.execute("update t_register set zfflag = 1 where id = ? ", new Object[]{order.getOrderregisterid()});
 		req.getSession().setAttribute("register",db.queryOne("select * from t_register where id = ? ", new Object[]{order.getOrderregisterid()}));
 		req.getSession().setAttribute("orderList", db.queryForList("select * from t_order where orderregisterid = ? ", new Object[]{order.getOrderregisterid()}));
 		ret.put("success", success);
@@ -104,8 +104,11 @@ public class OrderService extends Thread{
 	
 	public boolean deleteOrder(Order order){
 		boolean success = db.execute("delete from t_order where id = ? ", new Object[]{order.getId()});
+
 		if(order.getOrderregisterid()!=0){
+			success = db.execute("update t_register set zfflag = 0 where id = ? ",new Object[]{order.getOrderregisterid()});
 			WebContext ctx = WebContextFactory.get();
+			ctx.getSession().setAttribute("register",db.queryOne("select * from t_register where id = ? ",new Object[]{order.getOrderregisterid()}));
 			ctx.getSession().setAttribute("orderList", db.queryForList("select * from t_order where orderregisterid = ? ", new Object[]{order.getOrderregisterid()}));
 		}
 		return success;

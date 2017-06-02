@@ -240,13 +240,17 @@ public class AuthorityServlet extends BaseServlet {
 			req.getSession().removeAttribute("contribution");
 			req.getSession().removeAttribute("thesisList");
 			req.getSession().removeAttribute("orderList");
-			req.setAttribute("errormsg", "对不起，用户不存在，或被管理员禁用！");
+			req.getSession().removeAttribute("language");
 			if(language.equals("1")||"1"==language){
+				req.setAttribute("errormsg", "对不起，用户不存在，或被管理员禁用！");
 				return "ctx:login_cn.jsp";
 			}else{
+				req.setAttribute("errormsg", "Sorry! Email or Password is wrong!");
 				return "ctx:login.jsp";
 			}
 		}
+
+		req.getSession().setAttribute("language",language);
 		if(language.equals("1")||"1"==language){
 			return "ctx:index_cn.jsp";
 		}else{
@@ -265,6 +269,7 @@ public class AuthorityServlet extends BaseServlet {
 		req.getSession().removeAttribute("contribution");
 		req.getSession().removeAttribute("thesisList");
 		req.getSession().removeAttribute("position");
+		req.getSession().removeAttribute("language");
 //		req.getSession().invalidate();
 		return "ctx:index.jsp";
 	}
@@ -404,6 +409,22 @@ public class AuthorityServlet extends BaseServlet {
 			}
 
 		}
+		if(language.equals("1")||"1"==language){
+			return "ctx:payment_cn.jsp";
+		}else{
+			return "ctx:payment.jsp";
+		}
+	}
+
+	public String asyncPayStatus(HttpServletRequest req , HttpServletResponse resp) {
+		String language = req.getSession().getAttribute("language").toString();
+		String regid = req.getParameter("regid");
+
+		RegisterService registerService = new RegisterService();
+		registerService.confirmPayment(regid,"1");
+
+		req.getSession().setAttribute("register", registerService.getRegisterById(regid));
+
 		if(language.equals("1")||"1"==language){
 			return "ctx:payment_cn.jsp";
 		}else{

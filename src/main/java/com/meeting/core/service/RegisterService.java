@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static com.runqian.report4.view.ParamsPool.params;
+
 /**
  * 2016/9/14 22:14:29
  * @author 白云飞
@@ -347,7 +349,8 @@ public class RegisterService {
 	}
 	//更改支付状态
 	public boolean confirmPayment(String id,String flag){
-		return db.execute("update t_register set zfflag = ? where id = ? ", new Object[]{flag,id});
+		boolean success = db.execute("update t_register set zfflag = ? where id = ? ", new Object[]{flag,id});
+		return success;
 	}
 
 

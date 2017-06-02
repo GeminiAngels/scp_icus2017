@@ -96,15 +96,15 @@
                 <label class="radio-inline">
                     <input type="radio" name="zffs" id="zffs2" data-path="/unionPay" data-key="2" value="UnionPay"/>UnionPay
                 </label>
-                <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs3" data-path="/alipay" data-key="3" value="Alipay">Alipay
-                </label>
-                <label class="radio-inline"  id="wx1">
-                    <input type="radio" name="zffs" id="zffs4" data-path="/wxPay" data-key="4" value="WeChat Pay"/>WeChat Pay
-                </label>
-                <label class="radio-inline"  id="wx2">
-                    <input type="radio" name="zffs" id="zffs5" data-path="/openPay" data-key="5" value="WeChat Pay(PUB)"/>WeChat Pay
-                </label>
+                <%--<label class="radio-inline">--%>
+                    <%--<input type="radio" name="zffs" id="zffs3" data-path="/alipay" data-key="3" value="Alipay">Alipay--%>
+                <%--</label>--%>
+                <%--<label class="radio-inline"  id="wx1">--%>
+                    <%--<input type="radio" name="zffs" id="zffs4" data-path="/wxPay" data-key="4" value="WeChat Pay"/>WeChat Pay--%>
+                <%--</label>--%>
+                <%--<label class="radio-inline"  id="wx2">--%>
+                    <%--<input type="radio" name="zffs" id="zffs5" data-path="/openPay" data-key="5" value="WeChat Pay(PUB)"/>WeChat Pay--%>
+                <%--</label>--%>
                 <input type="hidden" name="payurl" value="http://www.egeoscience.com.cn/unipay/paypalPay"/>
             </div>
         </div>
@@ -162,17 +162,21 @@
                     <tr>
                         <td>NO.: ${o.orderno}
                             <br/>PERSON: ${o.orderuname}
-                            <br/>FEE: $${o.ordermoney}
+                            <br/>FEE: ${o.ordertype eq 'PayPal'?'$':'¥'}${o.ordermoney}
                             <br/>DATE: ${fn:substring(o.orderdate,5,16)}
-                            <br/>PAYMENT TYPE: ${o.ordertype}</td>
-                        <td>
+                            <br/>PAYMENT TYPE: ${o.ordertype}
+                            ${register.zfflag eq '1'?'<span class="label label-success">Paid</span>':'<span class="label label-warning">Unpaid</span>'}
+                        </td>
+                        <td width="50%">
                             <c:if test="${order.orderstatus ne '1'}">
-                                <a href="javascript:;" class="btn btn-sm btn-default btn-deleteorder" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Remove</a>
-                                <a href="javascript:;" class="btn btn-sm btn-default btn-pay" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Pay</a>
+                                <c:if test="${register.zfflag eq '0'}">
+                                    <a href="javascript:;" class="btn btn-sm btn-success btn-pay" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Pay</a>
+                                </c:if>
+                                <a href="javascript:;" class="btn btn-sm btn-deleteorder" data-id="${o.id}" data-orderregisterid="${o.orderregisterid}">Regenerate Order</a>
                             </c:if>
                         </td>
                         <td style="display:none">
-                            <form class="form-pay" action="${payurl}" target="_blank">
+                            <form class="form-pay" action="${payurl}" target="${o.ordertype eq 'Alipay' or o.ordertype eq 'UnionPay'?'_self':'_blank'}">
                                 <input type="hidden" name="orderId" value="${o.orderno}"/>
                                 <input type="hidden" name="title" value="Conferences Fees"/>
                                 <input type="hidden" name="description" value="${o.orderremark}"/>
@@ -182,9 +186,14 @@
                                     <c:set var="ordermoney" value="${ordermoney/100}"/>
                                 </c:if>
                                 <input type="hidden" name="total" value="${ordermoney}"/>
-                                <input type="hidden" name="processUrl" value="http://www.icus.org.cn">
+                                <input type="hidden" name="processUrl" value="http://www.icus.org.cn/ICUS2017/auth.do?method=asyncPayStatus&regid=${register.id}">
                                 <input type="hidden" name="openid" id="openid" >
                             </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <div class="alert alert-info">Tip: if payment is abnormal, please choose to regenerate the order!</div>
                         </td>
                     </tr>
                 </c:forEach>
