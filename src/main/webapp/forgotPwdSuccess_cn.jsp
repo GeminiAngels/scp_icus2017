@@ -12,18 +12,19 @@
 
 <head>
 <meta charset="utf-8">
-<meta name="description" content="第八届全国地图学与地理信息系统学术大会">
-<meta name="keywords" content="第八届全国地图学与地理信息系统学术大会,第八届,全国,地图学,地理,信息系统,学术大会">
+<meta name="description" content="2017 IEEE国际无人系统大会">
+<meta name="keywords" content="2017 IEEE国际无人系统大会">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ICUS2017</title>
 <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=path%>/static/css/flexslider.css">
 <link rel="stylesheet" href="<%=path%>/static/css/jquery.fancybox.css">
-<link rel="stylesheet" href="<%=path%>/static/css/main.css">
+
 <link rel="stylesheet" href="<%=path%>/static/css/responsive.css">
 <link rel="stylesheet" href="<%=path%>/static/css/animate.min.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
 <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
 <script type="text/javascript">
 	var app = {
 		ctx : '<%=path%>',
@@ -58,7 +59,9 @@
 
 <body>
 <!-- header section -->
-<section class="banner nobanner">
+<!-- 头部模块 -->
+<%@include file="/inc/headbar_cn.jsp" %>
+<%--<section class="banner nobanner">
   <header id="header" class="fixed">
 	<div class="container" style="width:100%;background-color:#000;color:#fff">
 		<div class="row" style="max-width:1170px;margin:0 auto;">
@@ -88,7 +91,7 @@
       </nav>
       <a href="#" class="nav-toggle">Menu<span></span></a> </div> -->
   </header>
-</section>
+</section>--%>
 <!-- header section --> 
 <!-- contact section -->
 <section id="contact" class="section">

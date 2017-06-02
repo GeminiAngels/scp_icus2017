@@ -53,11 +53,14 @@ public class RegisterService {
 	}
 
 	public boolean register(Register reg , boolean isSendMail){
-		return this.register(reg,isSendMail,null,null);
+		return this.register(reg,isSendMail,null,null,null);
 	}
 
 	public boolean register(Register reg){
-		return this.register(reg,true,null,null);
+		return this.register(reg,true,null,null,null);
+	}
+	public boolean register(Register reg, boolean isSendMail,Integer language){
+		return this.register(reg,isSendMail,null,null,language);
 	}
 
 	/**
@@ -68,7 +71,7 @@ public class RegisterService {
 	 * @param fileName
 	 * @return
 	 */
-	public boolean register(Register reg,boolean isSendMail,InputStream file , String fileName){
+	public boolean register(Register reg,boolean isSendMail,InputStream file , String fileName,Integer language){
 		boolean success=true;
 		if(reg.getId()==0) {
 			String sql = "insert into t_register"
@@ -122,8 +125,14 @@ public class RegisterService {
 				ctx.getSession().setAttribute("thesis", this.getThesisByRegisterId(sreg.get("id").toString()));
 			}
 
-			if(isSendMail)
-				sendEmailToRegister(reg,"注册","emailtemplate.html");
+			if(isSendMail){
+				if(language!=null&&language==1){
+					sendEmailToRegister_cn(reg,"注册","emailtemplate_cn.html");
+				}else {
+					sendEmailToRegister(reg,"注册","emailtemplate.html");
+				}
+			}
+
 		}
 		return success;
 	}
@@ -142,7 +151,21 @@ public class RegisterService {
 		}
 		return success;
 	}
-	
+	public boolean sendEmailToRegister_cn(String email) {
+		boolean success = false;
+		String sql = "select * from t_register where email = ? and status = 0 ";
+		Map m = db.queryOne(sql,new Object[]{email});
+		if(m!=null){
+			Register reg = new Register();
+			reg.setId(Integer.parseInt(m.get("id").toString()));
+			reg.setEmail(m.get("email").toString());
+			reg.setNickname(m.get("nickname").toString());
+			reg.setPassword(m.get("password").toString());
+			success = sendEmailToRegister_cn(reg,"重置密码","forgotpwdtemplate_cn.html");
+		}
+		return success;
+	}
+
 	public boolean sendEmailToRegister(Register reg , String flag,String templateFile){
 		Map ms = db.queryOne("select * from t_mailset where isactive = 1 ", null);
 		MailUtil.init(ms);
@@ -191,7 +214,55 @@ public class RegisterService {
 		MailUtil.sendEmail(mailInfo);
 		return true;
 	}
-	
+	public boolean sendEmailToRegister_cn(Register reg , String flag,String templateFile){
+		Map ms = db.queryOne("select * from t_mailset where isactive = 1 ", null);
+		MailUtil.init(ms);
+		MailInfo mailInfo = new MailInfo();
+        List<String> toList = new ArrayList<String>();
+        toList.add(reg.getEmail());
+
+//        List<String> ccList = new ArrayList<String>();
+//        ccList.add("403274468@qq.com");
+
+        List<String> bccList = new ArrayList<String>();
+        bccList.add(MailUtil.getSenderEmail());
+
+        //添加附件
+        EmailAttachment att = new EmailAttachment();
+        //暂时不带附件发送，需要时打开
+//        att.setPath("C:\\Program Files\\meeting\\emails\\会议通知.docx");
+//        att.setName("第八届全国地图学与地理信息系统学术大会通知.docx");
+//        List<EmailAttachment> atts = new ArrayList<EmailAttachment>();
+//        atts.add(att);
+//        mailInfo.setAttachments(atts);
+
+        mailInfo.setToAddress(toList);//收件人
+//        mailInfo.setCcAddress(ccList);//抄送人
+        mailInfo.setBccAddress(bccList);//密送人
+
+		Map email = db.queryOne("select * from t_emails where status = 1 and type='"+flag+"' order by id desc limit 1", null);
+		if(email != null && email.size()!=0){
+			mailInfo.setSubject(email.get("title").toString());//会议主题
+			String mailMessage = email.get("contentHtml").toString();//会议内容
+			if(StringUtil.isNotEmpty(templateFile))
+				mailMessage = StringUtil.readFile2String(templateFile, this.getClass());
+			mailMessage = mailMessage.replaceAll(":nickname", reg.getNickname()).replaceAll(":currentDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+			mailMessage = mailMessage.replaceAll(":securityCode", reg.getId()+"");
+			mailInfo.setContent(mailMessage);
+		}else{
+			mailInfo.setSubject("2017 IEEE国际无人系统大会 组委会 (ICUS 2017)");//会议主题
+			String mailMessage = flag;//会议内容
+			if(StringUtil.isNotEmpty(templateFile))
+				mailMessage = StringUtil.readFile2String(templateFile, this.getClass());
+			mailMessage = mailMessage.replaceAll(":nickname", reg.getNickname()).replaceAll(":currentDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+			mailMessage = mailMessage.replaceAll(":securityCode", reg.getId()+"");
+			mailInfo.setContent(mailMessage);
+		}
+
+		MailUtil.sendEmail(mailInfo);
+		return true;
+	}
+
 	public boolean hasRegisterByTel(Register reg){
 		String sql = "select count(*) as hasone from t_register where email = ? or telphone = ? ";
 		Map m = db.queryOne(sql, new Object[]{reg.getEmail(),reg.getTelphone()});

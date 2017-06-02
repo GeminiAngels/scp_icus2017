@@ -91,39 +91,39 @@
 
 <!-- footer -->
 <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 text-center">
-        <p>Copyright &copy; 2016.<a target="_blank" href="http://www.esciences.com.cn/"> China e-Sciences tech Ltd.  </a>
-技术支持.<a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<p>Copyright &copy; 2016.<a target="_blank" href="http://www.esciences.com.cn/">  China e-Sciences tech Ltd. </a> technical support.
+					<a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-table fa-stack-1x fa-inverse"></i>
             </span>
-          </a></p>
-        <p class="social">
-          <!-- <a href="#">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-            </span>
-          </a>
-          <a href="#">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-            </span>
-          </a>
-          <a href="#">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-            </span>
-          </a> -->
-        </p>
-      </div>
-    </div>
-  </div>
+					</a></p>
+				<p class="social">
+					<!-- <a href="#">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                    <a href="#">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a>
+                    <a href="#">
+                      <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                      </span>
+                    </a> -->
+				</p>
+			</div>
+		</div>
+	</div>
 </footer>
 <!-- JS FILES --> 
 <script type='text/javascript' src='<%=path%>/dwr/engine.js'></script>

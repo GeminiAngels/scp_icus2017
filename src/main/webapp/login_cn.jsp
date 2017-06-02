@@ -116,13 +116,13 @@
 			<div class="col-sm-8 col-sm-offset-2">
 				<div class="inputContainer">
 				<label>邮箱：</label>
-					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="Email Address"/>
+					<input type="email" name="email" id="login_email" value="" class="form-control" autocomplete="off" placeholder="Email 地址"/>
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
 				<div class="inputContainer">
 				<label>密码：</label>
-					<input type="password" name="password" id="login_password" value="" class="form-control" autocomplete="off" placeholder="Password"/>
+					<input type="password" name="password" id="login_password" value="" class="form-control" autocomplete="off" placeholder="密码"/>
 					<input type="hidden" name="language" id="language" value="1" />
 				</div>
 			</div>

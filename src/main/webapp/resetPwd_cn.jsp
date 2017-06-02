@@ -24,8 +24,7 @@
 <link rel="stylesheet" href="<%=path%>/static/css/animate.min.css">
 <link rel="stylesheet" type="text/css" href="<%=path%>/static/css/style4.css" />
 <link rel="stylesheet" href="<%=path%>/static/css/font-awesome.min.css">
-
-	<link rel="stylesheet" href="<%=path%>/static/css/main.css">
+	<link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
 <script type="text/javascript">
 	var app = {
 		ctx : '<%=path%>',
@@ -61,7 +60,7 @@
 <body>
 <!-- header section -->
 <!-- 头部模块 -->
-<%@include file="/inc/headbar_en.jsp" %>
+<%@include file="/inc/headbar_cn.jsp" %>
 <%--<section class="banner nobanner">
   <header id="header" class="fixed">
 	<div class="container" style="width:100%;background-color:#000;color:#fff">
@@ -96,15 +95,35 @@
 <section id="contact" class="section">
   	<div class="container login-form">
 		<div class="section-header">
-			<h2 class="wow fadeInDown animated">Security Center</h2>
-	        <p class="wow fadeInDown animated"></p>
+			<h2 class="wow fadeInDown animated">安全中心</h2>
+	        <p class="wow fadeInDown animated"><!-- 即刻登录，管理您的会议资源。 --></p>
     	</div>
     	<div class="row wow fadeInUp animated">
-			<form id="loginForm" action="<%=path%>/auth.do?method=forgotPwd" method="post">
+			<form id="resetPwdForm" action="<%=path%>/auth.do?method=resetPwdOK" method="post">
+			<input type="hidden" name="regid" value="${regid}" />
+				<input type="hidden" name="language" id="language" value="1" />
 			<div class="col-sm-8 col-sm-offset-2">
-				<div class="alert alert-success"><i class="fa fa-check" style="border:1px solid;border-radius: 100%"></i> Reset password successfully！<a href="javascript:;" onclick="loginFormFadeIn();">Log in right now</a></div>
+				<div class="alert alert-warning" id="errorMsg">请重置您的服务密码，并妥善保管</div>
+				<div class="inputContainer">
+					<label>注册邮箱：</label>
+					<input type="text" name="regemail" id="reg_email" value="${regemail}" class="form-control" disabled/>
+					
+				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-2">
+				<div class="inputContainer">
+					<label>新密码：</label>
+					<input type="password" name="regpwd" id="login_password" value="" class="form-control" autocomplete="off" placeholder="请输入新密码"/>
+				</div>
+			</div>
+			<div class="col-sm-8 col-sm-offset-2">
+				<div class="inputContainer">
+					<label>确认密码：</label>
+					<input type="password" name="reregpwd" id="login_repassword" value="" class="form-control" autocomplete="off" placeholder="请再次输入新密码"/>
+				</div>
+			</div>
+			<div class="col-sm-8 col-sm-offset-2">
+        		<button id="btn-resetpwd" type="submit" class="btn btn-primary btn-lg">重置密码</button>
 			</div>
 			</form>
 		</div>
@@ -160,5 +179,26 @@
 <script src="<%=path%>/static/js/modernizr.js"></script> 
 <script src="<%=path%>/static/js/main.js"></script> 
 <script type="text/javascript" src="<%=path%>/static/js/jquery.contact.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		$('#btn-resetpwd').off('click').on('click',function(e){
+			if(!$('#login_password').val()){
+				$('#errorMsg').html('请输入新密码！');
+				return false;
+			}
+			if(!$('#login_repassword').val()){
+				$('#errorMsg').html('请输入确认密码！');
+				return false;
+			}
+			if($('#login_password').val()!=$('#login_repassword').val()){
+				$('#errorMsg').html('两次密码输入不一致！');
+				return false;
+			} else {
+				$('#resetPwdForm').submit();
+			}
+		});
+	});
+</script>
 </body>
 </html>

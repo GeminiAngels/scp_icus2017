@@ -30,7 +30,7 @@
                     <li><a href="index_cn.jsp#Home">首页</a></li>
                     <li><a href="index_cn.jsp#callForPapers">征文通知 </a></li>
                     <li><a href="index_cn.jsp#workshop">研讨会</a></li>
-                    <li><a href="index_cn.jsp#Keynote_Speakers">主题报告</a></li>
+                    <li><a href="index_cn.jsp#Keynote_Speakers">会议议程</a></li>
                     <li><a href="index_cn.jsp#Invited_Sessions">特邀报告</a></li>
                     <li><a href="index_cn.jsp#Submission">投稿</a></li>
                     <li><a href="index_cn.jsp#committee">组织架构</a></li>
