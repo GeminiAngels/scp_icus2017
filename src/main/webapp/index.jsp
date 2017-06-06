@@ -1,4 +1,7 @@
 <%@page contentType="text/html;charset=utf-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String path = request.getContextPath();
 	System.out.println(request.getParameter("position"));
@@ -318,7 +321,7 @@
 		<table class="table table-bordered table-hover table-striped">
 
 			<tr>
-				<td>13:00-19:00	</td>
+				<td width="20%">13:00-19:00	</td>
 				<td>Onsite Registration (BIT International Education Exchange Center) </td>
 			</tr>
 			<tr>
@@ -338,9 +341,9 @@
 		<table class="table table-bordered table-hover table-striped">
 
 			<tr>
-				<td>8:30-9:00	</td>
+				<td width="20%">8:30-9:00	</td>
 				<td>Opening ceremony	Main Venue</td>
-				<td rowspan="6" style="vertical-align:middle">14:00-18:00</td>
+				<td width="20%" rowspan="6" style="vertical-align:middle">14:00-18:00</td>
 			</tr>
 			<tr>
 				<td>9:00-9:40</td>
@@ -389,9 +392,9 @@
 		<p class="editContent text-center">
 		<table class="table table-bordered table-hover table-striped">
 			<tr>
-				<td rowspan="2" style="vertical-align:middle">8:30-11:50</td>
+				<td width="20%" rowspan="2" style="vertical-align:middle">8:30-11:50</td>
 				<td>Group reports</td>
-				<td>Branch venue</td>
+				<td width="20%">Branch venue</td>
 			</tr>
 			<tr>
 				<td>Exhibition and Show of Unmanned Systems</td>
@@ -697,7 +700,9 @@
 			<div class="col-md-3 col-sm-6 services text-center"> <span class="icon fa fa-clock-o"> Registration</span>
 				<div class="services-content">
 					<p style="padding-top:10px;">Conference Date：Oct.27-29,2017  Beijing,China</p>
+					<c:if test="${empty register}">
 					<a href="javascript:;" onclick="javacript:loginFormFadeIn();" class="btn btn-lg btn-default" id="btn-ljbm">sign up</a>
+					</c:if>
 				</div>
 			</div>
 
@@ -899,7 +904,7 @@
 					<p class="wow fadeInLeft animated" style="text-align:left">Beijing Institute of Technology, China</p>
 					<p class="wow fadeInLeft animated" style="text-align:left">Tel: +8610-6891-2761 (Prof. Hongbin Deng)</p>
 					<p class="wow fadeInLeft animated" style="text-align:left">E-mail: denghongbin@bit.edu.cn</p>
-					<p class="wow fadeInLeft animated" style="text-align:left">Website:<a href="http://www.c2.org.cn" title="ICUS"> http://www.c2.org.cn</a>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="http://www.c2.org.cn" title="ICUS">http://www.icus.org.cn</a></P>
+					<p class="wow fadeInLeft animated" style="text-align:left">Website:<a href="http://www.c2.org.cn" title="ICUS"> http://www.c2.org.cn</a>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="http://www.icus.org.cn" title="ICUS">http://www.icus.org.cn</a></P>
 				</div>
 			</div>
 		</div>

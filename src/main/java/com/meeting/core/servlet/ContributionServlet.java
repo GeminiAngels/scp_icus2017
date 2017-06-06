@@ -43,10 +43,11 @@ public class ContributionServlet extends BaseServlet {
 	public String save(HttpServletRequest req , HttpServletResponse resp){
         // TODO: 2017-04-27  未完待续
         DiskFileItemFactory factory = new DiskFileItemFactory();
-		String path = req.getRealPath("/upload");//设置磁盘缓冲路径
+        System.out.println(getServletContext().getRealPath("/upload/"));
+        String path = getServletContext().getRealPath("/upload/");//设置磁盘缓冲路径
 	
 		factory.setRepository(new File(path));
-		factory.setSizeThreshold(1024*1024);//设置创建缓冲大小
+		factory.setSizeThreshold(4096);//设置创建缓冲大小
 		
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setSizeMax(-1);//设置上传文件限制大小,-1无上限
@@ -75,10 +76,20 @@ public class ContributionServlet extends BaseServlet {
 					int start = value.lastIndexOf("\\");
 					String fileName = value.substring(start+1);
 			//		request.setAttribute(name, fileName);
-					item.write(new File("C:\\Program Files\\meeting\\files",fileName));
+					//item.write(new File("C:\\Program Files\\meeting\\files",fileName));//写数据库和写磁盘只能选一种
 					int index = fileName.lastIndexOf(".");
 					realFileName = fileName.substring(0,index);
 					type = fileName.substring(index+1);
+
+                    //对上传文件类型进行限制
+                    if(!"docx".equals(type)
+                            &&!"doc".equals(type)
+                            &&!"txt".equals(type)
+                            &&!"zip".equals(type)
+                            &&!"pdf".equals(type)) {
+                        req.setAttribute("fileerror","The file type does not meet the requirements");
+                        return "ctx:Submission/index.jsp";
+                    }
 
                     Thesis thesis = new Thesis();
                     thesis.setFilename(realFileName);
@@ -118,6 +129,8 @@ public class ContributionServlet extends BaseServlet {
 			
 			e.printStackTrace();
 		}
+		req.setAttribute("success",true);
+        req.setAttribute("msg","success");
 		return "ctx:Submission/index.jsp";
 	}
 	

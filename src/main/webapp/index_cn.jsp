@@ -1,4 +1,7 @@
 <%@page contentType="text/html;charset=utf-8" language="java"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String path = request.getContextPath();
   System.out.println(request.getParameter("position"));
@@ -261,7 +264,7 @@
 									<table class="table table-bordered table-hover table-striped">
 										
 										<tr>
-											<td>13:00-19:00	</td>						
+											<td width="20%">13:00-19:00	</td>
 											<td>大会报到（北京理工大学国际教育交流中心） </td>
 										</tr>
 										<tr>
@@ -279,9 +282,9 @@
 									<table class="table table-bordered table-hover table-striped">
 										
 										<tr>
-											<td>8:30-9:00	</td>						
+											<td width="20%">8:30-9:00	</td>
 											<td>开幕式，领导讲话</td>
-											<td rowspan="6" style="vertical-align:middle">14:00-18:00</td>
+											<td width="20%" rowspan="6" style="vertical-align:middle">14:00-18:00</td>
 										</tr>
 										<tr>
 											<td>9:00-9:40</td>
@@ -326,9 +329,9 @@
 								<p class="editContent text-center">
 									<table class="table table-bordered table-hover table-striped">
 										<tr>
-											<td rowspan="2" style="vertical-align:middle">8:30-11:50</td>						
+											<td width="20%" rowspan="2" style="vertical-align:middle">8:30-11:50</td>
 											<td>分组报告：</td>
-											<td>分会场</td>
+											<td width="20%">分会场</td>
 										</tr>
 										<tr>
 											<td>展览和展示无人系统</td>
@@ -517,7 +520,7 @@
 			<p>2、排版</p>
 			<p>接收MS Word排版论文。</p>
 			<p>3、终稿截止日期</p>
-			<p>2017年8月30日 </p>
+			<p>2017年8月30日。 </p>
 			<br>
 			<h4>★ 论文模板</h4>
 			<p class="t-indent">会议提供MS Word模板。我们强烈建议您的论文终稿使用会议模板进行编排。如果您使用以前版本的模板，请点击英文模板或者LaTeX模板进行下载。您也可以不使用这些模板，但必须严格按照模板中的规范编排您的论文。如果您使用MS Word 2007及以上版本编排论文，请使用MS Word 2003兼容格式。</p>
@@ -525,7 +528,7 @@
 			<h4>★ 重要提示</h4>
 			<p>1、所有录用论文的修改稿必须严格按照IEEE ICUS 2017 论文模板投稿，并务必通过IEEE PDF eXpress的在线检查且提交PDF检查通过报告，IEEE PDF eXpress在线检查网址：http://www.pdf-express.org/. IEEE ICUS 2017的ID：37528XP. 没有通过在线检查的论文将无法收录到 IEEE Xplore，也不能被EI Compendex检索。</p>
 			<p>2、所有论文作者务必自行进行在线剽窃检查, 并在线提交剽窃检查系统自动生成的格式检查报告，检查报告显示相似度超过20%的稿件将直接退稿，剽窃在线检查网址：http://veriguide1.cse.cuhk.edu.hk/。</p>
-			<p>3、所有录用论文务必在线提交作者签名并扫描的IEEE版权转让协议。请点击这里，下载授权表。</p>
+			<p>3、所有录用论文务必在线提交作者签名并扫描的IEEE版权转让协议。<a href="#">请点击这里</a>，下载授权表。</p>
 			<p>4、口头报告每篇论文报告时间为15分钟（包含讨论），会议提供计算机（装有Microsoft Windows 和Microsoft PowerPoint）及投影设备，请报告人在分组报告开始前10 分钟到分组主席处报到并将报告文件拷入计算机。张贴论文要求内容简洁，字迹清晰，版面可进行一定的艺术加工。字迹至少应在1米外清晰可见。张贴论文的左上角必须注明稿件编号，可用双面胶或透明胶粘贴到展板上，届时会有工作人员为代表提供张贴所需工具并协助代表张贴。</p>
 		</div>
     </section>
@@ -645,7 +648,9 @@
                 <div class="col-md-3 col-sm-6 services text-center"> <span class="icon fa fa-clock-o"> 登记处</span>
                     <div class="services-content">
                         <p style="padding-top:10px;">会议日期：2017年10月27——29 中国，北京</p>
+						<c:if test="${empty register}">
                         <a href="javascript:;" onclick="javacript:loginFormFadeIn_cn();" class="btn btn-lg btn-default" id="btn-ljbm">登录</a>
+						</c:if>
                     </div>
                 </div>
 
@@ -971,7 +976,7 @@
                          <p class="wow fadeInLeft animated" style="text-align:left">Beijing Institute of Technology, China</p> 
                          <p class="wow fadeInLeft animated" style="text-align:left">电话： +8610-6891-2761（邓宏彬）</p>
                          <p class="wow fadeInLeft animated" style="text-align:left">邮箱： denghongbin@bit.edu.cn</p>
-                         <p class="wow fadeInLeft animated" style="text-align:left">网址：<a href="http://www.c2.org.cn" title="ICUS"> http://www.c2.org.cn</a>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="http://www.c2.org.cn" title="ICUS">http://www.icus.org.cn</a></P>
+                         <p class="wow fadeInLeft animated" style="text-align:left">网址：<a href="http://www.c2.org.cn" title="ICUS"> http://www.c2.org.cn</a>&nbsp;&nbsp;or&nbsp;&nbsp;<a href="http://www.icus.org.cn" title="ICUS">http://www.icus.org.cn</a></P>
                     </div>
                 </div>
             </div>

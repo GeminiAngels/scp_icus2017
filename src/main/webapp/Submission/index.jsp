@@ -10,54 +10,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>投稿</title>
-    <link rel="stylesheet" href="<%=path%>/static/css/main.css">
+    <title>Submission</title>
     <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=path%>/Submission/css/bootstrap-table.css">
     <link rel="stylesheet" href="<%=path%>/Submission/tougao.css">
+    <link rel="stylesheet" href="<%=path%>/static/css/main.css?v=2">
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<!--
-						<a class="navbar-brand" href="#topWrap">
-							<span class="fa-stack fa-lg">
-								<i class="fa fa-circle fa-stack-2x"></i>
-								<i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
-							</span>
-							e-Sciences+<span class="title"> 会议平台</span>
-						</a>
-						-->
-					</div>
-					<div class="collapse navbar-collapse appiNav">
-						<ul class="nav navbar-nav">
-							<li><a href="<%=path%>/index.jsp#Home">Home</a></li>
-							<li><a href="<%=path%>/index.jsp#callForPapers">Call For Papers </a></li>
-							<li><a href="<%=path%>/index.jsp#workshop">Workshop</a></li>
-							<li><a href="<%=path%>/index.jsp#Keynote Speakers">Keynote Speakers</a></li>
-							<li><a href="<%=path%>/index.jsp#Invited Sessions">Invited Sessions</a></li>
-							<li><a href="<%=path%>/index.jsp#Submission">Submission</a></li>
-							<li><a href="<%=path%>/index.jsp#committee">Committee</a></li>
-							<li><a href="<%=path%>/index.jsp#Download">Download</a></li>
-							<li><a href="<%=path%>/index.jsp#Venue">Venue</a></li>
-                            <li id="registerInfo">
-                                <div class="btn-group">
-                                    <button class="btn btn-primary" onclick="javascript:registerFormFadeIn();">Register</button>
-                                    <button class="btn btn-warning" onclick="javacript:loginFormFadeIn();">Sign in</button>
-                                </div>
-                            </li>
-						</ul>
-					</div><!--/.nav-collapse -->
-				</div>
-</div>
-
+<%@include file="/inc/headbar_en.jsp" %>
 
 
 <div class="container-fluid submission">
@@ -188,6 +148,18 @@
         -->
         <div class="row">
             <div class="col-sm-offset-1 col-sm-10 col-xs-12">
+                <c:if test="${not empty fileerror}">
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Warning!</strong> ${fileerror}.
+                    </div>
+                </c:if>
+                <c:if test="${success}">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Successful submission of papers!</strong> .
+                    </div>
+                </c:if>
                 <div class="panel panel-primary">
                     <div class="panel-heading">Upload Papers</div>
                     <div class="panel-body">
@@ -195,11 +167,11 @@
                             <label>Please select your manuscript to upload. </label>
                         </div>
                         <div class="col-sm-5 col-xs-12">
-                            <label>The allowed file types are docx / txt / zip / doc / pdf with in 10M;</label>
+                            <label>The allowed file types are docx / txt / zip / doc / pdf within 10M;</label>
                         </div>
                         <div class="col-sm-5">
                             <!--<label>The Text of Your Manuscript (If there are separate pictures, please compress them as well as the text into a file package and then upload):</label>-->
-                            <input class="form-control" type="file" name="file1" id="file1" style="${not empty thesisList?'display:none':''}">
+                            <input class="form-control" type="file" name="file1" id="file1" style="${not empty thesisList?'display:none':''}" accept=".docx,application/msword,text/plain,aplication/zip,application/pdf">
                             <div class="" id="fileName" style="${not empty thesisList?'':'display:none'}">
                             click here to download-> <a href="<%=path%>/contribution.do?method=download&fileid=${thesisList[0].id}" >${thesisList[0].filename}.${thesisList[0].type}</a>
                             <span class="btn btn-default" id="btn-clear" >Replace it</span>
