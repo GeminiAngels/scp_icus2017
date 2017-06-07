@@ -97,7 +97,7 @@
                     <input type="radio" name="zffs" id="zffs2" data-path="/unionPay" data-key="2" value="UnionPay"/>银联
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="zffs" id="zffs3" data-path="/alipay" data-key="3" value="Alipay">支付宝
+                    <input type="radio" name="zffs" id="zffs3" data-path="/alipay" data-key="3" value="Alipay" checked>支付宝（推荐）
                 </label>
                 <label class="radio-inline"  id="wx1">
                     <input type="radio" name="zffs" id="zffs4" data-path="/wxPay" data-key="4" value="WeChat Pay"/>微信
@@ -105,7 +105,7 @@
                 <label class="radio-inline" id="wx2">
                     <input type="radio" name="zffs" id="zffs5" data-path="/openPay" data-key="5" value="WeChat Pay(PUB)"/>微信
                 </label>
-                <input type="hidden" name="payurl" value="http://www.egeoscience.com.cn/unipay/paypalPay"/>
+                <input type="hidden" name="payurl" value="http://www.egeoscience.com.cn/unipay/alipay"/>
             </div>
         </div>
         <div class="row">
@@ -333,6 +333,8 @@
 
             this.changePayurl = function(path) {
                 this.hidden_payurl.val(this.payurl_prefix + path);
+                if(path == '/wxPay')
+                    this.hidden_payurl.val(app.ctx + '/wxpay.jsp');
             }
 
             //提交订单
