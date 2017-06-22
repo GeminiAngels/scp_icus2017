@@ -404,7 +404,6 @@
  
 						</select>
 					</div>
-				  </form>
 			</div>
 			<div class="col-sm-4 col-sm-offset-2">
 				<div class="inputContainer">
