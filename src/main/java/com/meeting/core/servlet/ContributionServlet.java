@@ -111,15 +111,17 @@ public class ContributionServlet extends BaseServlet {
                 contributionService.update(cont);
             }
 
-            // 保证只有一个附件
-            thesisService.deleteBy(cont.getId()+"");
+            if(thesisList.size()>0) {
+				// 保证只有一个附件
+				thesisService.deleteBy(cont.getId()+"");
 
-            for(Thesis thesis : thesisList) {
-            	thesis.setRegisterid(cont.getRegisterid());
-				if(cont.getId()!=0)
-					thesis.setContid(cont.getId()+"");
-                thesisService.insert(thesis);
-            }
+				for(Thesis thesis : thesisList) {
+					thesis.setRegisterid(cont.getRegisterid());
+					if(cont.getId()!=0)
+						thesis.setContid(cont.getId()+"");
+					thesisService.insert(thesis);
+				}
+			}
 
             List _list = thesisService.list(cont.getRegisterid());
 
