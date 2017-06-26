@@ -41,7 +41,7 @@ public class ContributionServlet extends BaseServlet {
     }
 	
 	public String save(HttpServletRequest req , HttpServletResponse resp){
-        // TODO: 2017-04-27  未完待续
+		String locale = "en-US";
         DiskFileItemFactory factory = new DiskFileItemFactory();
         System.out.println(getServletContext().getRealPath("/upload/"));
         String path = getServletContext().getRealPath("/upload/");//设置磁盘缓冲路径
@@ -61,6 +61,9 @@ public class ContributionServlet extends BaseServlet {
 		//		String name = item.getFieldName();
 				if(item.isFormField()){//判断是否是文件流
                     contMap.put(item.getFieldName(),item.getString("UTF-8"));
+					if("locale".equals(item.getFieldName())) {
+						locale = item.getString("UTF-8");
+					}
 				}else{
 				    if(StringUtil.isEmpty(item.getName()))
 				        continue;
@@ -87,8 +90,13 @@ public class ContributionServlet extends BaseServlet {
                             &&!"txt".equals(type)
                             &&!"zip".equals(type)
                             &&!"pdf".equals(type)) {
-                        req.setAttribute("fileerror","The file type does not meet the requirements");
-                        return "ctx:Submission/index.jsp";
+                    	if("zh-CN".equals(locale)) {
+							req.setAttribute("fileerror","文件类型不符合要求！");
+							return "ctx:Submission/index_cn.jsp";
+						} else {
+							req.setAttribute("fileerror","The file type does not meet the requirements!");
+							return "ctx:Submission/index.jsp";
+						}
                     }
 
                     Thesis thesis = new Thesis();
@@ -133,7 +141,11 @@ public class ContributionServlet extends BaseServlet {
 		}
 		req.setAttribute("success",true);
         req.setAttribute("msg","success");
-		return "ctx:Submission/index.jsp";
+		if("zh-CN".equals(locale)) {
+			return "ctx:Submission/index_cn.jsp";
+		} else {
+			return "ctx:Submission/index.jsp";
+		}
 	}
 	
 	public String download(HttpServletRequest req , HttpServletResponse resp){

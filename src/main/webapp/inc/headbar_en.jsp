@@ -27,16 +27,16 @@
 
             <div class="collapse navbar-collapse" >
                 <ul class="nav navbar-nav">
-                    <li><a href="index.jsp#Home">Home</a></li>
-                    <li><a href="index.jsp#callForPapers">Call For Papers </a></li>
-                    <li><a href="index.jsp#workshop">Workshop</a></li>
-                    <li><a href="index.jsp#Keynote_Speakers">Keynote Speakers</a></li>
-                    <li><a href="index.jsp#Invited_Sessions">Invited Sessions</a></li>
-                    <li><a href="index.jsp#Submission">Submission</a></li>
-                    <li><a href="index.jsp#committee">Committee</a></li>
-                    <li><a href="index.jsp#Fee">Fee</a></li>
-                    <li><a href="index.jsp#Download">Download</a></li>
-                    <li><a href="index.jsp#Venue">Venue</a></li>
+                    <li><a href="<%=path%>/index.jsp#Home">Home</a></li>
+                    <li><a href="<%=path%>/index.jsp#callForPapers">Call For Papers </a></li>
+                    <li><a href="<%=path%>/index.jsp#workshop">Workshop</a></li>
+                    <li><a href="<%=path%>/index.jsp#Keynote_Speakers">Keynote Speakers</a></li>
+                    <li><a href="<%=path%>/index.jsp#Invited_Sessions">Invited Sessions</a></li>
+                    <li><a href="<%=path%>/index.jsp#Submission">Submission</a></li>
+                    <li><a href="<%=path%>/index.jsp#committee">Committee</a></li>
+                    <li><a href="<%=path%>/index.jsp#Fee">Fee</a></li>
+                    <li><a href="<%=path%>/index.jsp#Download">Download</a></li>
+                    <li><a href="<%=path%>/index.jsp#Venue">Venue</a></li>
                        <%-- <li id="registerInfo">
                             <div class="btn-group">
                                 <button class="btn btn-primary" onclick="javascript:registerFormFadeIn();" style="padding:1px 8px;">Register</button>

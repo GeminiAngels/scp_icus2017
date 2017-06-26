@@ -399,10 +399,19 @@ $(document).ready(function() {
 	// a-link-submission on click
 	$('#a-link-submission').off('click').on('click',function(e){
 		if(!app.register.id){
-			alert('Sorry! Please login first!');
-			window.location.href = app.ctx + '/login.jsp';
+			if(app.language==1) {
+				alert('对不起！投稿前，请先登录！');
+				window.location.href = app.ctx + '/login_cn.jsp';
+			} else {
+				alert('Sorry! Please login first!');
+				window.location.href = app.ctx + '/login.jsp';
+			}
 		} else {
-			window.location.href = app.ctx + '/Submission/index.jsp';
+			if(app.language==1) {
+				window.location.href = app.ctx + '/Submission/index_cn.jsp';
+			} else {
+				window.location.href = app.ctx + '/Submission/index.jsp';
+			}
 		}
 	});
 });

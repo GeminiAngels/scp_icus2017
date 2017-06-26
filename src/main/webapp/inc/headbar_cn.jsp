@@ -27,16 +27,16 @@
 
             <div class="collapse navbar-collapse appiNav">
                 <ul class="nav navbar-nav">
-                    <li><a href="index_cn.jsp#Home">首页</a></li>
-                    <li><a href="index_cn.jsp#callForPapers">征文通知 </a></li>
-                    <li><a href="index_cn.jsp#workshop">研讨会</a></li>
-                    <li><a href="index_cn.jsp#Keynote_Speakers">会议议程</a></li>
-                    <li><a href="index_cn.jsp#Invited_Sessions">特邀报告</a></li>
-                    <li><a href="index_cn.jsp#Submission">投稿</a></li>
-                    <li><a href="index_cn.jsp#committee">组织架构</a></li>
-                    <li><a href="index_cn.jsp#Fee">注册费</a></li>
-                    <li><a href="index_cn.jsp#Download">资料下载</a></li>
-                    <li><a href="index_cn.jsp#Venue">会场</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#Home">首页</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#callForPapers">征文通知 </a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#workshop">研讨会</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#Keynote_Speakers">会议议程</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#Invited_Sessions">特邀报告</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#Submission">投稿</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#committee">组织架构</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#Fee">注册费</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#Download">资料下载</a></li>
+                    <li><a href="<%=path%>/index_cn.jsp#Venue">会场</a></li>
                     <div class="clear"></div>
                 </ul>
             </div><!--/.nav-collapse -->

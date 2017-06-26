@@ -506,7 +506,7 @@
 				</h3>
             </div>
 			<h4>★ 论文投稿</h4>
-			<p class="t-indent">请作者在2017年7月1日前通过http://icuspaper.org提交论文初稿的pdf格式文件。会议接受英文稿件。初稿论文不得超过8页。论文经过评审程序录用后，提交的终稿论文限制在8页内，但超出6页的部分需按页交纳版面费。</p>
+			<p class="t-indent">请作者在2017年7月1日前通过<a href="javascript:;" id="a-link-submission"><span style="color:red;">www.icus.org.cn/ICUS2017/Submission</span></a>提交论文初稿的pdf格式文件。会议接受英文稿件。初稿论文不得超过8页。论文经过评审程序录用后，提交的终稿论文限制在8页内，但超出6页的部分需按页交纳版面费。</p>
 			<br>
 			<h4>★ 投稿声明</h4>
 			<p><span style="font-size:30px;">☛ </span>IEEE ICUS 2017现场交流和会议论文集收录论文的语言为英文；</p>

@@ -16,30 +16,31 @@
     <link rel="stylesheet" href="<%=path%>/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=path%>/Submission/css/bootstrap-table.css">
     <link rel="stylesheet" href="<%=path%>/Submission/tougao.css">
-    <link rel="stylesheet" href="<%=path%>/static/css/main.css?v=2">
+    <link rel="stylesheet" href="<%=path%>/static/css/main_cn.css">
 </head>
 <body>
-<%@include file="/inc/headbar_en.jsp" %>
+<%@include file="/inc/headbar_cn.jsp" %>
 
 
 <div class="container-fluid submission">
     <form id="contributionForm" action="<%=path%>/contribution.do?method=save" class="formStyle" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${cc.id}"/>
         <input type="hidden" name="registerid" value="${cc.registerid}"/>
+        <input type="hidden" name="locale" value="zh-CN"/>
         <div class="row">
             <div class="col-sm-offset-1 col-sm-5 ">
-                <label>Title:<sppan class="redColor">(*)</sppan></label>
+                <label>论文题目:<sppan class="redColor">(*)</sppan></label>
                 <input type="text" class="form-control" name="wt" id="wt" placeholder="" value="${cc.wt}"/>
             </div>
 			<div class="col-sm-5">
-                <label>Author:<span class="redColor">(*)</span></label>
+                <label>作者:<span class="redColor">(*)</span></label>
                 <input type="text" class="form-control" name="author" readonly="readonly" value="${register.nickname}"/>
                 <input type="hidden" name="registerid" value="${register.id}"/>
             </div>
 		</div>
         <div class="row">
 			<div class="col-sm-offset-1 col-sm-5">
-                <label>Topic:</label>
+                <label>稿件类型:</label>
                 <select class="form-control" name="gjlx" id="gjlx">
                     <option value=""></option>
                     <option value="Unmanned Aerial Vehicles">Unmanned Aerial Vehicles</option>
@@ -58,13 +59,13 @@
                 </select>
             </div>
 			<div class="col-sm-5">
-                <label>Key words:<span class="redColor">(*)</span></label>
+                <label>关键词:<span class="redColor">(*)</span></label>
                 <input type="text" class="form-control" name="gjc" id="gjc" placeholder="" value="${cc.gjc}"/>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <label>Key words Explain:</label>
+                <label>关键词解释:</label>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
                 <span>Please input the key words of your paper. Please press the print keyword format "submission" required, 
@@ -74,22 +75,22 @@
         </div>
 		<div class="row">
 			<div class="col-sm-5 col-sm-offset-1">
-                <label>Abstract:</label>
+                <label>摘要:</label>
                 <textarea name="zy" id="zy" class="form-control" rows="2">${cc.zy}</textarea>
             </div>
             <div class="col-sm-5">
-                <label>Language:</label>
+                <label>稿件语种:</label>
 				<label class="radio-inline">
-                    <input type="radio" name="language" id="English" value="英文稿件" checked>English
+                    <input type="radio" name="language" id="English" value="英文稿件" checked>英文
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="language" id="Chinese" value="中文稿件" ${cc.language eq '中文稿件'?'checked':''}/>Chinese
+                    <input type="radio" name="language" id="Chinese" value="中文稿件" ${cc.language eq '中文稿件'?'checked':''}/>中文
                 </label>
 			</div>
 		</div>
         <div class="row">
 			<div class="col-sm-10 col-xs-12 col-sm-offset-1">
-                <label>Remarks:</label>
+                <label>备注说明:</label>
                 <textarea class="form-control" name="ly" id="ly">${cc.ly}</textarea>
             </div>
 			<!--
@@ -153,30 +154,31 @@
                 <c:if test="${not empty fileerror}">
                     <div class="alert alert-warning alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Warning!</strong> ${fileerror}.
+                        <strong>出错了!</strong> ${fileerror}.
                     </div>
                 </c:if>
                 <c:if test="${success}">
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Successful submission of papers!</strong> .
+                        <strong>论文提交成功！</strong> .
                     </div>
                 </c:if>
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Upload Papers</div>
+                    <div class="panel-heading">上传论文</div>
                     <div class="panel-body">
                         <div class="col-sm-10 col-xs-12">
-                            <label>Please select your manuscript to upload. </label>
+                            <label>
+                                请选择要上传的稿件。</label>
                         </div>
                         <div class="col-sm-5 col-xs-12">
-                            <label>The allowed file types are docx / txt / zip / doc / pdf within 10M;</label>
+                            <label>允许上传的文件格式有：docx / txt / zip / doc / pdf 。并且 要求文件大小为 10M 以下。</label>
                         </div>
                         <div class="col-sm-5">
                             <!--<label>The Text of Your Manuscript (If there are separate pictures, please compress them as well as the text into a file package and then upload):</label>-->
                             <input class="form-control" type="file" name="file1" id="file1" style="${not empty thesisList?'display:none':''}" accept=".docx,application/msword,text/plain,aplication/zip,application/pdf">
                             <div class="" id="fileName" style="${not empty thesisList?'':'display:none'}">
-                            click here to download-> <a href="<%=path%>/contribution.do?method=download&fileid=${thesisList[0].id}" >${thesisList[0].filename}.${thesisList[0].type}</a>
-                            <span class="btn btn-default" id="btn-clear" >Replace it</span>
+                            点此下载-> <a href="<%=path%>/contribution.do?method=download&fileid=${thesisList[0].id}" >${thesisList[0].filename}.${thesisList[0].type}</a>
+                            <span class="btn btn-default" id="btn-clear" >重新上传</span>
                             </div>
                         </div>
 						<!--
@@ -217,7 +219,7 @@
 		-->
         <div class="row">
             <div class="col-sm-offset-5 col-sm-7 col-xs-offset-3 col-xs-8">
-                <button class="btn btn-primary btn-saveandsubmit" type="button">Save and Submit</button>
+                <button class="btn btn-primary btn-saveandsubmit" type="button">保存并提交</button>
             </div>
         </div>
         <!--基金modal start -->
@@ -274,8 +276,8 @@
         <div class="row">
             <div class="col-xs-12 text-center">
                 <p>Copyright &copy; 2017 CICC, All Rights Reserved</p>
-                <p><a target="_blank" href="http://www.esciences.com.cn/"> China e-Sciences tech Ltd. </a> technical support.
-                    <a href="<%=path%>/auth.do?method=logout" target="_blank" title="To Admin Console">
+                <p><a target="_blank" href="http://www.esciences.com.cn/"> China e-Sciences tech Ltd. </a> 技术支持.
+                    <a href="<%=path%>/auth.do?method=logout" target="_blank" title="进入后台管理">
                             <span class="fa-stack fa-lg">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-table fa-stack-1x fa-inverse"></i>
