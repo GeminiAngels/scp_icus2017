@@ -187,10 +187,9 @@
                                 <input type="hidden" name="orderId" value="${o.orderno}"/>
                                 <input type="hidden" name="title" value="Conferences Fees"/>
                                 <input type="hidden" name="description" value="${o.orderremark}"/>
-                                <%--<c:set var="ordermoney" value="${o.ordermoney}"/>--%>
-                                <c:set var="ordermoney" value="1"/>
-                                <c:if test="${o.ordertype eq 'Alipay' or o.ordertype eq 'PayPal'}">
-                                    <c:set var="ordermoney" value="${ordermoney/100}"/>
+                                <fmt:parseNumber var="ordermoney" integerOnly="true" value="${o.ordermoney}"/>
+                                <c:if test="${o.ordertype ne 'Alipay'}">
+                                    <c:set var="ordermoney" value="${ordermoney*100}"/>
                                 </c:if>
                                 <input type="hidden" name="total" value="${ordermoney}"/>
                                 <input type="hidden" name="processUrl" value="http://www.icus.org.cn/ICUS2017/auth.do?method=asyncPayStatus&regid=${register.id}">

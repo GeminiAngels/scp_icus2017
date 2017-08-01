@@ -180,10 +180,9 @@
                                 <input type="hidden" name="orderId" value="${o.orderno}"/>
                                 <input type="hidden" name="title" value="Conferences Fees"/>
                                 <input type="hidden" name="description" value="${o.orderremark}"/>
-                                <%--<c:set var="ordermoney" value="${o.ordermoney}"/>--%>
-                                <c:set var="ordermoney" value="1"/>
-                                <c:if test="${o.ordertype eq 'Alipay' or o.ordertype eq 'PayPal'}">
-                                    <c:set var="ordermoney" value="${ordermoney/100}"/>
+                                <fmt:parseNumber var="ordermoney" integerOnly="true" value="${o.ordermoney}"/>
+                                <c:if test="${o.ordertype eq 'UnionPay'}">
+                                    <c:set var="ordermoney" value="${ordermoney*100}"/>
                                 </c:if>
                                 <input type="hidden" name="total" value="${ordermoney}"/>
                                 <input type="hidden" name="processUrl" value="http://www.icus.org.cn/ICUS2017/auth.do?method=asyncPayStatus&regid=${register.id}">
@@ -323,6 +322,46 @@
                 this.input_price.val(_price);
             };
 
+            this.computePrice2 = function(lwsl,rylx,ccys){
+                var _price = 3000;//￥3000
+
+                //无论文，普通人员
+                if(!lwsl && rylx == 1) {
+                    _price = 1800;//￥1800
+                }
+
+                //无论文，非普通人员
+                else if(!lwsl && rylx != 1) {
+                    _price = 1500;//￥1500
+                }
+
+                //1篇论文，普通人员
+                else if(lwsl == 1 && rylx == 1) {
+                    _price = 3000;//￥3000
+                }
+
+                //1篇论文，非普通人员
+                else if(lwsl == 1 && rylx != 1) {
+                    _price = 2800;//￥2800
+                }
+
+                //2篇论文，普通人员
+                else if(lwsl == 2 && rylx == 1) {
+                    _price = 3500;//￥3500
+                }
+
+                //2篇论文，非普通人员
+                else if(lwsl == 2 && rylx != 1) {
+                    _price = 3200;//￥3200
+                }
+
+                if(ccys)
+                    _price = _price + 1000*ccys;
+
+                this.txt_price.text('￥'+_price);
+                this.input_price.val(_price);
+            };
+
             this.changePayurl = function(path) {
                 this.hidden_payurl.val(this.payurl_prefix + path);
             }
@@ -340,23 +379,33 @@
                 this.radio_lwsl.on('change',function(e){
                     console.log($(this).attr('name')+':'+$(this).data('key'));
                     that.key_lwsl = $(this).data('key');
-                    that.computePrice(that.key_lwsl,that.key_rylx,that.key_ccys);
+                    if(that.key_zffs == 2)
+                        that.computePrice2(that.key_lwsl,that.key_rylx,that.key_ccys);
+                    else
+                        that.computePrice(that.key_lwsl,that.key_rylx,that.key_ccys);
                 });
 
                 this.radio_rylx.on('change',function(e){
                     console.log($(this).attr('name')+':'+$(this).data('key'));
                     that.key_rylx = $(this).data('key');
-                    that.computePrice(that.key_lwsl,that.key_rylx,that.key_ccys);
+                    if(that.key_zffs == 2)
+                        that.computePrice2(that.key_lwsl,that.key_rylx,that.key_ccys);
+                    else
+                        that.computePrice(that.key_lwsl,that.key_rylx,that.key_ccys);
                 });
 
                 this.radio_ccys.on('change',function(e){
                     console.log($(this).attr('name')+':'+$(this).data('key'));
                     that.key_ccys = $(this).data('key');
-                    that.computePrice(that.key_lwsl,that.key_rylx,that.key_ccys);
+                    if(that.key_zffs == 2)
+                        that.computePrice2(that.key_lwsl,that.key_rylx,that.key_ccys);
+                    else
+                        that.computePrice(that.key_lwsl,that.key_rylx,that.key_ccys);
                 });
 
                 this.radio_zffs.on('change',function(e){
                     console.log($(this).attr('name')+':'+$(this).data('key'));
+                    that.key_zffs = $(this).data('key');
                     that.changePayurl($(this).data('path'));
                 });
 
